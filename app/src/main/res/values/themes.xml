@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Theme.HyperFVM" parent="android:Theme.Material.Light.NoActionBar" />
+
+    <style name="Theme.App.Splash" parent="Theme.SplashScreen">
+        <!-- SplashScreen背景颜色 -->
+        <item name="android:windowSplashScreenBackground">?android:attr/colorPrimary</item>
+        <!-- SplashScreen图标 -->
+        <item name="android:windowSplashScreenAnimatedIcon">@drawable/splash_image</item>
+
+        <!-- SplashScreen停留时长 -->
+        <item name="windowSplashScreenAnimationDuration">500</item>
+
+        <!-- 启动屏结束后，应用将切换到的主题 -->
+        <item name="postSplashScreenTheme">@style/Theme.HyperFVM</item>
+    </style>
+</resources>
+

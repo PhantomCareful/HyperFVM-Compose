@@ -1,0 +1,72 @@
+[versions]
+agp = "9.0.0"
+backdrop = "1.0.6"
+capsule = "2.1.3"
+coilCompose = "2.7.0"
+coreKtx = "1.17.0"
+coreSplashscreen = "1.0.1"
+haze = "1.7.2"
+junit = "4.13.2"
+junitVersion = "1.3.0"
+espressoCore = "3.7.0"
+kotlinxCoroutinesAndroid = "1.10.2"
+lifecycleRuntimeKtx = "2.9.4"
+activityCompose = "1.12.4"
+kotlin = "2.3.20"
+composeBom = "2025.09.01"
+lifecycleViewmodelKtx = "2.10.0"
+lifecycleViewmodelCompose = "2.10.0"
+miuix = "0.8.8"
+miuixIcons = "0.8.8"
+miuixNavigation3Adaptive = "0.8.5"
+miuixNavigation3Ui = "0.8.7"
+multiplatformMarkdownRenderer = "0.39.2"
+multiplatformMarkdownRendererM3 = "0.39.2"
+navigation3Runtime = "1.0.1"
+animationCore = "1.10.5"
+sqliteKtx = "2.4.0"
+sqliteFramework = "2.4.0"
+uiUnit = "1.10.5"
+navigationeventCompose = "1.0.2"
+
+[libraries]
+androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
+androidx-core-splashscreen = { module = "androidx.core:core-splashscreen", version.ref = "coreSplashscreen" }
+androidx-lifecycle-livedata-ktx = { module = "androidx.lifecycle:lifecycle-livedata-ktx", version.ref = "lifecycleViewmodelKtx" }
+androidx-lifecycle-viewmodel-compose = { module = "androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "lifecycleViewmodelCompose" }
+androidx-lifecycle-viewmodel-ktx = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "lifecycleViewmodelKtx" }
+androidx-sqlite-framework = { module = "androidx.sqlite:sqlite-framework", version.ref = "sqliteFramework" }
+androidx-sqlite-ktx = { module = "androidx.sqlite:sqlite-ktx", version.ref = "sqliteKtx" }
+backdrop = { module = "io.github.kyant0:backdrop", version.ref = "backdrop" }
+capsule = { module = "io.github.kyant0:capsule", version.ref = "capsule" }
+coil-compose = { module = "io.coil-kt:coil-compose", version.ref = "coilCompose" }
+haze = { module = "dev.chrisbanes.haze:haze", version.ref = "haze" }
+junit = { group = "junit", name = "junit", version.ref = "junit" }
+androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
+androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
+androidx-lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "lifecycleRuntimeKtx" }
+androidx-activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "activityCompose" }
+androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "composeBom" }
+androidx-compose-ui = { group = "androidx.compose.ui", name = "ui" }
+androidx-compose-ui-graphics = { group = "androidx.compose.ui", name = "ui-graphics" }
+androidx-compose-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
+androidx-compose-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
+androidx-compose-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
+androidx-compose-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
+androidx-compose-material3 = { group = "androidx.compose.material3", name = "material3" }
+kotlinx-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "kotlinxCoroutinesAndroid" }
+miuix = { module = "top.yukonga.miuix.kmp:miuix", version.ref = "miuix" }
+miuix-icons = { module = "top.yukonga.miuix.kmp:miuix-icons", version.ref = "miuixIcons" }
+androidx-navigation3-runtime = { group = "androidx.navigation3", name = "navigation3-runtime", version.ref = "navigation3Runtime" }
+androidx-compose-animation-core = { group = "androidx.compose.animation", name = "animation-core", version.ref = "animationCore" }
+androidx-compose-ui-unit = { group = "androidx.compose.ui", name = "ui-unit", version.ref = "uiUnit" }
+miuix-navigation3-adaptive = { module = "top.yukonga.miuix.kmp:miuix-navigation3-adaptive", version.ref = "miuixNavigation3Adaptive" }
+miuix-navigation3-ui = { module = "top.yukonga.miuix.kmp:miuix-navigation3-ui", version.ref = "miuixNavigation3Ui" }
+androidx-navigationevent-compose = { group = "androidx.navigationevent", name = "navigationevent-compose", version.ref = "navigationeventCompose" }
+multiplatform-markdown-renderer-m3 = { module = "com.mikepenz:multiplatform-markdown-renderer-m3", version.ref = "multiplatformMarkdownRendererM3" }
+multiplatform-markdown-renderer = { module = "com.mikepenz:multiplatform-markdown-renderer", version.ref = "multiplatformMarkdownRenderer" }
+
+[plugins]
+android-application = { id = "com.android.application", version.ref = "agp" }
+kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
+

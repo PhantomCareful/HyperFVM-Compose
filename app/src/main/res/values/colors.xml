@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--App图标配色-->
+    <color name="ic_launcher_foreground">@android:color/system_accent2_700</color>
+    <color name="ic_launcher_background">@android:color/system_accent1_100</color>
+
+    <!--关于App页面，App名字的颜色-->
+    <color name="about_app_name">#ff000000</color>
+
+    <!--LSPosed图标背景色-->
+    <color name="lsposed">#fff38eb0</color>
+</resources>
