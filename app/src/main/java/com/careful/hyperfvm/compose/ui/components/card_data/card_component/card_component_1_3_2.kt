@@ -79,6 +79,8 @@ private val CARD_DESCRIPTION = listOf(
     "能力：向前方3行，后方1行，射出4发强力飞箭",
     "能力：两侧路各增加1发子弹",
     "能力：子弹变为直线穿透类型",
+    "体力：50",
+    "冷却：7秒",
     "所属分类：管线类/枪塔类",
     "耗能：375",
     "作为副卡：好卡\uD83D\uDE00",
@@ -268,7 +270,7 @@ private fun Info(
     ) {
         BasicComponent(
             modifier = Modifier,
-            title = CARD_DESCRIPTION[6]
+            title = CARD_DESCRIPTION[8]
         )
     }
 

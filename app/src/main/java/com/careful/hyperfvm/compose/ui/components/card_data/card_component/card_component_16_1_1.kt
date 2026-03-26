@@ -73,6 +73,8 @@ private val CARD_DESCRIPTION = listOf(
     "能力：被老鼠啃咬时，几率生产1朵小火苗",
     "能力：每隔一段时间可自动释放5×5范围火焰攻击鼠军",
     "能力：向前连续发射4枚子弹",
+    "体力：1200",
+    "冷却：看技能",
     "所属分类：防御类/面包类",
     "耗能：150",
     "作为副卡：好卡\uD83D\uDE00",
@@ -287,17 +289,17 @@ private fun Info(
         BasicComponent(
             modifier = Modifier,
             title = "初级融合后",
-            summary = CARD_DESCRIPTION[6]
+            summary = CARD_DESCRIPTION[8]
         )
         BasicComponent(
             modifier = Modifier,
             title = "深度融合后",
-            summary = CARD_DESCRIPTION[7]
+            summary = CARD_DESCRIPTION[9]
         )
         BasicComponent(
             modifier = Modifier,
             title = "灵魂融合后",
-            summary = CARD_DESCRIPTION[8]
+            summary = CARD_DESCRIPTION[10]
         )
     }
     

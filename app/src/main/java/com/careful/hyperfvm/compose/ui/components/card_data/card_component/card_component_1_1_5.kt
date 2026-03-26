@@ -74,6 +74,8 @@ private val CARD_DESCRIPTION = listOf(
     "能力：同时分别向正前方和正后方发射2发子弹，共4发子弹",
     "能力：前方增加1发子弹，共5发子弹",
     "能力：前后方各增加1发子弹，共7发子弹",
+    "体力：50",
+    "冷却：7秒",
     "所属分类：管线类/水管类",
     "耗能：125",
     "作为副卡：好卡\uD83D\uDE00",
@@ -263,7 +265,7 @@ private fun Info(
     ) {
         BasicComponent(
             modifier = Modifier,
-            title = CARD_DESCRIPTION[6]
+            title = CARD_DESCRIPTION[8]
         )
     }
 

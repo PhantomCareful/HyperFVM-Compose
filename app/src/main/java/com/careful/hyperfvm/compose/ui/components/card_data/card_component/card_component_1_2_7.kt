@@ -87,6 +87,8 @@ private val CARD_DESCRIPTION = listOf(
     "能力：向前方3行，发射穿透型带电子弹",
     "能力：中行增加1发子弹",
     "能力：两行侧路各增加1发子弹",
+    "体力：50",
+    "冷却：10秒",
     "所属分类：管线类/三线类",
     "耗能：325",
     "作为副卡：好卡\uD83D\uDE00",
@@ -262,7 +264,7 @@ private fun Info(
         BasicComponent(
             modifier = Modifier,
             title = "一转凭证",
-            summary = CARD_DESCRIPTION[6],
+            summary = CARD_DESCRIPTION[8],
             endActions = {
                 ImagesRow(
                     imageResIds = CARD_IMAGES_TRANSFER_1,
@@ -274,7 +276,7 @@ private fun Info(
         BasicComponent(
             modifier = Modifier,
             title = "二转凭证",
-            summary = CARD_DESCRIPTION[7],
+            summary = CARD_DESCRIPTION[9],
             endActions = {
                 ImagesRow(
                     imageResIds = CARD_IMAGES_TRANSFER_2,
@@ -297,7 +299,7 @@ private fun Info(
     ) {
         BasicComponent(
             modifier = Modifier,
-            title = CARD_DESCRIPTION[8]
+            title = CARD_DESCRIPTION[10]
         )
     }
 
@@ -911,20 +913,6 @@ private fun Info(
     // =================================================== 其他信息 ===================================================
 
     SmallTitle("其他信息")
-
-    Card(
-        modifier = Modifier
-            .padding(horizontal = 12.dp)
-            .padding(bottom = 12.dp),
-        pressFeedbackType = PressFeedbackType.Sink,
-        showIndication = true,
-    ) {
-        BasicComponent(
-            modifier = Modifier,
-            title = "冷却⏳",
-            summary = "10秒",
-        )
-    }
 
     Card(
         modifier = Modifier

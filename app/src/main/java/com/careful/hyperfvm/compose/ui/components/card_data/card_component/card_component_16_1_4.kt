@@ -77,6 +77,8 @@ private val CARD_DESCRIPTION = listOf(
     "能力：伤害提高扩大到3×3范围",
     "能力：间隔一段时间，额外产生一次3×3爆炸",
     "能力：向前方3行投掷栗子子弹",
+    "体力：50",
+    "冷却：7秒",
     "所属分类：杂项类/浮空三锅",
     "耗能：160",
     "作为副卡：好卡\uD83D\uDE00",
@@ -303,7 +305,7 @@ private fun Info(
         BasicComponent(
             modifier = Modifier,
             title = "初级融合后",
-            summary = CARD_DESCRIPTION[6]
+            summary = CARD_DESCRIPTION[8]
         )
         BasicComponent(
             modifier = Modifier,
@@ -332,7 +334,7 @@ private fun Info(
         BasicComponent(
             modifier = Modifier,
             title = "灵魂融合后",
-            summary = CARD_DESCRIPTION[7]
+            summary = CARD_DESCRIPTION[9]
         )
     }
 

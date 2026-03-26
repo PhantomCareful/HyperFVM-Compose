@@ -87,6 +87,8 @@ private val CARD_DESCRIPTION = listOf(
     "能力：对前后方都可以攻击",
     "能力：前方多出一发子弹",
     "能力：前后各再多出一发子弹",
+    "体力：50",
+    "冷却：7秒",
     "所属分类：管线类/水管类",
     "耗能：125",
     "作为副卡：中卡\uD83D\uDE2D/好卡\uD83D\uDE00/好卡\uD83D\uDE00",
@@ -263,7 +265,7 @@ private fun Info(
         BasicComponent(
             modifier = Modifier,
             title = "一转凭证",
-            summary = CARD_DESCRIPTION[6],
+            summary = CARD_DESCRIPTION[8],
             endActions = {
                 ImagesRow(
                     imageResIds = CARD_IMAGES_TRANSFER_1,
@@ -275,7 +277,7 @@ private fun Info(
         BasicComponent(
             modifier = Modifier,
             title = "二转凭证",
-            summary = CARD_DESCRIPTION[7],
+            summary = CARD_DESCRIPTION[9],
             endActions = {
                 ImagesRow(
                     imageResIds = CARD_IMAGES_TRANSFER_2,
@@ -298,7 +300,7 @@ private fun Info(
     ) {
         BasicComponent(
             modifier = Modifier,
-            title = CARD_DESCRIPTION[8]
+            title = CARD_DESCRIPTION[10]
         )
     }
 

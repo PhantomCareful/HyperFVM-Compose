@@ -74,6 +74,8 @@ private val CARD_DESCRIPTION = listOf(
     "能力：对前后方各发射2发强力子弹，威力与实力的象征！",
     "能力：前方增加一发子弹",
     "能力：前后各增加1发，子弹威力提升5%",
+    "体力：50",
+    "冷却：7秒",
     "所属分类：管线类/水管类",
     "耗能：115",
     "作为副卡：好卡\uD83D\uDE00",
@@ -268,7 +270,7 @@ private fun Info(
     ) {
         BasicComponent(
             modifier = Modifier,
-            title = CARD_DESCRIPTION[6]
+            title = CARD_DESCRIPTION[8]
         )
     }
 

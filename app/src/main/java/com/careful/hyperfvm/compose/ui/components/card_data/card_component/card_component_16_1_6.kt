@@ -79,6 +79,8 @@ private val CARD_DESCRIPTION = listOf(
     "能力：老鼠被击中后额外附加燃烧buff",
     "能力：每行增加1发子弹",
     "能力：子弹可穿透一定数量老鼠+障碍",
+    "体力：50",
+    "冷却：7秒",
     "所属分类：管线类/三线类",
     "耗能：325",
     "作为副卡：好卡\uD83D\uDE00",
@@ -298,7 +300,7 @@ private fun Info(
         BasicComponent(
             modifier = Modifier,
             title = "子弹数量",
-            summary = CARD_DESCRIPTION[6]
+            summary = CARD_DESCRIPTION[8]
         )
         BasicComponent(
             modifier = Modifier,
@@ -323,7 +325,7 @@ private fun Info(
         BasicComponent(
             modifier = Modifier,
             title = "深度融合后",
-            summary = CARD_DESCRIPTION[7]
+            summary = CARD_DESCRIPTION[9]
         )
         BasicComponent(
             modifier = Modifier,

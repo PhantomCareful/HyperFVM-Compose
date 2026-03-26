@@ -77,6 +77,8 @@ private val CARD_DESCRIPTION = listOf(
     "能力：啃咬反伤",
     "能力：每隔一段时间，在周围5×5范围内召唤寒冰之气攻击鼠军",
     "能力：子弹变为冰弹，附加碎冰特效",
+    "体力：250",
+    "冷却：7秒",
     "所属分类：增幅类/子弹类增幅/A.平射增幅",
     "耗能：175",
     "作为副卡：好卡\uD83D\uDE00",
@@ -286,7 +288,7 @@ private fun Info(
         BasicComponent(
             modifier = Modifier,
             title = "初级融合后",
-            summary = CARD_DESCRIPTION[6]
+            summary = CARD_DESCRIPTION[8]
         )
         BasicComponent(
             modifier = Modifier,
@@ -315,7 +317,7 @@ private fun Info(
         BasicComponent(
             modifier = Modifier,
             title = "灵魂融合后",
-            summary = CARD_DESCRIPTION[7]
+            summary = CARD_DESCRIPTION[9]
         )
     }
 
@@ -1378,20 +1380,6 @@ private fun Info(
     // =================================================== 其他信息 ===================================================
 
     SmallTitle("其他信息")
-
-    Card(
-        modifier = Modifier
-            .padding(horizontal = 12.dp)
-            .padding(bottom = 12.dp),
-        pressFeedbackType = PressFeedbackType.Sink,
-        showIndication = true,
-    ) {
-        BasicComponent(
-            modifier = Modifier,
-            title = "体力💪",
-            summary = "250",
-        )
-    }
 
     Card(
         modifier = Modifier

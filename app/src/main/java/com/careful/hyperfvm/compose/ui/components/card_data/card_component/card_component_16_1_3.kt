@@ -74,6 +74,8 @@ private val CARD_DESCRIPTION = listOf(
     "能力：无需底座",
     "能力：前后路各增加1发子弹，并且中路子弹可以过火",
     "能力：向前再增加2路子弹，共计22发",
+    "体力：50",
+    "冷却：7秒",
     "所属分类：类海星类/章鱼类海星",
     "耗能：155",
     "作为副卡：好卡\uD83D\uDE00",
@@ -284,17 +286,17 @@ private fun Info(
         BasicComponent(
             modifier = Modifier,
             title = "初级融合后",
-            summary = CARD_DESCRIPTION[6]
+            summary = CARD_DESCRIPTION[8]
         )
         BasicComponent(
             modifier = Modifier,
             title = "深度融合后",
-            summary = CARD_DESCRIPTION[7]
+            summary = CARD_DESCRIPTION[9]
         )
         BasicComponent(
             modifier = Modifier,
             title = "灵魂融合后",
-            summary = CARD_DESCRIPTION[8]
+            summary = CARD_DESCRIPTION[10]
         )
     }
 

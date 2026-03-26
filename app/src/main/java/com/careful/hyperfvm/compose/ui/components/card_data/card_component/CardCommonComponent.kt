@@ -1,6 +1,7 @@
 package com.careful.hyperfvm.compose.ui.components.card_data.card_component
 
 import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -103,6 +104,33 @@ fun BaseInfoFusionCard(
             }
         )
     }
+    Row(
+        modifier = Modifier.fillMaxWidth()
+            .padding(horizontal = 12.dp)
+            .padding(bottom = 12.dp),
+        horizontalArrangement = Arrangement.spacedBy(12.dp)
+    ) {
+        Card(
+            modifier = Modifier.weight(1f),
+            pressFeedbackType = PressFeedbackType.Sink,
+            showIndication = true,
+        ) {
+            BasicComponent(
+                modifier = Modifier,
+                title = cardDescription[3]
+            )
+        }
+        Card(
+            modifier = Modifier.weight(1f),
+            pressFeedbackType = PressFeedbackType.Sink,
+            showIndication = true,
+        ) {
+            BasicComponent(
+                modifier = Modifier,
+                title = cardDescription[4]
+            )
+        }
+    }
     Card(
         modifier = Modifier
             .padding(horizontal = 12.dp)
@@ -112,15 +140,15 @@ fun BaseInfoFusionCard(
     ) {
         BasicComponent(
             modifier = Modifier,
-            title = cardDescription[3]
-        )
-        BasicComponent(
-            modifier = Modifier,
-            title = cardDescription[4]
-        )
-        BasicComponent(
-            modifier = Modifier,
             title = cardDescription[5]
+        )
+        BasicComponent(
+            modifier = Modifier,
+            title = cardDescription[6]
+        )
+        BasicComponent(
+            modifier = Modifier,
+            title = cardDescription[7]
         )
     }
 }
@@ -185,6 +213,33 @@ fun BaseInfoWithBigImage(
             }
         )
     }
+    Row(
+        modifier = Modifier.fillMaxWidth()
+            .padding(horizontal = 12.dp)
+            .padding(bottom = 12.dp),
+        horizontalArrangement = Arrangement.spacedBy(12.dp)
+    ) {
+        Card(
+            modifier = Modifier.weight(1f),
+            pressFeedbackType = PressFeedbackType.Sink,
+            showIndication = true,
+        ) {
+            BasicComponent(
+                modifier = Modifier,
+                title = cardDescription[3]
+            )
+        }
+        Card(
+            modifier = Modifier.weight(1f),
+            pressFeedbackType = PressFeedbackType.Sink,
+            showIndication = true,
+        ) {
+            BasicComponent(
+                modifier = Modifier,
+                title = cardDescription[4]
+            )
+        }
+    }
     Card(
         modifier = Modifier
             .padding(horizontal = 12.dp)
@@ -194,15 +249,15 @@ fun BaseInfoWithBigImage(
     ) {
         BasicComponent(
             modifier = Modifier,
-            title = cardDescription[3]
-        )
-        BasicComponent(
-            modifier = Modifier,
-            title = cardDescription[4]
-        )
-        BasicComponent(
-            modifier = Modifier,
             title = cardDescription[5]
+        )
+        BasicComponent(
+            modifier = Modifier,
+            title = cardDescription[6]
+        )
+        BasicComponent(
+            modifier = Modifier,
+            title = cardDescription[7]
         )
     }
 }
@@ -301,6 +356,33 @@ fun BaseInfoGoldenCard(
             }
         )
     }
+    Row(
+        modifier = Modifier.fillMaxWidth()
+            .padding(horizontal = 12.dp)
+            .padding(bottom = 12.dp),
+        horizontalArrangement = Arrangement.spacedBy(12.dp)
+    ) {
+        Card(
+            modifier = Modifier.weight(1f),
+            pressFeedbackType = PressFeedbackType.Sink,
+            showIndication = true,
+        ) {
+            BasicComponent(
+                modifier = Modifier,
+                title = cardDescription[4]
+            )
+        }
+        Card(
+            modifier = Modifier.weight(1f),
+            pressFeedbackType = PressFeedbackType.Sink,
+            showIndication = true,
+        ) {
+            BasicComponent(
+                modifier = Modifier,
+                title = cardDescription[5]
+            )
+        }
+    }
     Card(
         modifier = Modifier
             .padding(horizontal = 12.dp)
@@ -310,15 +392,15 @@ fun BaseInfoGoldenCard(
     ) {
         BasicComponent(
             modifier = Modifier,
-            title = cardDescription[4]
-        )
-        BasicComponent(
-            modifier = Modifier,
-            title = cardDescription[5]
-        )
-        BasicComponent(
-            modifier = Modifier,
             title = cardDescription[6]
+        )
+        BasicComponent(
+            modifier = Modifier,
+            title = cardDescription[7]
+        )
+        BasicComponent(
+            modifier = Modifier,
+            title = cardDescription[8]
         )
     }
 }

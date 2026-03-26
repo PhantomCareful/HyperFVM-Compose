@@ -73,6 +73,8 @@ private val CARD_DESCRIPTION = listOf(
     "能力：向前发射3发子弹",
     "能力：子弹变穿透",
     "能力：一格可以同时放置3个咖啡杯",
+    "体力：50",
+    "冷却：7秒",
     "所属分类：直线射击类/咖啡家族",
     "耗能：0",
     "作为副卡：好卡\uD83D\uDE00",
@@ -281,22 +283,22 @@ private fun Info(
         BasicComponent(
             modifier = Modifier,
             title = "子弹数量",
-            summary = CARD_DESCRIPTION[6]
-        )
-        BasicComponent(
-            modifier = Modifier,
-            title = "初级融合后",
-            summary = CARD_DESCRIPTION[7]
-        )
-        BasicComponent(
-            modifier = Modifier,
-            title = "深度融合后",
             summary = CARD_DESCRIPTION[8]
         )
         BasicComponent(
             modifier = Modifier,
-            title = "灵魂融合后",
+            title = "初级融合后",
             summary = CARD_DESCRIPTION[9]
+        )
+        BasicComponent(
+            modifier = Modifier,
+            title = "深度融合后",
+            summary = CARD_DESCRIPTION[10]
+        )
+        BasicComponent(
+            modifier = Modifier,
+            title = "灵魂融合后",
+            summary = CARD_DESCRIPTION[11]
         )
     }
 

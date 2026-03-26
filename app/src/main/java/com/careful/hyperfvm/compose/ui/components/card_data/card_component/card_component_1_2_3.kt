@@ -74,6 +74,8 @@ private val CARD_DESCRIPTION = listOf(
     "能力：可以同时攻击前方三条线",
     "能力：中间增加1发子弹",
     "能力：两边各增加1发，子弹威力提升5%",
+    "体力：50",
+    "冷却：7秒",
     "所属分类：管线类/三线类",
     "耗能：225",
     "作为副卡：好卡\uD83D\uDE00",
@@ -268,7 +270,7 @@ private fun Info(
     ) {
         BasicComponent(
             modifier = Modifier,
-            title = CARD_DESCRIPTION[6]
+            title = CARD_DESCRIPTION[8]
         )
     }
 

@@ -74,6 +74,8 @@ private val CARD_DESCRIPTION = listOf(
     "能力：同时分别向正前方三路发射1发子弹，共3发子弹",
     "能力：中间增加1发子弹，共4发子弹",
     "能力：三路各增加1发子弹，共7发子弹",
+    "体力：50",
+    "冷却：10秒",
     "所属分类：管线类/三线类",
     "耗能：300",
     "作为副卡：好卡\uD83D\uDE00",
@@ -263,7 +265,7 @@ private fun Info(
     ) {
         BasicComponent(
             modifier = Modifier,
-            title = CARD_DESCRIPTION[6]
+            title = CARD_DESCRIPTION[8]
         )
     }
 
@@ -912,22 +914,6 @@ private fun Info(
     )
 
     // =================================================== 其他信息 ===================================================
-
-    SmallTitle("其他信息")
-
-    Card(
-        modifier = Modifier
-            .padding(horizontal = 12.dp)
-            .padding(bottom = 12.dp),
-        pressFeedbackType = PressFeedbackType.Sink,
-        showIndication = true,
-    ) {
-        BasicComponent(
-            modifier = Modifier,
-            title = "冷却⏳",
-            summary = "10秒",
-        )
-    }
 
     DeveloperTips()
 

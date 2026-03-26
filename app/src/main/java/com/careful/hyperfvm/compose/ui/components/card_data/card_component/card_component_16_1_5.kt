@@ -78,6 +78,8 @@ private val CARD_DESCRIPTION = listOf(
     "能力：对空对地子弹分别+1",
     "能力：对地子弹变穿透",
     "能力：对空子弹变全屏追踪",
+    "体力：90",
+    "冷却：7秒",
     "所属分类：专业防空/陆空兼备类/B-对空对地均为直线，空地同级，对地可过火",
     "耗能：255",
     "作为副卡：好卡\uD83D\uDE00",
@@ -313,17 +315,17 @@ private fun Info(
         BasicComponent(
             modifier = Modifier,
             title = "初级融合后",
-            summary = CARD_DESCRIPTION[6]
+            summary = CARD_DESCRIPTION[8]
         )
         BasicComponent(
             modifier = Modifier,
             title = "深度融合后",
-            summary = CARD_DESCRIPTION[7]
+            summary = CARD_DESCRIPTION[9]
         )
         BasicComponent(
             modifier = Modifier,
             title = "灵魂融合后",
-            summary = CARD_DESCRIPTION[8]
+            summary = CARD_DESCRIPTION[10]
         )
     }
 
@@ -1495,20 +1497,6 @@ private fun Info(
     // =================================================== 其他信息 ===================================================
 
     SmallTitle("其他信息")
-
-    Card(
-        modifier = Modifier
-            .padding(horizontal = 12.dp)
-            .padding(bottom = 12.dp),
-        pressFeedbackType = PressFeedbackType.Sink,
-        showIndication = true,
-    ) {
-        BasicComponent(
-            modifier = Modifier,
-            title = "体力💪",
-            summary = "90",
-        )
-    }
 
     Card(
         modifier = Modifier

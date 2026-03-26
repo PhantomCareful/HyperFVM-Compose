@@ -32,7 +32,7 @@ fun MoreCard() {
     ) {
         SuperArrow(
             title = "项目地址",
-            summary = "本项目基于GPL3.0协议开源",
+            summary = "本项目基于AGPL3.0协议开源",
             startAction = {
                 Image(
                     painter = painterResource(id = R.drawable.ic_github),

@@ -78,6 +78,8 @@ private val CARD_DESCRIPTION = listOf(
     "能力：同时向正前方三行发射4发强力箭，中间2发，两边各1发，威力巨大！",
     "能力：能量守恒(不+)",
     "能力：两边各增加一发子弹",
+    "体力：50",
+    "冷却：7秒",
     "所属分类：管线类/三线类",
     "耗能：300+/300/300",
     "作为副卡：好卡\uD83D\uDE00",
@@ -283,7 +285,7 @@ private fun Info(
     ) {
         BasicComponent(
             modifier = Modifier,
-            title = CARD_DESCRIPTION[6]
+            title = CARD_DESCRIPTION[8]
         )
     }
 

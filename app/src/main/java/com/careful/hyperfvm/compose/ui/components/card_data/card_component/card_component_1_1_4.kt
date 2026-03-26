@@ -78,6 +78,8 @@ private val CARD_DESCRIPTION = listOf(
     "能力：前方增加1发子弹",
     "能力：后方增加1发子弹。每隔几发射出强力的超级子弹，并且首发即为超级子弹",
     "能力：超级子弹产生3×3十字爆炸效果",
+    "体力：50",
+    "冷却：7秒",
     "所属分类：管线类/水管类",
     "耗能：150",
     "作为副卡：好卡\uD83D\uDE00",
@@ -318,7 +320,7 @@ private fun Info(
     ) {
         BasicComponent(
             modifier = Modifier,
-            title = CARD_DESCRIPTION[7]
+            title = CARD_DESCRIPTION[9]
         )
     }
 
