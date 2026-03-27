@@ -64,8 +64,6 @@ fun BaseInfoFusionCard(
         modifier = Modifier
             .padding(horizontal = 12.dp)
             .padding(bottom = 12.dp),
-        pressFeedbackType = PressFeedbackType.Sink,
-        showIndication = true,
     ) {
         BasicComponent(
             modifier = Modifier,
@@ -77,7 +75,8 @@ fun BaseInfoFusionCard(
                     imageWidth = 40,
                     imageHeight = 50,
                 )
-            }
+            },
+            onClick = {  },
         )
         BasicComponent(
             modifier = Modifier,
@@ -89,7 +88,8 @@ fun BaseInfoFusionCard(
                     imageWidth = 40,
                     imageHeight = 50,
                 )
-            }
+            },
+            onClick = {  },
         )
         BasicComponent(
             modifier = Modifier,
@@ -101,54 +101,8 @@ fun BaseInfoFusionCard(
                     imageWidth = 40,
                     imageHeight = 50,
                 )
-            }
-        )
-    }
-    Row(
-        modifier = Modifier.fillMaxWidth()
-            .padding(horizontal = 12.dp)
-            .padding(bottom = 12.dp),
-        horizontalArrangement = Arrangement.spacedBy(12.dp)
-    ) {
-        Card(
-            modifier = Modifier.weight(1f),
-            pressFeedbackType = PressFeedbackType.Sink,
-            showIndication = true,
-        ) {
-            BasicComponent(
-                modifier = Modifier,
-                title = cardDescription[3]
-            )
-        }
-        Card(
-            modifier = Modifier.weight(1f),
-            pressFeedbackType = PressFeedbackType.Sink,
-            showIndication = true,
-        ) {
-            BasicComponent(
-                modifier = Modifier,
-                title = cardDescription[4]
-            )
-        }
-    }
-    Card(
-        modifier = Modifier
-            .padding(horizontal = 12.dp)
-            .padding(bottom = 12.dp),
-        pressFeedbackType = PressFeedbackType.Sink,
-        showIndication = true,
-    ) {
-        BasicComponent(
-            modifier = Modifier,
-            title = cardDescription[5]
-        )
-        BasicComponent(
-            modifier = Modifier,
-            title = cardDescription[6]
-        )
-        BasicComponent(
-            modifier = Modifier,
-            title = cardDescription[7]
+            },
+            onClick = {  },
         )
     }
 }
@@ -383,24 +337,33 @@ fun BaseInfoGoldenCard(
             )
         }
     }
+
+}
+
+@Composable
+fun BaseInfoCommonCard(
+    cardDescription: List<String>,
+    startIndex: Int
+) {
     Card(
         modifier = Modifier
             .padding(horizontal = 12.dp)
             .padding(bottom = 12.dp),
-        pressFeedbackType = PressFeedbackType.Sink,
-        showIndication = true,
     ) {
         BasicComponent(
             modifier = Modifier,
-            title = cardDescription[6]
+            title = cardDescription[startIndex],
+            onClick = {  },
         )
         BasicComponent(
             modifier = Modifier,
-            title = cardDescription[7]
+            title = cardDescription[startIndex + 1],
+            onClick = {  },
         )
         BasicComponent(
             modifier = Modifier,
-            title = cardDescription[8]
+            title = cardDescription[startIndex + 2],
+            onClick = {  },
         )
     }
 }

@@ -595,6 +595,14 @@
     <string name="name_card_data_index_9_4_5_0">金刚马</string>
     <string name="name_card_data_index_9_4_5_1">魔铃金刚马–梵音金刚马</string>
 
+    <string name="name_card_data_index_9_4_6_0">归元马</string>
+    <string name="name_card_data_index_9_4_6_1">时空归元马</string>
+    <string name="name_card_data_index_9_4_6_2">幻境归元马</string>
+
+    <string name="name_card_data_index_9_4_7_0">蜜糖陷阱</string>
+    <string name="name_card_data_index_9_4_7_1">香浓蜜糖陷阱</string>
+    <string name="name_card_data_index_9_4_7_2">王冠蜜糖陷阱</string>
+
     <string name="title_card_data_index_10_1">(10–1) 杂项类–浮空三锅</string>
 
     <string name="name_card_data_index_10_1_1_0">肥牛火锅</string>
@@ -661,7 +669,12 @@
     <string name="title_card_data_index_10_4">(10–4) 杂项类–衍生类</string>
 
     <string name="name_card_data_index_10_4_1_0">蜂蜜史莱姆</string>
-    <string name="name_card_data_index_10_4_1_1">蜂糖史莱姆–蜂王浆史莱姆</string>
+    <string name="name_card_data_index_10_4_1_1">蜂糖史莱姆</string>
+    <string name="name_card_data_index_10_4_1_2">蜂王浆史莱姆</string>
+
+    <string name="name_card_data_index_10_4_2_0">糖人马</string>
+    <string name="name_card_data_index_10_4_2_1">香芋糖人马</string>
+    <string name="name_card_data_index_10_4_2_2">缤纷糖人马</string>
 
     <string name="title_card_data_index_11_1">(11–1) 直线射击类–小笼包&amp;咖啡家族</string>
 
