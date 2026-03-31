@@ -1,7 +1,6 @@
 package com.careful.hyperfvm.compose.ui.components.card_data.card_component
 
 import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -36,6 +35,7 @@ import top.yukonga.miuix.kmp.basic.Card
 import top.yukonga.miuix.kmp.basic.CardDefaults
 import top.yukonga.miuix.kmp.basic.Checkbox
 import top.yukonga.miuix.kmp.basic.SmallTitle
+import top.yukonga.miuix.kmp.basic.SwitchDefaults
 import top.yukonga.miuix.kmp.basic.Text
 import top.yukonga.miuix.kmp.extra.SuperSwitch
 import top.yukonga.miuix.kmp.extra.WindowBottomSheet
@@ -127,8 +127,6 @@ fun BaseInfoWithBigImage(
         modifier = Modifier
             .padding(horizontal = 12.dp)
             .padding(bottom = 12.dp),
-        pressFeedbackType = PressFeedbackType.Sink,
-        showIndication = true,
     ) {
         BasicComponent(
             modifier = Modifier,
@@ -140,7 +138,8 @@ fun BaseInfoWithBigImage(
                     imageWidth = 40,
                     imageHeight = 50,
                 )
-            }
+            },
+            onClick = {  },
         )
         BasicComponent(
             modifier = Modifier,
@@ -152,7 +151,8 @@ fun BaseInfoWithBigImage(
                     imageWidth = 40,
                     imageHeight = 50,
                 )
-            }
+            },
+            onClick = {  },
         )
         BasicComponent(
             modifier = Modifier,
@@ -164,54 +164,8 @@ fun BaseInfoWithBigImage(
                     imageWidth = 40,
                     imageHeight = 50,
                 )
-            }
-        )
-    }
-    Row(
-        modifier = Modifier.fillMaxWidth()
-            .padding(horizontal = 12.dp)
-            .padding(bottom = 12.dp),
-        horizontalArrangement = Arrangement.spacedBy(12.dp)
-    ) {
-        Card(
-            modifier = Modifier.weight(1f),
-            pressFeedbackType = PressFeedbackType.Sink,
-            showIndication = true,
-        ) {
-            BasicComponent(
-                modifier = Modifier,
-                title = cardDescription[3]
-            )
-        }
-        Card(
-            modifier = Modifier.weight(1f),
-            pressFeedbackType = PressFeedbackType.Sink,
-            showIndication = true,
-        ) {
-            BasicComponent(
-                modifier = Modifier,
-                title = cardDescription[4]
-            )
-        }
-    }
-    Card(
-        modifier = Modifier
-            .padding(horizontal = 12.dp)
-            .padding(bottom = 12.dp),
-        pressFeedbackType = PressFeedbackType.Sink,
-        showIndication = true,
-    ) {
-        BasicComponent(
-            modifier = Modifier,
-            title = cardDescription[5]
-        )
-        BasicComponent(
-            modifier = Modifier,
-            title = cardDescription[6]
-        )
-        BasicComponent(
-            modifier = Modifier,
-            title = cardDescription[7]
+            },
+            onClick = {  },
         )
     }
 }
@@ -258,8 +212,6 @@ fun BaseInfoGoldenCard(
         modifier = Modifier
             .padding(horizontal = 12.dp)
             .padding(bottom = 12.dp),
-        pressFeedbackType = PressFeedbackType.Sink,
-        showIndication = true,
     ) {
         BasicComponent(
             modifier = Modifier,
@@ -271,7 +223,8 @@ fun BaseInfoGoldenCard(
                     imageWidth = 40,
                     imageHeight = 50,
                 )
-            }
+            },
+            onClick = {  },
         )
         BasicComponent(
             modifier = Modifier,
@@ -283,7 +236,8 @@ fun BaseInfoGoldenCard(
                     imageWidth = 40,
                     imageHeight = 50,
                 )
-            }
+            },
+            onClick = {  },
         )
         BasicComponent(
             modifier = Modifier,
@@ -295,7 +249,8 @@ fun BaseInfoGoldenCard(
                     imageWidth = 40,
                     imageHeight = 50,
                 )
-            }
+            },
+            onClick = {  },
         )
         BasicComponent(
             modifier = Modifier,
@@ -307,37 +262,10 @@ fun BaseInfoGoldenCard(
                     imageWidth = 40,
                     imageHeight = 50,
                 )
-            }
+            },
+            onClick = {  },
         )
     }
-    Row(
-        modifier = Modifier.fillMaxWidth()
-            .padding(horizontal = 12.dp)
-            .padding(bottom = 12.dp),
-        horizontalArrangement = Arrangement.spacedBy(12.dp)
-    ) {
-        Card(
-            modifier = Modifier.weight(1f),
-            pressFeedbackType = PressFeedbackType.Sink,
-            showIndication = true,
-        ) {
-            BasicComponent(
-                modifier = Modifier,
-                title = cardDescription[4]
-            )
-        }
-        Card(
-            modifier = Modifier.weight(1f),
-            pressFeedbackType = PressFeedbackType.Sink,
-            showIndication = true,
-        ) {
-            BasicComponent(
-                modifier = Modifier,
-                title = cardDescription[5]
-            )
-        }
-    }
-
 }
 
 @Composable
@@ -534,31 +462,33 @@ fun AnimalCardDecomposeAndGetCalculator(
         onDismissRequest = { showCardDecomposeAndGetCalculatorBottomSheet.value = false }
     ) {
         CompositionLocalProvider(LocalDensity provides density) {
-            SuperSwitch(
-                title = "切换开关",
-                summary = "关闭计算分解数量，打开计算兑换数量",
-                checked = exchangeChecked.value,
-                onCheckedChange = { checked ->
-                    exchangeChecked.value = checked
-                }
-            )
-            AnimatedVisibility(!exchangeChecked.value) {
-                Card(
-                    modifier = Modifier
-                        .padding(horizontal = 12.dp)
-                        .padding(bottom = 12.dp),
-                    pressFeedbackType = PressFeedbackType.Sink,
-                    showIndication = true,
-                    colors = CardDefaults.defaultColors(
-                        color = when {
-                            (colorMode in 3..5) -> MiuixTheme.colorScheme.secondaryContainer
-                            (darkMode) -> Color(0xFF1A3825)
-                            else -> Color(0xFFDFFAE4)
-                        }
+            Card(
+                modifier = Modifier
+                    .padding(horizontal = 12.dp)
+                    .padding(bottom = 12.dp),
+                colors = CardDefaults.defaultColors(
+                    color = when {
+                        (colorMode in 3..5) -> MiuixTheme.colorScheme.secondaryContainer
+                        (darkMode) -> Color(0xFF1A3825)
+                        else -> Color(0xFFDFFAE4)
+                    }
+                )
+            ) {
+                SuperSwitch(
+                    title = "切换开关",
+                    summary = "关闭计算分解数量，打开计算兑换数量\n没显示的物品代表不可分解/兑换",
+                    checked = exchangeChecked.value,
+                    onCheckedChange = { checked ->
+                        exchangeChecked.value = checked
+                    },
+                    switchColors = SwitchDefaults.switchColors(
+                        checkedTrackColor = when { (colorMode in 3..5) -> MiuixTheme.colorScheme.primary else -> Color(0xFF36D167) },
                     )
-                ) {
+                )
+                AnimatedVisibility(!exchangeChecked.value) {
                     BasicComponent(
                         modifier = Modifier,
+                        onClick = {  },
                     ) {
                         Text(
                             text = buildAnnotatedString{
@@ -592,24 +522,10 @@ fun AnimalCardDecomposeAndGetCalculator(
                         )
                     }
                 }
-            }
-            AnimatedVisibility(exchangeChecked.value) {
-                Card(
-                    modifier = Modifier
-                        .padding(horizontal = 12.dp)
-                        .padding(bottom = 12.dp),
-                    pressFeedbackType = PressFeedbackType.Sink,
-                    showIndication = true,
-                    colors = CardDefaults.defaultColors(
-                        color = when {
-                            (colorMode in 3..5) -> MiuixTheme.colorScheme.secondaryContainer
-                            (darkMode) -> Color(0xFF1A3825)
-                            else -> Color(0xFFDFFAE4)
-                        }
-                    )
-                ) {
+                AnimatedVisibility(exchangeChecked.value) {
                     BasicComponent(
                         modifier = Modifier,
+                        onClick = {  },
                     ) {
                         Text(
                             text = buildAnnotatedString {
@@ -644,6 +560,7 @@ fun AnimalCardDecomposeAndGetCalculator(
                     }
                 }
             }
+
             LazyColumn(
                 modifier = Modifier
                     .scrollEndHaptic()
@@ -1514,31 +1431,33 @@ fun GoldenCardDecomposeAndGetCalculator(
         onDismissRequest = { showCardDecomposeAndGetCalculatorBottomSheet.value = false }
     ) {
         CompositionLocalProvider(LocalDensity provides density) {
-            SuperSwitch(
-                title = "切换开关",
-                summary = "关闭计算分解数量，打开计算兑换数量",
-                checked = exchangeChecked.value,
-                onCheckedChange = { checked ->
-                    exchangeChecked.value = checked
-                }
-            )
-            AnimatedVisibility(!exchangeChecked.value) {
-                Card(
-                    modifier = Modifier
-                        .padding(horizontal = 12.dp)
-                        .padding(bottom = 12.dp),
-                    pressFeedbackType = PressFeedbackType.Sink,
-                    showIndication = true,
-                    colors = CardDefaults.defaultColors(
-                        color = when {
-                            (colorMode in 3..5) -> MiuixTheme.colorScheme.secondaryContainer
-                            (darkMode) -> Color(0xFF1A3825)
-                            else -> Color(0xFFDFFAE4)
-                        }
+            Card(
+                modifier = Modifier
+                    .padding(horizontal = 12.dp)
+                    .padding(bottom = 12.dp),
+                colors = CardDefaults.defaultColors(
+                    color = when {
+                        (colorMode in 3..5) -> MiuixTheme.colorScheme.secondaryContainer
+                        (darkMode) -> Color(0xFF1A3825)
+                        else -> Color(0xFFDFFAE4)
+                    }
+                )
+            ) {
+                SuperSwitch(
+                    title = "切换开关",
+                    summary = "关闭计算分解数量，打开计算兑换数量\n没显示的物品代表不可分解/兑换",
+                    checked = exchangeChecked.value,
+                    onCheckedChange = { checked ->
+                        exchangeChecked.value = checked
+                    },
+                    switchColors = SwitchDefaults.switchColors(
+                        checkedTrackColor = when { (colorMode in 3..5) -> MiuixTheme.colorScheme.primary else -> Color(0xFF36D167) },
                     )
-                ) {
+                )
+                AnimatedVisibility(!exchangeChecked.value) {
                     BasicComponent(
                         modifier = Modifier,
+                        onClick = {  },
                     ) {
                         Text(
                             text = buildAnnotatedString{
@@ -1578,24 +1497,10 @@ fun GoldenCardDecomposeAndGetCalculator(
                         )
                     }
                 }
-            }
-            AnimatedVisibility(exchangeChecked.value) {
-                Card(
-                    modifier = Modifier
-                        .padding(horizontal = 12.dp)
-                        .padding(bottom = 12.dp),
-                    pressFeedbackType = PressFeedbackType.Sink,
-                    showIndication = true,
-                    colors = CardDefaults.defaultColors(
-                        color = when {
-                            (colorMode in 3..5) -> MiuixTheme.colorScheme.secondaryContainer
-                            (darkMode) -> Color(0xFF1A3825)
-                            else -> Color(0xFFDFFAE4)
-                        }
-                    )
-                ) {
+                AnimatedVisibility(exchangeChecked.value) {
                     BasicComponent(
                         modifier = Modifier,
+                        onClick = {  },
                     ) {
                         Text(
                             text = buildAnnotatedString {
@@ -1636,6 +1541,7 @@ fun GoldenCardDecomposeAndGetCalculator(
                     }
                 }
             }
+
             LazyColumn(
                 modifier = Modifier
                     .scrollEndHaptic()

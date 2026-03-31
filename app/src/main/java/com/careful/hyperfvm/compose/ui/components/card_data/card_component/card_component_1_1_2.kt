@@ -1,9 +1,12 @@
 package com.careful.hyperfvm.compose.ui.components.card_data.card_component
 
 import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
@@ -18,17 +21,21 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.DpSize
 import androidx.compose.ui.unit.dp
+import com.careful.hyperfvm.compose.LocalAppState
 import com.careful.hyperfvm.compose.R
 import com.careful.hyperfvm.compose.card_data_detail.CRYSTONE_ATTACK
 import com.careful.hyperfvm.compose.card_data_detail.DeveloperTips
 import com.careful.hyperfvm.compose.card_data_detail.SKILL_POINT_1
 import com.careful.hyperfvm.compose.ui.components.card_data.ImagesRow
+import com.careful.hyperfvm.compose.ui.theme.getDarkMode
 import top.yukonga.miuix.kmp.basic.BasicComponent
 import top.yukonga.miuix.kmp.basic.Card
+import top.yukonga.miuix.kmp.basic.CardDefaults
 import top.yukonga.miuix.kmp.basic.Icon
 import top.yukonga.miuix.kmp.basic.IconButton
 import top.yukonga.miuix.kmp.basic.RangeSlider
@@ -74,8 +81,8 @@ private val CARD_DESCRIPTION = listOf(
     "能力：对前后方各发射3发强力子弹，威力与实力的象征！",
     "能力：能量守恒(不+)",
     "能力：前后各再多出一发子弹",
-    "体力：50",
-    "冷却：7秒",
+    "50",
+    "7",
     "所属分类：管线类/水管类",
     "耗能：150+/150/150",
     "作为副卡：好卡\uD83D\uDE00",
@@ -218,17 +225,7 @@ fun CardDataDetailWindowBottomSheet_1_1_2(
         }
     ) {
         CompositionLocalProvider(LocalDensity provides density) {
-            LazyColumn(
-                modifier = Modifier
-                    .scrollEndHaptic()
-                    .overScrollVertical()
-                    .fillMaxSize(),
-                overscrollEffect = null,
-            ) {
-                item {
-                    Info(showCardAuxiliaryBottomSheet)
-                }
-            }
+            Info(showCardAuxiliaryBottomSheet)
         }
     }
 }
@@ -259,702 +256,776 @@ private fun Info(
     var rangeStepsFirstValue by rememberSaveable { mutableIntStateOf(9) }
     var rangeStepsLastValue by rememberSaveable { mutableIntStateOf(16) }
 
-    // =================================================== 基础信息 ===================================================
-
-    BaseInfoWithBigImage(
-        cardImagesBig = CARD_IMAGES_BIG,
-        cardImages = CARD_IMAGES,
-        cardNames = CARD_NAMES,
-        cardDescription = CARD_DESCRIPTION,
-    )
-
-    // =================================================== 人话解释 ===================================================
-
-    SmallTitle(text = "人话解释")
-    Card(
+    LazyColumn(
         modifier = Modifier
-            .padding(horizontal = 12.dp)
-            .padding(bottom = 12.dp),
-        pressFeedbackType = PressFeedbackType.Sink,
-        showIndication = true,
+            .scrollEndHaptic()
+            .overScrollVertical()
+            .fillMaxSize(),
+        overscrollEffect = null,
     ) {
-        BasicComponent(
-            modifier = Modifier,
-            title = CARD_DESCRIPTION[8]
-        )
-    }
+        item {
+            // =================================================== 基础信息 ===================================================
 
-    // =================================================== 相关卡片 ===================================================
-
-    SmallTitle(text = "相关卡片")
-    CardDataDetailWindowBottomSheet_1_1_4(showBottomSheet1, stringResource(R.string.name_card_data_index_1_1_4_0))
-
-    Card(
-        modifier = Modifier
-            .padding(horizontal = 12.dp)
-            .padding(bottom = 12.dp),
-        pressFeedbackType = PressFeedbackType.Sink,
-    ) {
-        BasicComponent(
-            modifier = Modifier,
-            title = stringResource(RELATED_CARD_NAMES[0]),
-            summary = "本卡片是合成此金卡的必要素材",
-            endActions = {
-                ImagesRow(
-                    imageResIds = listOf(RELATED_CARD_IMAGES[0]),
-                    imageWidth = 40,
-                    imageHeight = 50,
-                )
-            },
-            onClick = { showBottomSheet1.value = true },
-        )
-    }
-
-    // =================================================== 星级数据 ===================================================
-
-    SmallTitle(text = "强化提升：" + CARD_DATA_STRING[0])
-    Card(
-        modifier = Modifier
-            .padding(horizontal = 12.dp)
-            .padding(bottom = 12.dp),
-    ) {
-        Column {
-            TabRow(
-                modifier = Modifier.padding(12.dp),
-                colors = TabRowDefaults.tabRowColors(
-                    backgroundColor = MiuixTheme.colorScheme.surfaceContainer,
-                    selectedBackgroundColor = MiuixTheme.colorScheme.surface,
-                ),
-                tabs = tabs,
-                selectedTabIndex = selectedTabIndex,
-                onTabSelected = { selectedTabIndex = it }
+            BaseInfoWithBigImage(
+                cardImagesBig = CARD_IMAGES_BIG,
+                cardImages = CARD_IMAGES,
+                cardNames = CARD_NAMES,
+                cardDescription = CARD_DESCRIPTION,
             )
-            AnimatedVisibility(visible = selectedTabIndex == 0) {
-                Slider(
-                    value = stepsWithKeyPointsValue.toFloat(),
-                    onValueChange = { stepsWithKeyPointsValue = it.roundToInt() },
-                    valueRange = 0f..16f,
-                    steps = 15,
-                    hapticEffect = SliderDefaults.SliderHapticEffect.Step,
-                    showKeyPoints = true,
-                    modifier = Modifier
-                        .padding(horizontal = 12.dp)
-                        .padding(bottom = 12.dp),
+
+            Row(
+                modifier = Modifier.fillMaxWidth()
+                    .padding(horizontal = 12.dp)
+                    .padding(bottom = 12.dp),
+                horizontalArrangement = Arrangement.spacedBy(12.dp)
+            ) {
+                val appState = LocalAppState.current
+                val colorMode = appState.colorMode
+                val darkMode = getDarkMode(colorMode)
+
+                Card(
+                    modifier = Modifier.weight(1f),
+                    pressFeedbackType = PressFeedbackType.Tilt,
+                    showIndication = true,
+                    colors = CardDefaults.defaultColors(
+                        color = if (CARD_DESCRIPTION[3] != "50") {
+                            when {
+                                (colorMode in 3..5) -> MiuixTheme.colorScheme.secondaryContainer
+                                (darkMode) -> Color(0xFF1A3825)
+                                else -> Color(0xFFDFFAE4)
+                            }
+                        } else {
+                            MiuixTheme.colorScheme.surfaceContainer
+                        }
+                    ),
+                    onLongPress = {  }
+                ) {
+                    BasicComponent(
+                        modifier = Modifier,
+                        title = "体力：" + CARD_DESCRIPTION[3],
+                    )
+                }
+                Card(
+                    modifier = Modifier.weight(1f),
+                    pressFeedbackType = PressFeedbackType.Tilt,
+                    showIndication = true,
+                    colors = CardDefaults.defaultColors(
+                        color = if (CARD_DESCRIPTION[4] != "7") {
+                            when {
+                                (colorMode in 3..5) -> MiuixTheme.colorScheme.secondaryContainer
+                                (darkMode) -> Color(0xFF1A3825)
+                                else -> Color(0xFFDFFAE4)
+                            }
+                        } else {
+                            MiuixTheme.colorScheme.surfaceContainer
+                        }
+                    ),
+                    onLongPress = {  }
+                ) {
+                    BasicComponent(
+                        modifier = Modifier,
+                        title = "冷却：" + CARD_DESCRIPTION[4] + "秒",
+                    )
+                }
+            }
+
+            BaseInfoCommonCard(CARD_DESCRIPTION, 5)
+        }
+        item {
+            // =================================================== 人话解释 ===================================================
+
+            SmallTitle(text = "人话解释")
+            Card(
+                modifier = Modifier
+                    .padding(horizontal = 12.dp)
+                    .padding(bottom = 12.dp),
+            ) {
+                BasicComponent(
+                    modifier = Modifier,
+                    title = CARD_DESCRIPTION[8],
+                    onClick = {  },
                 )
             }
-            AnimatedVisibility(visible = selectedTabIndex == 1) {
-                RangeSlider(
-                    value = rangeStepsFirstValue.toFloat()..rangeStepsLastValue.toFloat(),
-                    onValueChange = { floatRange ->
-                        rangeStepsFirstValue = floatRange.start.roundToInt()
-                        rangeStepsLastValue = floatRange.endInclusive.roundToInt()
+        }
+        item {
+            // =================================================== 相关卡片 ===================================================
+
+            SmallTitle(text = "相关卡片")
+            CardDataDetailWindowBottomSheet_1_1_4(showBottomSheet1, stringResource(R.string.name_card_data_index_1_1_4_0))
+
+            Card(
+                modifier = Modifier
+                    .padding(horizontal = 12.dp)
+                    .padding(bottom = 12.dp),
+            ) {
+                BasicComponent(
+                    modifier = Modifier,
+                    title = stringResource(RELATED_CARD_NAMES[0]),
+                    summary = "本卡片是合成此金卡的必要素材",
+                    endActions = {
+                        ImagesRow(
+                            imageResIds = listOf(RELATED_CARD_IMAGES[0]),
+                            imageWidth = 40,
+                            imageHeight = 50,
+                        )
                     },
-                    valueRange = 0f..16f,
-                    steps = 15,
-                    hapticEffect = SliderDefaults.SliderHapticEffect.Step,
-                    showKeyPoints = true,
-                    modifier = Modifier
-                        .padding(horizontal = 12.dp)
-                        .padding(bottom = 12.dp),
+                    onClick = { showBottomSheet1.value = true },
                 )
             }
         }
-    }
+        item {
+            // =================================================== 星级数据 ===================================================
 
-    AnimatedVisibility(
-        visible =
-            selectedTabIndex == 0 && stepsWithKeyPointsValue == 0 || selectedTabIndex == 1 && rangeStepsFirstValue <= 0 && rangeStepsLastValue >= 0
-    ) {
-        Card(
-            modifier = Modifier
-                .padding(horizontal = 12.dp)
-                .padding(bottom = 12.dp),
-            pressFeedbackType = PressFeedbackType.Sink,
-            showIndication = true,
-        ) {
-            BasicComponent(
-                modifier = Modifier,
-                title = "LV.0",
-                summary = CARD_DATA_STRING[0] + "：" + (((CARD_DATA_1[0] * cookeryValue).toInt() * crystoneValue).toInt())
-            )
-        }
-    }
-    AnimatedVisibility(
-        selectedTabIndex == 0 && stepsWithKeyPointsValue == 1 || selectedTabIndex == 1 && rangeStepsFirstValue <= 1 && rangeStepsLastValue >= 1
-    ) {
-        Card(
-            modifier = Modifier
-                .padding(horizontal = 12.dp)
-                .padding(bottom = 12.dp),
-            pressFeedbackType = PressFeedbackType.Sink,
-            showIndication = true,
-        ) {
-            BasicComponent(
-                modifier = Modifier,
-                title = CARD_DATA_STRING[0] + "：" + (((CARD_DATA_1[1] * cookeryValue).toInt() * crystoneValue).toInt()),
-                endActions = {
-                    ImagesRow(
-                        imageResIds = listOf(R.drawable.star_image_1),
-                        imageWidth = 40,
-                        imageHeight = 50,
+            SmallTitle(text = "强化提升：" + CARD_DATA_STRING[0])
+            Card(
+                modifier = Modifier
+                    .padding(horizontal = 12.dp)
+                    .padding(bottom = 12.dp),
+            ) {
+                Column {
+                    TabRow(
+                        modifier = Modifier.padding(12.dp),
+                        colors = TabRowDefaults.tabRowColors(
+                            backgroundColor = MiuixTheme.colorScheme.surfaceContainer,
+                            selectedBackgroundColor = MiuixTheme.colorScheme.surface,
+                        ),
+                        tabs = tabs,
+                        selectedTabIndex = selectedTabIndex,
+                        onTabSelected = { selectedTabIndex = it }
                     )
-                },
-            )
-        }
-    }
-    AnimatedVisibility(
-        selectedTabIndex == 0 && stepsWithKeyPointsValue == 2 || selectedTabIndex == 1 && rangeStepsFirstValue <= 2 && rangeStepsLastValue >= 2
-    ) {
-        Card(
-            modifier = Modifier
-                .padding(horizontal = 12.dp)
-                .padding(bottom = 12.dp),
-            pressFeedbackType = PressFeedbackType.Sink,
-            showIndication = true,
-        ) {
-            BasicComponent(
-                modifier = Modifier,
-                title = CARD_DATA_STRING[0] + "：" + (((CARD_DATA_1[2] * cookeryValue).toInt() * crystoneValue).toInt()),
-                endActions = {
-                    ImagesRow(
-                        imageResIds = listOf(R.drawable.star_image_2),
-                        imageWidth = 40,
-                        imageHeight = 50,
-                    )
-                },
-            )
-        }
-    }
-    AnimatedVisibility(
-        selectedTabIndex == 0 && stepsWithKeyPointsValue == 3 || selectedTabIndex == 1 && rangeStepsFirstValue <= 3 && rangeStepsLastValue >= 3
-    ) {
-        Card(
-            modifier = Modifier
-                .padding(horizontal = 12.dp)
-                .padding(bottom = 12.dp),
-            pressFeedbackType = PressFeedbackType.Sink,
-            showIndication = true,
-        ) {
-            BasicComponent(
-                modifier = Modifier,
-                title = CARD_DATA_STRING[0] + "：" + (((CARD_DATA_1[3] * cookeryValue).toInt() * crystoneValue).toInt()),
-                endActions = {
-                    ImagesRow(
-                        imageResIds = listOf(R.drawable.star_image_3),
-                        imageWidth = 40,
-                        imageHeight = 50,
-                    )
-                },
-            )
-        }
-    }
-    AnimatedVisibility(
-        selectedTabIndex == 0 && stepsWithKeyPointsValue == 4 || selectedTabIndex == 1 && rangeStepsFirstValue <= 4 && rangeStepsLastValue >= 4
-    ) {
-        Card(
-            modifier = Modifier
-                .padding(horizontal = 12.dp)
-                .padding(bottom = 12.dp),
-            pressFeedbackType = PressFeedbackType.Sink,
-            showIndication = true,
-        ) {
-            BasicComponent(
-                modifier = Modifier,
-                title = CARD_DATA_STRING[0] + "：" + (((CARD_DATA_1[4] * cookeryValue).toInt() * crystoneValue).toInt()),
-                endActions = {
-                    ImagesRow(
-                        imageResIds = listOf(R.drawable.star_image_4),
-                        imageWidth = 40,
-                        imageHeight = 50,
-                    )
-                },
-            )
-        }
-    }
-    AnimatedVisibility(
-        selectedTabIndex == 0 && stepsWithKeyPointsValue == 5 || selectedTabIndex == 1 && rangeStepsFirstValue <= 5 && rangeStepsLastValue >= 5
-    ) {
-        Card(
-            modifier = Modifier
-                .padding(horizontal = 12.dp)
-                .padding(bottom = 12.dp),
-            pressFeedbackType = PressFeedbackType.Sink,
-            showIndication = true,
-        ) {
-            BasicComponent(
-                modifier = Modifier,
-                title = CARD_DATA_STRING[0] + "：" + (((CARD_DATA_1[5] * cookeryValue).toInt() * crystoneValue).toInt()),
-                endActions = {
-                    ImagesRow(
-                        imageResIds = listOf(R.drawable.star_image_5),
-                        imageWidth = 40,
-                        imageHeight = 50,
-                    )
-                },
-            )
-        }
-    }
-    AnimatedVisibility(
-        selectedTabIndex == 0 && stepsWithKeyPointsValue == 6 || selectedTabIndex == 1 && rangeStepsFirstValue <= 6 && rangeStepsLastValue >= 6
-    ) {
-        Card(
-            modifier = Modifier
-                .padding(horizontal = 12.dp)
-                .padding(bottom = 12.dp),
-            pressFeedbackType = PressFeedbackType.Sink,
-            showIndication = true,
-        ) {
-            BasicComponent(
-                modifier = Modifier,
-                title = CARD_DATA_STRING[0] + "：" + (((CARD_DATA_1[6] * cookeryValue).toInt() * crystoneValue).toInt()),
-                endActions = {
-                    ImagesRow(
-                        imageResIds = listOf(R.drawable.star_image_6),
-                        imageWidth = 40,
-                        imageHeight = 50,
-                    )
-                },
-            )
-        }
-    }
-    AnimatedVisibility(
-        selectedTabIndex == 0 && stepsWithKeyPointsValue == 7 || selectedTabIndex == 1 && rangeStepsFirstValue <= 7 && rangeStepsLastValue >= 7
-    ) {
-        Card(
-            modifier = Modifier
-                .padding(horizontal = 12.dp)
-                .padding(bottom = 12.dp),
-            pressFeedbackType = PressFeedbackType.Sink,
-            showIndication = true,
-        ) {
-            BasicComponent(
-                modifier = Modifier,
-                title = CARD_DATA_STRING[0] + "：" + (((CARD_DATA_1[7] * cookeryValue).toInt() * crystoneValue).toInt()),
-                endActions = {
-                    ImagesRow(
-                        imageResIds = listOf(R.drawable.star_image_7),
-                        imageWidth = 40,
-                        imageHeight = 50,
-                    )
-                },
-            )
-        }
-    }
-    AnimatedVisibility(
-        selectedTabIndex == 0 && stepsWithKeyPointsValue == 8 || selectedTabIndex == 1 && rangeStepsFirstValue <= 8 && rangeStepsLastValue >= 8
-    ) {
-        Card(
-            modifier = Modifier
-                .padding(horizontal = 12.dp)
-                .padding(bottom = 12.dp),
-            pressFeedbackType = PressFeedbackType.Sink,
-            showIndication = true,
-        ) {
-            BasicComponent(
-                modifier = Modifier,
-                title = CARD_DATA_STRING[0] + "：" + (((CARD_DATA_1[8] * cookeryValue).toInt() * crystoneValue).toInt()),
-                endActions = {
-                    ImagesRow(
-                        imageResIds = listOf(R.drawable.star_image_8),
-                        imageWidth = 40,
-                        imageHeight = 50,
-                    )
-                },
-            )
-        }
-    }
-    AnimatedVisibility(
-        selectedTabIndex == 0 && stepsWithKeyPointsValue == 9 || selectedTabIndex == 1 && rangeStepsFirstValue <= 9 && rangeStepsLastValue >= 9
-    ) {
-        Card(
-            modifier = Modifier
-                .padding(horizontal = 12.dp)
-                .padding(bottom = 12.dp),
-            pressFeedbackType = PressFeedbackType.Sink,
-            showIndication = true,
-        ) {
-            BasicComponent(
-                modifier = Modifier,
-                title = CARD_DATA_STRING[0] + "：" + (((CARD_DATA_1[9] * cookeryValue).toInt() * crystoneValue).toInt()),
-                endActions = {
-                    ImagesRow(
-                        imageResIds = listOf(R.drawable.star_image_9),
-                        imageWidth = 40,
-                        imageHeight = 50,
-                    )
-                },
-            )
-        }
-    }
-    AnimatedVisibility(
-        selectedTabIndex == 0 && stepsWithKeyPointsValue == 10 || selectedTabIndex == 1 && rangeStepsFirstValue <= 10 && rangeStepsLastValue >= 10
-    ) {
-        Card(
-            modifier = Modifier
-                .padding(horizontal = 12.dp)
-                .padding(bottom = 12.dp),
-            pressFeedbackType = PressFeedbackType.Sink,
-            showIndication = true,
-        ) {
-            BasicComponent(
-                modifier = Modifier,
-                title = CARD_DATA_STRING[0] + "：" + (((CARD_DATA_1[10] * cookeryValue).toInt() * crystoneValue).toInt()),
-                endActions = {
-                    ImagesRow(
-                        imageResIds = listOf(R.drawable.star_image_10),
-                        imageWidth = 40,
-                        imageHeight = 50,
-                    )
-                },
-            )
-        }
-    }
-    AnimatedVisibility(
-        selectedTabIndex == 0 && stepsWithKeyPointsValue == 11 || selectedTabIndex == 1 && rangeStepsFirstValue <= 11 && rangeStepsLastValue >= 11
-    ) {
-        Card(
-            modifier = Modifier
-                .padding(horizontal = 12.dp)
-                .padding(bottom = 12.dp),
-            pressFeedbackType = PressFeedbackType.Sink,
-            showIndication = true,
-        ) {
-            BasicComponent(
-                modifier = Modifier,
-                title = CARD_DATA_STRING[0] + "：" + (((CARD_DATA_1[11] * cookeryValue).toInt() * crystoneValue).toInt()),
-                endActions = {
-                    ImagesRow(
-                        imageResIds = listOf(R.drawable.star_image_11),
-                        imageWidth = 40,
-                        imageHeight = 50,
-                    )
-                },
-            )
-        }
-    }
-    AnimatedVisibility(
-        selectedTabIndex == 0 && stepsWithKeyPointsValue == 12 || selectedTabIndex == 1 && rangeStepsFirstValue <= 12 && rangeStepsLastValue >= 12
-    ) {
-        Card(
-            modifier = Modifier
-                .padding(horizontal = 12.dp)
-                .padding(bottom = 12.dp),
-            pressFeedbackType = PressFeedbackType.Sink,
-            showIndication = true,
-        ) {
-            BasicComponent(
-                modifier = Modifier,
-                title = CARD_DATA_STRING[0] + "：" + (((CARD_DATA_1[12] * cookeryValue).toInt() * crystoneValue).toInt()),
-                endActions = {
-                    ImagesRow(
-                        imageResIds = listOf(R.drawable.star_image_12),
-                        imageWidth = 40,
-                        imageHeight = 50,
-                    )
-                },
-            )
-        }
-    }
-    AnimatedVisibility(
-        selectedTabIndex == 0 && stepsWithKeyPointsValue == 13 || selectedTabIndex == 1 && rangeStepsFirstValue <= 13 && rangeStepsLastValue >= 13
-    ) {
-        Card(
-            modifier = Modifier
-                .padding(horizontal = 12.dp)
-                .padding(bottom = 12.dp),
-            pressFeedbackType = PressFeedbackType.Sink,
-            showIndication = true,
-        ) {
-            BasicComponent(
-                modifier = Modifier,
-                title = CARD_DATA_STRING[0] + "：" + (((CARD_DATA_1[13] * cookeryValue).toInt() * crystoneValue).toInt()),
-                endActions = {
-                    ImagesRow(
-                        imageResIds = listOf(R.drawable.star_image_13),
-                        imageWidth = 40,
-                        imageHeight = 50,
-                    )
-                },
-            )
-        }
-    }
-    AnimatedVisibility(
-        selectedTabIndex == 0 && stepsWithKeyPointsValue == 14 || selectedTabIndex == 1 && rangeStepsFirstValue <= 14 && rangeStepsLastValue >= 14
-    ) {
-        Card(
-            modifier = Modifier
-                .padding(horizontal = 12.dp)
-                .padding(bottom = 12.dp),
-            pressFeedbackType = PressFeedbackType.Sink,
-            showIndication = true,
-        ) {
-            BasicComponent(
-                modifier = Modifier,
-                title = CARD_DATA_STRING[0] + "：" + (((CARD_DATA_1[14] * cookeryValue).toInt() * crystoneValue).toInt()),
-                endActions = {
-                    ImagesRow(
-                        imageResIds = listOf(R.drawable.star_image_14),
-                        imageWidth = 40,
-                        imageHeight = 50,
-                    )
-                },
-            )
-        }
-    }
-    AnimatedVisibility(
-        selectedTabIndex == 0 && stepsWithKeyPointsValue == 15 || selectedTabIndex == 1 && rangeStepsFirstValue <= 15 && rangeStepsLastValue >= 15
-    ) {
-        Card(
-            modifier = Modifier
-                .padding(horizontal = 12.dp)
-                .padding(bottom = 12.dp),
-            pressFeedbackType = PressFeedbackType.Sink,
-            showIndication = true,
-        ) {
-            BasicComponent(
-                modifier = Modifier,
-                title = CARD_DATA_STRING[0] + "：" + (((CARD_DATA_1[15] * cookeryValue).toInt() * crystoneValue).toInt()),
-                endActions = {
-                    ImagesRow(
-                        imageResIds = listOf(R.drawable.star_image_15),
-                        imageWidth = 40,
-                        imageHeight = 50,
-                    )
-                },
-            )
-        }
-    }
-    AnimatedVisibility(
-        selectedTabIndex == 0 && stepsWithKeyPointsValue == 16 || selectedTabIndex == 1 && rangeStepsFirstValue <= 16 && rangeStepsLastValue >= 16
-    ) {
-        Card(
-            modifier = Modifier
-                .padding(horizontal = 12.dp)
-                .padding(bottom = 12.dp),
-            pressFeedbackType = PressFeedbackType.Sink,
-            showIndication = true,
-        ) {
-            BasicComponent(
-                modifier = Modifier,
-                title = CARD_DATA_STRING[0] + "：" + (((CARD_DATA_1[16] * cookeryValue).toInt() * crystoneValue).toInt()),
-                endActions = {
-                    ImagesRow(
-                        imageResIds = listOf(R.drawable.star_image_16),
-                        imageWidth = 40,
-                        imageHeight = 50,
-                    )
-                },
-            )
-        }
-    }
-    AnimatedVisibility(
-        selectedTabIndex == 0 && stepsWithKeyPointsValue == 17 || selectedTabIndex == 1 && rangeStepsFirstValue <= 17 && rangeStepsLastValue >= 17
-    ) {
-        Card(
-            modifier = Modifier
-                .padding(horizontal = 12.dp)
-                .padding(bottom = 12.dp),
-            pressFeedbackType = PressFeedbackType.Sink,
-            showIndication = true,
-        ) {
-            BasicComponent(
-                modifier = Modifier,
-                title = "LV.MAX",
-                summary = CARD_DATA_STRING[0] + "：" + "NULL"
-            )
-        }
-    }
-    AnimatedVisibility(
-        selectedTabIndex == 0 && stepsWithKeyPointsValue == 18 || selectedTabIndex == 1 && rangeStepsFirstValue <= 18 && rangeStepsLastValue >= 18
-    ) {
-        Card(
-            modifier = Modifier
-                .padding(horizontal = 12.dp)
-                .padding(bottom = 12.dp),
-            pressFeedbackType = PressFeedbackType.Sink,
-            showIndication = true,
-        ) {
-            BasicComponent(
-                modifier = Modifier,
-                title = "LV.ULTRA",
-                summary = CARD_DATA_STRING[0] + "：" + "NULL"
-            )
-        }
-    }
+                    AnimatedVisibility(visible = selectedTabIndex == 0) {
+                        Slider(
+                            value = stepsWithKeyPointsValue.toFloat(),
+                            onValueChange = { stepsWithKeyPointsValue = it.roundToInt() },
+                            valueRange = 0f..16f,
+                            steps = 15,
+                            hapticEffect = SliderDefaults.SliderHapticEffect.Step,
+                            showKeyPoints = true,
+                            modifier = Modifier
+                                .padding(horizontal = 12.dp)
+                                .padding(bottom = 12.dp),
+                        )
+                    }
+                    AnimatedVisibility(visible = selectedTabIndex == 1) {
+                        RangeSlider(
+                            value = rangeStepsFirstValue.toFloat()..rangeStepsLastValue.toFloat(),
+                            onValueChange = { floatRange ->
+                                rangeStepsFirstValue = floatRange.start.roundToInt()
+                                rangeStepsLastValue = floatRange.endInclusive.roundToInt()
+                            },
+                            valueRange = 0f..16f,
+                            steps = 15,
+                            hapticEffect = SliderDefaults.SliderHapticEffect.Step,
+                            showKeyPoints = true,
+                            modifier = Modifier
+                                .padding(horizontal = 12.dp)
+                                .padding(bottom = 12.dp),
+                        )
+                    }
+                }
+            }
 
-    // =================================================== 技能数据 ===================================================
+            AnimatedVisibility(
+                visible =
+                    selectedTabIndex == 0 && stepsWithKeyPointsValue == 0 || selectedTabIndex == 1 && rangeStepsFirstValue <= 0 && rangeStepsLastValue >= 0
+            ) {
+                Card(
+                    modifier = Modifier
+                        .padding(horizontal = 12.dp)
+                        .padding(bottom = 12.dp),
+                    pressFeedbackType = PressFeedbackType.Sink,
+                    showIndication = true,
+                ) {
+                    BasicComponent(
+                        modifier = Modifier,
+                        title = "LV.0",
+                        summary = CARD_DATA_STRING[0] + "：" + (((CARD_DATA_1[0] * cookeryValue).toInt() * crystoneValue).toInt())
+                    )
+                }
+            }
+            AnimatedVisibility(
+                selectedTabIndex == 0 && stepsWithKeyPointsValue == 1 || selectedTabIndex == 1 && rangeStepsFirstValue <= 1 && rangeStepsLastValue >= 1
+            ) {
+                Card(
+                    modifier = Modifier
+                        .padding(horizontal = 12.dp)
+                        .padding(bottom = 12.dp),
+                    pressFeedbackType = PressFeedbackType.Sink,
+                    showIndication = true,
+                ) {
+                    BasicComponent(
+                        modifier = Modifier,
+                        title = CARD_DATA_STRING[0] + "：" + (((CARD_DATA_1[1] * cookeryValue).toInt() * crystoneValue).toInt()),
+                        endActions = {
+                            ImagesRow(
+                                imageResIds = listOf(R.drawable.star_image_1),
+                                imageWidth = 40,
+                                imageHeight = 50,
+                            )
+                        },
+                    )
+                }
+            }
+            AnimatedVisibility(
+                selectedTabIndex == 0 && stepsWithKeyPointsValue == 2 || selectedTabIndex == 1 && rangeStepsFirstValue <= 2 && rangeStepsLastValue >= 2
+            ) {
+                Card(
+                    modifier = Modifier
+                        .padding(horizontal = 12.dp)
+                        .padding(bottom = 12.dp),
+                    pressFeedbackType = PressFeedbackType.Sink,
+                    showIndication = true,
+                ) {
+                    BasicComponent(
+                        modifier = Modifier,
+                        title = CARD_DATA_STRING[0] + "：" + (((CARD_DATA_1[2] * cookeryValue).toInt() * crystoneValue).toInt()),
+                        endActions = {
+                            ImagesRow(
+                                imageResIds = listOf(R.drawable.star_image_2),
+                                imageWidth = 40,
+                                imageHeight = 50,
+                            )
+                        },
+                    )
+                }
+            }
+            AnimatedVisibility(
+                selectedTabIndex == 0 && stepsWithKeyPointsValue == 3 || selectedTabIndex == 1 && rangeStepsFirstValue <= 3 && rangeStepsLastValue >= 3
+            ) {
+                Card(
+                    modifier = Modifier
+                        .padding(horizontal = 12.dp)
+                        .padding(bottom = 12.dp),
+                    pressFeedbackType = PressFeedbackType.Sink,
+                    showIndication = true,
+                ) {
+                    BasicComponent(
+                        modifier = Modifier,
+                        title = CARD_DATA_STRING[0] + "：" + (((CARD_DATA_1[3] * cookeryValue).toInt() * crystoneValue).toInt()),
+                        endActions = {
+                            ImagesRow(
+                                imageResIds = listOf(R.drawable.star_image_3),
+                                imageWidth = 40,
+                                imageHeight = 50,
+                            )
+                        },
+                    )
+                }
+            }
+            AnimatedVisibility(
+                selectedTabIndex == 0 && stepsWithKeyPointsValue == 4 || selectedTabIndex == 1 && rangeStepsFirstValue <= 4 && rangeStepsLastValue >= 4
+            ) {
+                Card(
+                    modifier = Modifier
+                        .padding(horizontal = 12.dp)
+                        .padding(bottom = 12.dp),
+                    pressFeedbackType = PressFeedbackType.Sink,
+                    showIndication = true,
+                ) {
+                    BasicComponent(
+                        modifier = Modifier,
+                        title = CARD_DATA_STRING[0] + "：" + (((CARD_DATA_1[4] * cookeryValue).toInt() * crystoneValue).toInt()),
+                        endActions = {
+                            ImagesRow(
+                                imageResIds = listOf(R.drawable.star_image_4),
+                                imageWidth = 40,
+                                imageHeight = 50,
+                            )
+                        },
+                    )
+                }
+            }
+            AnimatedVisibility(
+                selectedTabIndex == 0 && stepsWithKeyPointsValue == 5 || selectedTabIndex == 1 && rangeStepsFirstValue <= 5 && rangeStepsLastValue >= 5
+            ) {
+                Card(
+                    modifier = Modifier
+                        .padding(horizontal = 12.dp)
+                        .padding(bottom = 12.dp),
+                    pressFeedbackType = PressFeedbackType.Sink,
+                    showIndication = true,
+                ) {
+                    BasicComponent(
+                        modifier = Modifier,
+                        title = CARD_DATA_STRING[0] + "：" + (((CARD_DATA_1[5] * cookeryValue).toInt() * crystoneValue).toInt()),
+                        endActions = {
+                            ImagesRow(
+                                imageResIds = listOf(R.drawable.star_image_5),
+                                imageWidth = 40,
+                                imageHeight = 50,
+                            )
+                        },
+                    )
+                }
+            }
+            AnimatedVisibility(
+                selectedTabIndex == 0 && stepsWithKeyPointsValue == 6 || selectedTabIndex == 1 && rangeStepsFirstValue <= 6 && rangeStepsLastValue >= 6
+            ) {
+                Card(
+                    modifier = Modifier
+                        .padding(horizontal = 12.dp)
+                        .padding(bottom = 12.dp),
+                    pressFeedbackType = PressFeedbackType.Sink,
+                    showIndication = true,
+                ) {
+                    BasicComponent(
+                        modifier = Modifier,
+                        title = CARD_DATA_STRING[0] + "：" + (((CARD_DATA_1[6] * cookeryValue).toInt() * crystoneValue).toInt()),
+                        endActions = {
+                            ImagesRow(
+                                imageResIds = listOf(R.drawable.star_image_6),
+                                imageWidth = 40,
+                                imageHeight = 50,
+                            )
+                        },
+                    )
+                }
+            }
+            AnimatedVisibility(
+                selectedTabIndex == 0 && stepsWithKeyPointsValue == 7 || selectedTabIndex == 1 && rangeStepsFirstValue <= 7 && rangeStepsLastValue >= 7
+            ) {
+                Card(
+                    modifier = Modifier
+                        .padding(horizontal = 12.dp)
+                        .padding(bottom = 12.dp),
+                    pressFeedbackType = PressFeedbackType.Sink,
+                    showIndication = true,
+                ) {
+                    BasicComponent(
+                        modifier = Modifier,
+                        title = CARD_DATA_STRING[0] + "：" + (((CARD_DATA_1[7] * cookeryValue).toInt() * crystoneValue).toInt()),
+                        endActions = {
+                            ImagesRow(
+                                imageResIds = listOf(R.drawable.star_image_7),
+                                imageWidth = 40,
+                                imageHeight = 50,
+                            )
+                        },
+                    )
+                }
+            }
+            AnimatedVisibility(
+                selectedTabIndex == 0 && stepsWithKeyPointsValue == 8 || selectedTabIndex == 1 && rangeStepsFirstValue <= 8 && rangeStepsLastValue >= 8
+            ) {
+                Card(
+                    modifier = Modifier
+                        .padding(horizontal = 12.dp)
+                        .padding(bottom = 12.dp),
+                    pressFeedbackType = PressFeedbackType.Sink,
+                    showIndication = true,
+                ) {
+                    BasicComponent(
+                        modifier = Modifier,
+                        title = CARD_DATA_STRING[0] + "：" + (((CARD_DATA_1[8] * cookeryValue).toInt() * crystoneValue).toInt()),
+                        endActions = {
+                            ImagesRow(
+                                imageResIds = listOf(R.drawable.star_image_8),
+                                imageWidth = 40,
+                                imageHeight = 50,
+                            )
+                        },
+                    )
+                }
+            }
+            AnimatedVisibility(
+                selectedTabIndex == 0 && stepsWithKeyPointsValue == 9 || selectedTabIndex == 1 && rangeStepsFirstValue <= 9 && rangeStepsLastValue >= 9
+            ) {
+                Card(
+                    modifier = Modifier
+                        .padding(horizontal = 12.dp)
+                        .padding(bottom = 12.dp),
+                    pressFeedbackType = PressFeedbackType.Sink,
+                    showIndication = true,
+                ) {
+                    BasicComponent(
+                        modifier = Modifier,
+                        title = CARD_DATA_STRING[0] + "：" + (((CARD_DATA_1[9] * cookeryValue).toInt() * crystoneValue).toInt()),
+                        endActions = {
+                            ImagesRow(
+                                imageResIds = listOf(R.drawable.star_image_9),
+                                imageWidth = 40,
+                                imageHeight = 50,
+                            )
+                        },
+                    )
+                }
+            }
+            AnimatedVisibility(
+                selectedTabIndex == 0 && stepsWithKeyPointsValue == 10 || selectedTabIndex == 1 && rangeStepsFirstValue <= 10 && rangeStepsLastValue >= 10
+            ) {
+                Card(
+                    modifier = Modifier
+                        .padding(horizontal = 12.dp)
+                        .padding(bottom = 12.dp),
+                    pressFeedbackType = PressFeedbackType.Sink,
+                    showIndication = true,
+                ) {
+                    BasicComponent(
+                        modifier = Modifier,
+                        title = CARD_DATA_STRING[0] + "：" + (((CARD_DATA_1[10] * cookeryValue).toInt() * crystoneValue).toInt()),
+                        endActions = {
+                            ImagesRow(
+                                imageResIds = listOf(R.drawable.star_image_10),
+                                imageWidth = 40,
+                                imageHeight = 50,
+                            )
+                        },
+                    )
+                }
+            }
+            AnimatedVisibility(
+                selectedTabIndex == 0 && stepsWithKeyPointsValue == 11 || selectedTabIndex == 1 && rangeStepsFirstValue <= 11 && rangeStepsLastValue >= 11
+            ) {
+                Card(
+                    modifier = Modifier
+                        .padding(horizontal = 12.dp)
+                        .padding(bottom = 12.dp),
+                    pressFeedbackType = PressFeedbackType.Sink,
+                    showIndication = true,
+                ) {
+                    BasicComponent(
+                        modifier = Modifier,
+                        title = CARD_DATA_STRING[0] + "：" + (((CARD_DATA_1[11] * cookeryValue).toInt() * crystoneValue).toInt()),
+                        endActions = {
+                            ImagesRow(
+                                imageResIds = listOf(R.drawable.star_image_11),
+                                imageWidth = 40,
+                                imageHeight = 50,
+                            )
+                        },
+                    )
+                }
+            }
+            AnimatedVisibility(
+                selectedTabIndex == 0 && stepsWithKeyPointsValue == 12 || selectedTabIndex == 1 && rangeStepsFirstValue <= 12 && rangeStepsLastValue >= 12
+            ) {
+                Card(
+                    modifier = Modifier
+                        .padding(horizontal = 12.dp)
+                        .padding(bottom = 12.dp),
+                    pressFeedbackType = PressFeedbackType.Sink,
+                    showIndication = true,
+                ) {
+                    BasicComponent(
+                        modifier = Modifier,
+                        title = CARD_DATA_STRING[0] + "：" + (((CARD_DATA_1[12] * cookeryValue).toInt() * crystoneValue).toInt()),
+                        endActions = {
+                            ImagesRow(
+                                imageResIds = listOf(R.drawable.star_image_12),
+                                imageWidth = 40,
+                                imageHeight = 50,
+                            )
+                        },
+                    )
+                }
+            }
+            AnimatedVisibility(
+                selectedTabIndex == 0 && stepsWithKeyPointsValue == 13 || selectedTabIndex == 1 && rangeStepsFirstValue <= 13 && rangeStepsLastValue >= 13
+            ) {
+                Card(
+                    modifier = Modifier
+                        .padding(horizontal = 12.dp)
+                        .padding(bottom = 12.dp),
+                    pressFeedbackType = PressFeedbackType.Sink,
+                    showIndication = true,
+                ) {
+                    BasicComponent(
+                        modifier = Modifier,
+                        title = CARD_DATA_STRING[0] + "：" + (((CARD_DATA_1[13] * cookeryValue).toInt() * crystoneValue).toInt()),
+                        endActions = {
+                            ImagesRow(
+                                imageResIds = listOf(R.drawable.star_image_13),
+                                imageWidth = 40,
+                                imageHeight = 50,
+                            )
+                        },
+                    )
+                }
+            }
+            AnimatedVisibility(
+                selectedTabIndex == 0 && stepsWithKeyPointsValue == 14 || selectedTabIndex == 1 && rangeStepsFirstValue <= 14 && rangeStepsLastValue >= 14
+            ) {
+                Card(
+                    modifier = Modifier
+                        .padding(horizontal = 12.dp)
+                        .padding(bottom = 12.dp),
+                    pressFeedbackType = PressFeedbackType.Sink,
+                    showIndication = true,
+                ) {
+                    BasicComponent(
+                        modifier = Modifier,
+                        title = CARD_DATA_STRING[0] + "：" + (((CARD_DATA_1[14] * cookeryValue).toInt() * crystoneValue).toInt()),
+                        endActions = {
+                            ImagesRow(
+                                imageResIds = listOf(R.drawable.star_image_14),
+                                imageWidth = 40,
+                                imageHeight = 50,
+                            )
+                        },
+                    )
+                }
+            }
+            AnimatedVisibility(
+                selectedTabIndex == 0 && stepsWithKeyPointsValue == 15 || selectedTabIndex == 1 && rangeStepsFirstValue <= 15 && rangeStepsLastValue >= 15
+            ) {
+                Card(
+                    modifier = Modifier
+                        .padding(horizontal = 12.dp)
+                        .padding(bottom = 12.dp),
+                    pressFeedbackType = PressFeedbackType.Sink,
+                    showIndication = true,
+                ) {
+                    BasicComponent(
+                        modifier = Modifier,
+                        title = CARD_DATA_STRING[0] + "：" + (((CARD_DATA_1[15] * cookeryValue).toInt() * crystoneValue).toInt()),
+                        endActions = {
+                            ImagesRow(
+                                imageResIds = listOf(R.drawable.star_image_15),
+                                imageWidth = 40,
+                                imageHeight = 50,
+                            )
+                        },
+                    )
+                }
+            }
+            AnimatedVisibility(
+                selectedTabIndex == 0 && stepsWithKeyPointsValue == 16 || selectedTabIndex == 1 && rangeStepsFirstValue <= 16 && rangeStepsLastValue >= 16
+            ) {
+                Card(
+                    modifier = Modifier
+                        .padding(horizontal = 12.dp)
+                        .padding(bottom = 12.dp),
+                    pressFeedbackType = PressFeedbackType.Sink,
+                    showIndication = true,
+                ) {
+                    BasicComponent(
+                        modifier = Modifier,
+                        title = CARD_DATA_STRING[0] + "：" + (((CARD_DATA_1[16] * cookeryValue).toInt() * crystoneValue).toInt()),
+                        endActions = {
+                            ImagesRow(
+                                imageResIds = listOf(R.drawable.star_image_16),
+                                imageWidth = 40,
+                                imageHeight = 50,
+                            )
+                        },
+                    )
+                }
+            }
+            AnimatedVisibility(
+                selectedTabIndex == 0 && stepsWithKeyPointsValue == 17 || selectedTabIndex == 1 && rangeStepsFirstValue <= 17 && rangeStepsLastValue >= 17
+            ) {
+                Card(
+                    modifier = Modifier
+                        .padding(horizontal = 12.dp)
+                        .padding(bottom = 12.dp),
+                    pressFeedbackType = PressFeedbackType.Sink,
+                    showIndication = true,
+                ) {
+                    BasicComponent(
+                        modifier = Modifier,
+                        title = "LV.MAX",
+                        summary = CARD_DATA_STRING[0] + "：" + "NULL"
+                    )
+                }
+            }
+            AnimatedVisibility(
+                selectedTabIndex == 0 && stepsWithKeyPointsValue == 18 || selectedTabIndex == 1 && rangeStepsFirstValue <= 18 && rangeStepsLastValue >= 18
+            ) {
+                Card(
+                    modifier = Modifier
+                        .padding(horizontal = 12.dp)
+                        .padding(bottom = 12.dp),
+                    pressFeedbackType = PressFeedbackType.Sink,
+                    showIndication = true,
+                ) {
+                    BasicComponent(
+                        modifier = Modifier,
+                        title = "LV.ULTRA",
+                        summary = CARD_DATA_STRING[0] + "：" + "NULL"
+                    )
+                }
+            }
+        }
+        item {
+            // =================================================== 技能数据 ===================================================
 
-    SmallTitle(text = "技能提升：" + CARD_DATA_SKILL_STRING[0])
-    Card(
-        modifier = Modifier
-            .padding(horizontal = 12.dp)
-            .padding(bottom = 12.dp),
-        pressFeedbackType = PressFeedbackType.Sink,
-        showIndication = true,
-    ) {
-        BasicComponent(
-            modifier = Modifier,
-            title = "LV.0：" +
-                    "%.2f".format(
-                        (CARD_DATA_SKILL_1[0] -
-                                (CARD_DATA_SKILL_1[0] * 20 * (1 - handbookValue)).toInt() * 0.05)
-                    ),
-        )
-    }
-    Card(
-        modifier = Modifier
-            .padding(horizontal = 12.dp)
-            .padding(bottom = 12.dp),
-        pressFeedbackType = PressFeedbackType.Sink,
-        showIndication = true,
-    ) {
-        BasicComponent(
-            modifier = Modifier,
-            title = "LV.1-3：" +
-                    "%.2f".format(
-                        (CARD_DATA_SKILL_1[1] -
-                                (CARD_DATA_SKILL_1[1] * 20 * (1 - handbookValue)).toInt() * 0.05)
-                    ) + "、" +
-                    "%.2f".format(
-                        (CARD_DATA_SKILL_1[2] -
-                                (CARD_DATA_SKILL_1[2] * 20 * (1 - handbookValue)).toInt() * 0.05)
-                    ) + "、" +
-                    "%.2f".format(
-                        (CARD_DATA_SKILL_1[3] -
-                                (CARD_DATA_SKILL_1[3] * 20 * (1 - handbookValue)).toInt() * 0.05)
-                    ),
-            summary = "初级一共所需技能点：" + (SKILL_POINT_1[1] + SKILL_POINT_1[2] + SKILL_POINT_1[3]),
-            endActions = {
-                ImagesRow(
-                    imageResIds = listOf(CARD_DATA_SKILL_IMAGES[0]),
-                    imageWidth = 40,
-                    imageHeight = 50,
+            SmallTitle(text = "技能提升：" + CARD_DATA_SKILL_STRING[0])
+            Card(
+                modifier = Modifier
+                    .padding(horizontal = 12.dp)
+                    .padding(bottom = 12.dp),
+                pressFeedbackType = PressFeedbackType.Sink,
+                showIndication = true,
+            ) {
+                BasicComponent(
+                    modifier = Modifier,
+                    title = "LV.0：" +
+                            "%.2f".format(
+                                (CARD_DATA_SKILL_1[0] -
+                                        (CARD_DATA_SKILL_1[0] * 20 * (1 - handbookValue)).toInt() * 0.05)
+                            ),
                 )
-            },
-        )
-    }
-    Card(
-        modifier = Modifier
-            .padding(horizontal = 12.dp)
-            .padding(bottom = 12.dp),
-        pressFeedbackType = PressFeedbackType.Sink,
-        showIndication = true,
-    ) {
-        BasicComponent(
-            modifier = Modifier,
-            title = "LV.4-5：" +
-                    "%.2f".format(
-                        (CARD_DATA_SKILL_1[4] -
-                                (CARD_DATA_SKILL_1[4] * 20 * (1 - handbookValue)).toInt() * 0.05)
-                    ) + "、" +
-                    "%.2f".format(
-                        (CARD_DATA_SKILL_1[5] -
-                                (CARD_DATA_SKILL_1[5] * 20 * (1 - handbookValue)).toInt() * 0.05)
-                    ),
-            summary = "高级一共所需技能点：" + (SKILL_POINT_1[4] + SKILL_POINT_1[5]),
-            endActions = {
-                ImagesRow(
-                    imageResIds = listOf(CARD_DATA_SKILL_IMAGES[1]),
-                    imageWidth = 40,
-                    imageHeight = 50,
+            }
+            Card(
+                modifier = Modifier
+                    .padding(horizontal = 12.dp)
+                    .padding(bottom = 12.dp),
+                pressFeedbackType = PressFeedbackType.Sink,
+                showIndication = true,
+            ) {
+                BasicComponent(
+                    modifier = Modifier,
+                    title = "LV.1-3：" +
+                            "%.2f".format(
+                                (CARD_DATA_SKILL_1[1] -
+                                        (CARD_DATA_SKILL_1[1] * 20 * (1 - handbookValue)).toInt() * 0.05)
+                            ) + "、" +
+                            "%.2f".format(
+                                (CARD_DATA_SKILL_1[2] -
+                                        (CARD_DATA_SKILL_1[2] * 20 * (1 - handbookValue)).toInt() * 0.05)
+                            ) + "、" +
+                            "%.2f".format(
+                                (CARD_DATA_SKILL_1[3] -
+                                        (CARD_DATA_SKILL_1[3] * 20 * (1 - handbookValue)).toInt() * 0.05)
+                            ),
+                    summary = "初级一共所需技能点：" + (SKILL_POINT_1[1] + SKILL_POINT_1[2] + SKILL_POINT_1[3]),
+                    endActions = {
+                        ImagesRow(
+                            imageResIds = listOf(CARD_DATA_SKILL_IMAGES[0]),
+                            imageWidth = 40,
+                            imageHeight = 50,
+                        )
+                    },
                 )
-            },
-        )
-    }
-    Card(
-        modifier = Modifier
-            .padding(horizontal = 12.dp)
-            .padding(bottom = 12.dp),
-        pressFeedbackType = PressFeedbackType.Sink,
-        showIndication = true,
-    ) {
-        BasicComponent(
-            modifier = Modifier,
-            title = "LV.6-7：" +
-                    "%.2f".format(
-                        (CARD_DATA_SKILL_1[6] -
-                                (CARD_DATA_SKILL_1[6] * 20 * (1 - handbookValue)).toInt() * 0.05)
-                    ) + "、" +
-                    "%.2f".format(
-                        (CARD_DATA_SKILL_1[7] -
-                                (CARD_DATA_SKILL_1[7] * 20 * (1 - handbookValue)).toInt() * 0.05)
-                    ),
-            summary = "终级一共所需技能点：" + (SKILL_POINT_1[6] + SKILL_POINT_1[7]),
-            endActions = {
-                ImagesRow(
-                    imageResIds = listOf(CARD_DATA_SKILL_IMAGES[2]),
-                    imageWidth = 40,
-                    imageHeight = 50,
+            }
+            Card(
+                modifier = Modifier
+                    .padding(horizontal = 12.dp)
+                    .padding(bottom = 12.dp),
+                pressFeedbackType = PressFeedbackType.Sink,
+                showIndication = true,
+            ) {
+                BasicComponent(
+                    modifier = Modifier,
+                    title = "LV.4-5：" +
+                            "%.2f".format(
+                                (CARD_DATA_SKILL_1[4] -
+                                        (CARD_DATA_SKILL_1[4] * 20 * (1 - handbookValue)).toInt() * 0.05)
+                            ) + "、" +
+                            "%.2f".format(
+                                (CARD_DATA_SKILL_1[5] -
+                                        (CARD_DATA_SKILL_1[5] * 20 * (1 - handbookValue)).toInt() * 0.05)
+                            ),
+                    summary = "高级一共所需技能点：" + (SKILL_POINT_1[4] + SKILL_POINT_1[5]),
+                    endActions = {
+                        ImagesRow(
+                            imageResIds = listOf(CARD_DATA_SKILL_IMAGES[1]),
+                            imageWidth = 40,
+                            imageHeight = 50,
+                        )
+                    },
                 )
-            },
-        )
-    }
-    Card(
-        modifier = Modifier
-            .padding(horizontal = 12.dp)
-            .padding(bottom = 12.dp),
-        pressFeedbackType = PressFeedbackType.Sink,
-        showIndication = true,
-    ) {
-        BasicComponent(
-            modifier = Modifier,
-            title = "LV.8：" +
-                    "%.2f".format(
-                        (CARD_DATA_SKILL_1[8] -
-                                (CARD_DATA_SKILL_1[8] * 20 * (1 - handbookValue)).toInt() * 0.05)
-                    ),
-            summary = "究极一共所需技能点：" + (SKILL_POINT_1[8]),
-            endActions = {
-                ImagesRow(
-                    imageResIds = listOf(CARD_DATA_SKILL_IMAGES[3]),
-                    imageWidth = 40,
-                    imageHeight = 50,
+            }
+            Card(
+                modifier = Modifier
+                    .padding(horizontal = 12.dp)
+                    .padding(bottom = 12.dp),
+                pressFeedbackType = PressFeedbackType.Sink,
+                showIndication = true,
+            ) {
+                BasicComponent(
+                    modifier = Modifier,
+                    title = "LV.6-7：" +
+                            "%.2f".format(
+                                (CARD_DATA_SKILL_1[6] -
+                                        (CARD_DATA_SKILL_1[6] * 20 * (1 - handbookValue)).toInt() * 0.05)
+                            ) + "、" +
+                            "%.2f".format(
+                                (CARD_DATA_SKILL_1[7] -
+                                        (CARD_DATA_SKILL_1[7] * 20 * (1 - handbookValue)).toInt() * 0.05)
+                            ),
+                    summary = "终级一共所需技能点：" + (SKILL_POINT_1[6] + SKILL_POINT_1[7]),
+                    endActions = {
+                        ImagesRow(
+                            imageResIds = listOf(CARD_DATA_SKILL_IMAGES[2]),
+                            imageWidth = 40,
+                            imageHeight = 50,
+                        )
+                    },
                 )
-            },
-        )
-    }
-
-    // =================================================== 分解兑换数据 ===================================================
-
-    AnimalCardDecomposeAndGetInfo(
-        CARD_DECOMPOSE_AND_GET_IMAGES,
-        CARD_DECOMPOSE_DATA,
-        CARD_GET_DATA
-    )
-
-    Card(
-        modifier = Modifier
-            .padding(horizontal = 12.dp)
-            .padding(bottom = 12.dp),
-        pressFeedbackType = PressFeedbackType.Sink,
-        showIndication = true,
-    ) {
-        BasicComponent(
-            modifier = Modifier,
-            title = "打开分解兑换计算器",
-            summary = "顾名思义，自助求和",
-            endActions = {
-                ImagesRow(
-                    imageResIds = listOf(
-                        CARD_DECOMPOSE_AND_GET_IMAGES[12],
-                    ),
-                    imageWidth = 48,
-                    imageHeight = 40,
+            }
+            Card(
+                modifier = Modifier
+                    .padding(horizontal = 12.dp)
+                    .padding(bottom = 12.dp),
+                pressFeedbackType = PressFeedbackType.Sink,
+                showIndication = true,
+            ) {
+                BasicComponent(
+                    modifier = Modifier,
+                    title = "LV.8：" +
+                            "%.2f".format(
+                                (CARD_DATA_SKILL_1[8] -
+                                        (CARD_DATA_SKILL_1[8] * 20 * (1 - handbookValue)).toInt() * 0.05)
+                            ),
+                    summary = "究极一共所需技能点：" + (SKILL_POINT_1[8]),
+                    endActions = {
+                        ImagesRow(
+                            imageResIds = listOf(CARD_DATA_SKILL_IMAGES[3]),
+                            imageWidth = 40,
+                            imageHeight = 50,
+                        )
+                    },
                 )
-            },
-            onClick = { showCardDecomposeAndGetCalculatorBottomSheet.value = true },
-        )
+            }
+        }
+        item {
+            // =================================================== 分解兑换数据 ===================================================
+
+            AnimalCardDecomposeAndGetInfo(
+                CARD_DECOMPOSE_AND_GET_IMAGES,
+                CARD_DECOMPOSE_DATA,
+                CARD_GET_DATA
+            )
+
+            Card(
+                modifier = Modifier
+                    .padding(horizontal = 12.dp)
+                    .padding(bottom = 12.dp),
+                pressFeedbackType = PressFeedbackType.Sink,
+                showIndication = true,
+            ) {
+                BasicComponent(
+                    modifier = Modifier,
+                    title = "打开分解兑换计算器",
+                    summary = "顾名思义，自助求和",
+                    endActions = {
+                        ImagesRow(
+                            imageResIds = listOf(
+                                CARD_DECOMPOSE_AND_GET_IMAGES[12],
+                            ),
+                            imageWidth = 48,
+                            imageHeight = 40,
+                        )
+                    },
+                    onClick = { showCardDecomposeAndGetCalculatorBottomSheet.value = true },
+                )
+            }
+
+            AnimalCardDecomposeAndGetCalculator(
+                showCardDecomposeAndGetCalculatorBottomSheet,
+                CARD_DECOMPOSE_AND_GET_IMAGES,
+                CARD_DECOMPOSE_DATA,
+                CARD_GET_DATA,
+                "星座碎片"
+            )
+        }
+        item {
+            // =================================================== 其他信息 ===================================================
+
+            DeveloperTips()
+        }
     }
-
-    AnimalCardDecomposeAndGetCalculator(
-        showCardDecomposeAndGetCalculatorBottomSheet,
-        CARD_DECOMPOSE_AND_GET_IMAGES,
-        CARD_DECOMPOSE_DATA,
-        CARD_GET_DATA,
-        "星座碎片"
-    )
-
-    DeveloperTips()
 
     WindowBottomSheet(
         show = showCardAuxiliaryBottomSheet.value,
@@ -981,7 +1052,6 @@ private fun Info(
                         modifier = Modifier
                             .padding(horizontal = 12.dp)
                             .padding(bottom = 12.dp),
-                        pressFeedbackType = PressFeedbackType.Sink,
                     ) {
                         BasicComponent(
                             modifier = Modifier,
@@ -1013,7 +1083,6 @@ private fun Info(
                         modifier = Modifier
                             .padding(horizontal = 12.dp)
                             .padding(bottom = 12.dp),
-                        pressFeedbackType = PressFeedbackType.Sink,
                     ) {
                         BasicComponent(
                             modifier = Modifier,
@@ -1068,7 +1137,6 @@ private fun Info(
                         modifier = Modifier
                             .padding(horizontal = 12.dp)
                             .padding(bottom = 12.dp),
-                        pressFeedbackType = PressFeedbackType.Sink,
                     ) {
                         BasicComponent(
                             modifier = Modifier,
