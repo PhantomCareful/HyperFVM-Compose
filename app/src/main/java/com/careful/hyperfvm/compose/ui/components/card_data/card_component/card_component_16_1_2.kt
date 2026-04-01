@@ -392,6 +392,7 @@ private fun Info(
         item {
             // =================================================== 相关卡片 ===================================================
 
+            CardDataDetailWindowBottomSheet_2_2_1(showBottomSheet1, stringResource(R.string.name_card_data_index_2_2_1_0))
             CardDataDetailWindowBottomSheet_1_2_1(showBottomSheet4, stringResource(R.string.name_card_data_index_1_2_1_0))
 
             SmallTitle(text = "相关卡片")
@@ -653,7 +654,7 @@ private fun Info(
                 ) {
                     BasicComponent(
                         modifier = Modifier,
-                        title = CARD_DATA_STRING[0] + "：" + ((CARD_DATA_1[6] * cookeryValue2).toInt() * crystoneValue).toInt() + fusionValue,
+                        title = CARD_DATA_STRING[0] + "：" + (((CARD_DATA_1[6] * cookeryValue2).toInt() * crystoneValue).toInt() + fusionValue),
                         endActions = {
                             ImagesRow(
                                 imageResIds = listOf(R.drawable.star_image_6),
