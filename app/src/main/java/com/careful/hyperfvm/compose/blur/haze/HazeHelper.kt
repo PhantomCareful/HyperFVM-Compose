@@ -1,4 +1,4 @@
-package com.careful.hyperfvm.compose.haze
+package com.careful.hyperfvm.compose.blur.haze
 
 import androidx.compose.runtime.Composable
 import dev.chrisbanes.haze.HazeState

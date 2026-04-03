@@ -23,8 +23,8 @@ import com.careful.hyperfvm.compose.LocalUpdateAppState
 import com.careful.hyperfvm.compose.R
 import com.careful.hyperfvm.compose.ui.components.settings.ScaleDialog
 import com.careful.hyperfvm.compose.ui.theme.KeyColors
-import com.careful.hyperfvm.compose.haze.HazeConfig
-import com.careful.hyperfvm.compose.haze.haze
+import com.careful.hyperfvm.compose.blur.haze.HazeConfig
+import com.careful.hyperfvm.compose.blur.haze.haze
 import dev.chrisbanes.haze.hazeEffect
 import dev.chrisbanes.haze.hazeSource
 import top.yukonga.miuix.kmp.basic.Card

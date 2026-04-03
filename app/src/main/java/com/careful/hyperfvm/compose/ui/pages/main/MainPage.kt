@@ -13,25 +13,27 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
 import com.careful.hyperfvm.compose.LocalAppState
+import com.careful.hyperfvm.compose.blur.blurConfig
 import com.careful.hyperfvm.compose.ui.components.bottombar.BottomBar
 import com.careful.hyperfvm.compose.ui.components.bottombar.MainPagerState
 import com.careful.hyperfvm.compose.ui.components.bottombar.rememberMainPagerState
-import com.careful.hyperfvm.compose.haze.HazeConfig
-import com.careful.hyperfvm.compose.haze.haze
-import com.kyant.backdrop.Backdrop
-import com.kyant.backdrop.backdrops.LayerBackdrop
-import com.kyant.backdrop.backdrops.layerBackdrop
-import com.kyant.backdrop.backdrops.rememberLayerBackdrop
-import dev.chrisbanes.haze.hazeSource
+import com.kyant.backdrop.backdrops.layerBackdrop as kyant_layerBackdrop
+import com.kyant.backdrop.backdrops.LayerBackdrop as kyantLayerBackdrop
+import com.kyant.backdrop.backdrops.rememberLayerBackdrop as kyantRememberLayerBackdrop
+import top.yukonga.miuix.kmp.blur.rememberLayerBackdrop as miuixRememberLayerBackdrop
 import top.yukonga.miuix.kmp.basic.Scaffold
+import top.yukonga.miuix.kmp.blur.textureBlur
+import top.yukonga.miuix.kmp.theme.miuixShape
+import top.yukonga.miuix.kmp.blur.LayerBackdrop as miuixLayerBackdrop
+import top.yukonga.miuix.kmp.blur.layerBackdrop as miuix_layerBackdrop
 
 val LocalMainPagerState = staticCompositionLocalOf<MainPagerState> { error("LocalMainPagerState not provided") }
 
 @Composable
 fun MainPage(
 ) {
-    val hazeConfig = haze()
 
     val appState = LocalAppState.current
 
@@ -43,9 +45,11 @@ fun MainPage(
     val mainPagerState = rememberMainPagerState(pagerState)
 
     // 创建 Backdrop 实例（用于悬浮底栏的背景）
-    val backdrop = rememberLayerBackdrop {
+    val kyantBackdrop = kyantRememberLayerBackdrop {
         drawContent()
     }
+
+    val miuixBackdrop = miuixRememberLayerBackdrop()
 
     LaunchedEffect(mainPagerState.pagerState.currentPage) {
         mainPagerState.syncPage()
@@ -60,22 +64,32 @@ fun MainPage(
             modifier = Modifier.fillMaxSize(),
             bottomBar = {
                 Box(
-                    modifier = Modifier.fillMaxWidth()
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .then(
+                            if (!enableFloatingBottomBar) {
+                                Modifier.textureBlur(
+                                    backdrop = miuixBackdrop,
+                                    shape = miuixShape(0.dp),
+                                    colors = blurConfig().miuixBlurColors
+                                )
+                            } else {
+                                Modifier
+                            }
+                        )
                 ) {
                     BottomBar(
-                        hazeState = hazeConfig.hazeState,
-                        hazeStyle = hazeConfig.hazeStyle,
-                        backdrop = backdrop,
+                        backdrop = kyantBackdrop,
                         modifier = Modifier.align(Alignment.BottomCenter),
                     )
                 }
             },
         ) { paddingValues ->
             AppPager(
-                hazeConfig,
                 pagerState,
                 paddingValues,
-                backdrop = backdrop,
+                kyantBackdrop = kyantBackdrop,
+                miuixBackdrop = miuixBackdrop,
                 enableLayerBackdrop = enableFloatingBottomBar && enableFloatingBottomBarBlur,
             )
         }
@@ -92,41 +106,65 @@ private object UIConstants {
 
 @Composable
 fun AppPager(
-    hazeConfig: HazeConfig,
     pagerState: PagerState,
     paddingValues: PaddingValues,
-    backdrop: Backdrop,
+    kyantBackdrop: kyantLayerBackdrop,
+    miuixBackdrop: miuixLayerBackdrop,
     enableLayerBackdrop: Boolean,
 ) {
-    HorizontalPager(
-        state = pagerState,
-        userScrollEnabled = false,
-        modifier = Modifier
-            .fillMaxSize()
-            .hazeSource(state = hazeConfig.hazeState) // 给haze效果提供源
-            .then(
-                if (enableLayerBackdrop) {
-                    Modifier.layerBackdrop(backdrop as LayerBackdrop)  // 应用 backdrop 捕获
-                } else Modifier
-            )
-    ) { pageIndex ->
-        // 根据页面索引渲染不同页面
-        when (pageIndex) {
-            UIConstants.DATA_CENTER -> DataCenterPage(
-                paddingValues,
-            )
+    if (enableLayerBackdrop) {
+        HorizontalPager(
+            state = pagerState,
+            userScrollEnabled = false,
+            modifier = Modifier
+                .fillMaxSize()
+                .kyant_layerBackdrop(kyantBackdrop)  // 应用液态玻璃底栏的 backdrop 捕获
+        ) { pageIndex ->
+            // 根据页面索引渲染不同页面
+            when (pageIndex) {
+                UIConstants.DATA_CENTER -> DataCenterPage(
+                    paddingValues,
+                )
 
-            UIConstants.CARD_DATA_INDEX -> CardDataIndexPage(
-                paddingValues,
-            )
+                UIConstants.CARD_DATA_INDEX -> CardDataIndexPage(
+                    paddingValues,
+                )
 
-            UIConstants.SETTINGS -> SettingsPage(
-                paddingValues,
-            )
+                UIConstants.SETTINGS -> SettingsPage(
+                    paddingValues,
+                )
 
-            UIConstants.ABOUT_APP -> AboutAppPage(
-                paddingValues,
-            )
+                UIConstants.ABOUT_APP -> AboutAppPage(
+                    paddingValues,
+                )
+            }
+        }
+    } else {
+        HorizontalPager(
+            state = pagerState,
+            userScrollEnabled = false,
+            modifier = Modifier
+                .fillMaxSize()
+                .miuix_layerBackdrop(miuixBackdrop)
+        ) { pageIndex ->
+            // 根据页面索引渲染不同页面
+            when (pageIndex) {
+                UIConstants.DATA_CENTER -> DataCenterPage(
+                    paddingValues,
+                )
+
+                UIConstants.CARD_DATA_INDEX -> CardDataIndexPage(
+                    paddingValues,
+                )
+
+                UIConstants.SETTINGS -> SettingsPage(
+                    paddingValues,
+                )
+
+                UIConstants.ABOUT_APP -> AboutAppPage(
+                    paddingValues,
+                )
+            }
         }
     }
 }

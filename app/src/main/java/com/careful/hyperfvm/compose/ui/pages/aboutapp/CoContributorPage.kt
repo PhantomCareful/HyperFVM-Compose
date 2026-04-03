@@ -16,8 +16,8 @@ import com.careful.hyperfvm.compose.R
 import com.careful.hyperfvm.compose.nevigation3.LocalNavigator
 import com.careful.hyperfvm.compose.ui.components.icon.BackNavigationIcon
 import com.careful.hyperfvm.compose.ui.theme.getDarkMode
-import com.careful.hyperfvm.compose.haze.HazeConfig
-import com.careful.hyperfvm.compose.haze.haze
+import com.careful.hyperfvm.compose.blur.haze.HazeConfig
+import com.careful.hyperfvm.compose.blur.haze.haze
 import dev.chrisbanes.haze.hazeEffect
 import dev.chrisbanes.haze.hazeSource
 import top.yukonga.miuix.kmp.basic.BasicComponent

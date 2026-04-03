@@ -21,9 +21,6 @@ import com.careful.hyperfvm.compose.LocalAppState
 import com.careful.hyperfvm.compose.R
 import com.careful.hyperfvm.compose.ui.pages.main.LocalMainPagerState
 import com.kyant.backdrop.Backdrop
-import dev.chrisbanes.haze.HazeState
-import dev.chrisbanes.haze.HazeStyle
-import dev.chrisbanes.haze.hazeEffect
 import top.yukonga.miuix.kmp.basic.Icon
 import top.yukonga.miuix.kmp.basic.NavigationBar
 import top.yukonga.miuix.kmp.basic.NavigationBarItem
@@ -38,8 +35,6 @@ import top.yukonga.miuix.kmp.theme.MiuixTheme
 
 @Composable
 fun BottomBar(
-    hazeState: HazeState,
-    hazeStyle: HazeStyle,
     backdrop: Backdrop,
     modifier: Modifier,
 ) {
@@ -58,7 +53,6 @@ fun BottomBar(
     }
     if (!enableFloatingBottomBar) {
         NavigationBar(
-            modifier = modifier.hazeEffect(hazeState, hazeStyle),
             color = Color.Transparent,
             content = {
                 items.forEachIndexed { index, item ->

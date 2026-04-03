@@ -32,7 +32,7 @@ import com.careful.hyperfvm.compose.ui.components.about_app.ImportantCard
 import com.careful.hyperfvm.compose.ui.components.about_app.MoreCard
 import com.careful.hyperfvm.compose.ui.components.about_app.ThanksCard
 import com.careful.hyperfvm.compose.ui.theme.getDarkMode
-import com.careful.hyperfvm.compose.haze.haze
+import com.careful.hyperfvm.compose.blur.haze.haze
 import dev.chrisbanes.haze.hazeEffect
 import dev.chrisbanes.haze.hazeSource
 import top.yukonga.miuix.kmp.basic.Scaffold

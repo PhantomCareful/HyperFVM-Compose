@@ -45,7 +45,7 @@ import com.careful.hyperfvm.compose.ui.components.card_data.card_component.CardC
 import com.careful.hyperfvm.compose.ui.components.card_data.card_component.CardComponent_1_3_1
 import com.careful.hyperfvm.compose.ui.components.card_data.card_component.CardComponent_1_3_2
 import com.careful.hyperfvm.compose.ui.components.card_data.card_component.CardComponent_1_3_3
-import com.careful.hyperfvm.compose.haze.haze
+import com.careful.hyperfvm.compose.blur.haze.haze
 import com.careful.hyperfvm.compose.ui.components.card_data.card_component.CardComponent_2_1_1
 import com.careful.hyperfvm.compose.ui.components.card_data.card_component.CardComponent_2_1_2
 import com.careful.hyperfvm.compose.ui.components.card_data.card_component.CardComponent_2_1_3
@@ -92,7 +92,7 @@ fun CardDataIndexPage(
                             noiseFactor = 0f
                         },
                     color = Color.Transparent,
-                    title = "防御卡全能数据库",
+                    title = stringResource(R.string.title_top_bar_card_data_index),
                     scrollBehavior = scrollBehavior,
                 )
 

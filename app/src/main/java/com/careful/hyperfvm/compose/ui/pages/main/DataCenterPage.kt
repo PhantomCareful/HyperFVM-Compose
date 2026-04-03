@@ -13,11 +13,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.careful.hyperfvm.compose.LocalAppState
 import com.careful.hyperfvm.compose.R
 import com.careful.hyperfvm.compose.ui.theme.getDarkMode
-import com.careful.hyperfvm.compose.haze.haze
+import com.careful.hyperfvm.compose.blur.haze.haze
 import dev.chrisbanes.haze.hazeEffect
 import dev.chrisbanes.haze.hazeSource
 import top.yukonga.miuix.kmp.basic.BasicComponent
@@ -41,7 +42,6 @@ fun DataCenterPage(
 
     val hazeConfig = haze()
     val scrollBehavior = MiuixScrollBehavior()
-    //val navigator = LocalNavigator.current
 
     Scaffold(
         modifier = Modifier.fillMaxSize(),
@@ -54,7 +54,7 @@ fun DataCenterPage(
                         noiseFactor = 0f
                     },
                 color = Color.Transparent,
-                title = "融合数据中心",
+                title = stringResource(R.string.title_top_bar_data_center),
                 scrollBehavior = scrollBehavior,
             )
         },
