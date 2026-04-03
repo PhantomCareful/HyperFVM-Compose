@@ -83,7 +83,8 @@ fun MainPage(
                 pagerState,
                 paddingValues,
                 kyantBackdrop = kyantBackdrop,
-                enableLayerBackdrop = enableFloatingBottomBar && enableFloatingBottomBarBlur,
+                enableFloatingBottomBar = enableFloatingBottomBar,
+                enableFloatingBottomBarBlur = enableFloatingBottomBarBlur,
             )
         }
     }
@@ -104,9 +105,10 @@ fun AppPager(
     pagerState: PagerState,
     paddingValues: PaddingValues,
     kyantBackdrop: kyantLayerBackdrop,
-    enableLayerBackdrop: Boolean,
+    enableFloatingBottomBar: Boolean,
+    enableFloatingBottomBarBlur: Boolean,
 ) {
-    if (enableLayerBackdrop) {
+    if (enableFloatingBottomBar && enableFloatingBottomBarBlur) {
         HorizontalPager(
             state = pagerState,
             userScrollEnabled = false,
@@ -139,7 +141,13 @@ fun AppPager(
             userScrollEnabled = false,
             modifier = Modifier
                 .fillMaxSize()
-                .hazeSource(state = hazeConfig.hazeState) // 给haze效果提供源
+                .then(
+                    if (!enableFloatingBottomBar) {
+                        Modifier.hazeSource(state = hazeConfig.hazeState) // 给haze效果提供源
+                    } else {
+                        Modifier
+                    }
+                )
         ) { pageIndex ->
             // 根据页面索引渲染不同页面
             when (pageIndex) {
