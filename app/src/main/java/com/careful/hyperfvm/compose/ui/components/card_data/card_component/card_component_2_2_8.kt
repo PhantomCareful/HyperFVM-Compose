@@ -992,6 +992,22 @@ private fun Info(
         item {
             // =================================================== 其他信息 ===================================================
 
+            SmallTitle("其他信息")
+
+            Card(
+                modifier = Modifier
+                    .padding(horizontal = 12.dp)
+                    .padding(bottom = 12.dp),
+                pressFeedbackType = PressFeedbackType.Sink,
+                showIndication = true,
+            ) {
+                BasicComponent(
+                    modifier = Modifier,
+                    title = "冰冻\uD83E\uDDCA",
+                    summary = "单格冰冻1.5秒",
+                )
+            }
+
             DeveloperTips()
         }
     }

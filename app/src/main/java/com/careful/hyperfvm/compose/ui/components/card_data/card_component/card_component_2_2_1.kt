@@ -25,6 +25,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.SpanStyle
+import androidx.compose.ui.text.buildAnnotatedString
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.DpSize
 import androidx.compose.ui.unit.dp
 import com.careful.hyperfvm.compose.LocalAppState
@@ -45,6 +49,7 @@ import top.yukonga.miuix.kmp.basic.SliderDefaults
 import top.yukonga.miuix.kmp.basic.SmallTitle
 import top.yukonga.miuix.kmp.basic.TabRow
 import top.yukonga.miuix.kmp.basic.TabRowDefaults
+import top.yukonga.miuix.kmp.basic.Text
 import top.yukonga.miuix.kmp.window.WindowBottomSheet
 import top.yukonga.miuix.kmp.preference.SwitchPreference
 import top.yukonga.miuix.kmp.icon.MiuixIcons
@@ -379,7 +384,7 @@ private fun Info(
         item {
             // =================================================== 相关卡片 ===================================================
 
-            //CardDataDetailWindowBottomSheet_2_2_5(showBottomSheet1, stringResource(R.string.name_card_data_index_1_2_1_0))
+            CardDataDetailWindowBottomSheet_2_2_5(showBottomSheet1, stringResource(R.string.name_card_data_index_2_2_5_0))
             CardDataDetailWindowBottomSheet_16_1_2(showBottomSheet2, stringResource(R.string.name_card_data_index_16_1_2_1))
 
             SmallTitle(text = "相关卡片")
@@ -1016,6 +1021,41 @@ private fun Info(
         item {
             // =================================================== 其他信息 ===================================================
 
+            SmallTitle("其他信息")
+
+            Card(
+                modifier = Modifier
+                    .padding(horizontal = 12.dp)
+                    .padding(bottom = 12.dp),
+                pressFeedbackType = PressFeedbackType.Sink,
+                showIndication = true,
+            ) {
+                BasicComponent(
+                    modifier = Modifier,
+                    onClick = {  },
+                ) {
+                    Text(
+                        text = "附加说明\uD83E\uDD28",
+                        style = MiuixTheme.textStyles.headline1,
+                        fontWeight = FontWeight.Medium
+                    )
+                    Text(
+                        text = buildAnnotatedString {
+                            withStyle(style = SpanStyle(color = MiuixTheme.colorScheme.primary, fontWeight = FontWeight.Bold)) {
+                                append("一转后")
+                            }
+                            append("盲区增大，")
+                            withStyle(style = SpanStyle(color = MiuixTheme.colorScheme.primary, fontWeight = FontWeight.Bold)) {
+                                append("二转后")
+                            }
+                            append("恢复")
+                        },
+                        style = MiuixTheme.textStyles.body2,
+                        color = MiuixTheme.colorScheme.onSurfaceVariantSummary
+                    )
+                }
+            }
+
             DeveloperTips()
         }
     }
@@ -1039,6 +1079,31 @@ private fun Info(
             ) {
                 item {
                     // =================================================== 相关增益 ===================================================
+
+                    val appState = LocalAppState.current
+                    val colorMode = appState.colorMode
+                    val darkMode = getDarkMode(colorMode)
+
+                    Card(
+                        modifier = Modifier
+                            .padding(horizontal = 12.dp)
+                            .padding(bottom = 12.dp),
+                        pressFeedbackType = PressFeedbackType.Sink,
+                        showIndication = true,
+                        colors = CardDefaults.defaultColors(
+                            color = when {
+                                (colorMode in 3..5) -> MiuixTheme.colorScheme.secondaryContainer
+                                (darkMode) -> Color(0xFF1A3825)
+                                else -> Color(0xFFDFFAE4)
+                            }
+                        )
+                    ) {
+                        BasicComponent(
+                            modifier = Modifier,
+                            summary = "攻速增幅计算规则：分别计算食神谱增幅和图鉴增幅对原技能数据减少的时间，再减去这两个减少的时间，得到最终结果。\n注意：每次实际计算的是帧数的缩减量，计算结果向下取整。（你游20帧游戏这一块🙄）"
+                        )
+                    }
+
                     // =================================================== 食神谱 ===================================================
 
                     Card(

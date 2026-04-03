@@ -57,64 +57,69 @@ import kotlin.math.roundToInt
 
 @Stable
 private val CARD_NAMES = listOf(
-    R.string.name_card_data_index_1_2_2_0,
-    R.string.name_card_data_index_1_2_2_1,
-    R.string.name_card_data_index_1_2_2_2
+    R.string.name_card_data_index_2_2_3_0,
+    R.string.name_card_data_index_2_2_3_1,
+    R.string.name_card_data_index_2_2_3_2
 )
 
 @Stable
 private val CARD_IMAGES = listOf(
-    R.drawable.card_data_index_1_2_2_0,
-    R.drawable.card_data_index_1_2_2_1,
-    R.drawable.card_data_index_1_2_2_2
+    R.drawable.card_data_index_2_2_3_0,
+    R.drawable.card_data_index_2_2_3_1,
+    R.drawable.card_data_index_2_2_3_2
 )
 
 @Stable
 private val CARD_IMAGES_BIG = listOf(
-    R.drawable.card_data_index_1_2_2_0_big,
-    R.drawable.card_data_index_1_2_2_1_big,
-    R.drawable.card_data_index_1_2_2_2_big
+    R.drawable.card_data_index_2_2_3_0_big,
+    R.drawable.card_data_index_2_2_3_1_big,
+    R.drawable.card_data_index_2_2_3_2_big
 )
 
 @Stable
 private val CARD_DESCRIPTION = listOf(
-    "能力：同时向正前方三行发射4发强力箭，中间2发，两边各1发，威力巨大！",
+    "能力：投掷两发强力冰鱼并产生溅射伤害40%，威力强大！",
     "能力：能量守恒(不+)",
-    "能力：两边各增加一发子弹",
+    "能力：子弹伤害提高35%",
     "50",
     "7",
-    "所属分类：管线类/三线类",
-    "耗能：300+/300/300",
+    "所属分类：投掷类/中型投手",
+    "耗能：200+/200/200",
     "作为副卡：好卡\uD83D\uDE00",
-    "子弹数(二转加侧路)：4/4/6",
+    "1️⃣子弹数量：2\n2️⃣溅射伤害：40%",
 )
 
 @Stable
 private val RELATED_CARD_NAMES = listOf(
-    R.string.name_card_data_index_1_2_4_0,
+    R.string.name_card_data_index_2_2_5_0,
 )
 
 @Stable
 private val RELATED_CARD_IMAGES = listOf(
-    R.drawable.card_data_index_1_2_4_0,
+    R.drawable.card_data_index_2_2_5_0,
 )
 
 @Stable
 private val CARD_DATA_STRING = listOf(
-    "攻击力"
+    "不转攻击力", "二转攻击力"
 )
 
 @Stable
 private val CARD_DATA_1 = listOf(
-    15, 18, 21, 24, 27, 30, 33, 39, 48, 60, 83, 105, 128, 150, 172, 192, 224, -1, -1
+    50, 60, 70, 80, 100, 120, 140, 170, 200, 230, 280, 360, 460, 570, 690, 820, 970, -1, -1
+)
+
+@Stable
+private val CARD_DATA_2 = listOf(
+    67, 81, 94, 108, 135, 162, 189, 229, 270, 310, 378, 486, 621, 769, 931, 1107, 1309, -1, -1
 )
 
 @Stable
 private val CARD_DATA_SKILL_IMAGES = listOf(
-    R.drawable.card_data_index_1_2_2_skill_1,
-    R.drawable.card_data_index_1_2_2_skill_2,
-    R.drawable.card_data_index_1_2_2_skill_3,
-    R.drawable.card_data_index_1_2_2_skill_4
+    R.drawable.card_data_index_2_2_3_skill_1,
+    R.drawable.card_data_index_2_2_3_skill_2,
+    R.drawable.card_data_index_2_2_3_skill_3,
+    R.drawable.card_data_index_2_2_3_skill_4
 )
 
 @Stable
@@ -124,23 +129,23 @@ private val CARD_DATA_SKILL_STRING = listOf(
 
 @Stable
 private val CARD_DATA_SKILL_1 = listOf(
-    1.4f, 1.35f, 1.3f, 1.25f, 1.2f, 1.15f, 1.1f, 1.05f, 0.95f
+    2.5f, 2.45f, 2.4f, 2.35f, 2.3f, 2.25f, 2.2f, 2.15f, 1.95f
 )
 
 @Stable
 private val CARD_DECOMPOSE_AND_GET_IMAGES = listOf(
-    R.drawable.card_data_index_1_2_2_0,
-    R.drawable.card_data_index_1_2_2_1,
-    R.drawable.card_data_index_1_2_2_2,
-    R.drawable.card_data_index_1_2_2_skill_1,
-    R.drawable.card_data_index_1_2_2_skill_2,
-    R.drawable.card_data_index_1_2_2_skill_3,
-    R.drawable.card_data_index_1_2_2_skill_4,
-    R.drawable.card_data_index_1_2_2_transfer_1_a,
-    R.drawable.card_data_index_1_2_2_transfer_1_b,
-    R.drawable.card_data_index_1_2_2_transfer_2_a,
-    R.drawable.card_data_index_1_2_2_transfer_2_b,
-    R.drawable.card_data_index_1_2_2_transfer_2_c,
+    R.drawable.card_data_index_2_2_3_0,
+    R.drawable.card_data_index_2_2_3_1,
+    R.drawable.card_data_index_2_2_3_2,
+    R.drawable.card_data_index_2_2_3_skill_1,
+    R.drawable.card_data_index_2_2_3_skill_2,
+    R.drawable.card_data_index_2_2_3_skill_3,
+    R.drawable.card_data_index_2_2_3_skill_4,
+    R.drawable.card_data_index_2_2_3_transfer_1_a,
+    R.drawable.card_data_index_2_2_3_transfer_1_b,
+    R.drawable.card_data_index_2_2_3_transfer_2_a,
+    R.drawable.card_data_index_2_2_3_transfer_2_b,
+    R.drawable.card_data_index_2_2_3_transfer_2_c,
     R.drawable.yellow_crystal,
 )
 
@@ -156,7 +161,7 @@ private val CARD_GET_DATA = listOf(
 
 @Stable
 @Composable
-fun CardComponent_1_2_2() {
+fun CardComponent_2_2_3() {
     val showBottomSheet = rememberSaveable { mutableStateOf(false) }
     val cardName = stringResource(CARD_NAMES[0])
 
@@ -181,11 +186,11 @@ fun CardComponent_1_2_2() {
         )
     }
 
-    CardDataDetailWindowBottomSheet_1_2_2(showBottomSheet, cardName)
+    CardDataDetailWindowBottomSheet_2_2_3(showBottomSheet, cardName)
 }
 
 @Composable
-fun CardDataDetailWindowBottomSheet_1_2_2(
+fun CardDataDetailWindowBottomSheet_2_2_3(
     showBottomSheet: MutableState<Boolean>,
     cardName: String
 ) {
@@ -352,7 +357,7 @@ private fun Info(
             // =================================================== 相关卡片 ===================================================
 
             SmallTitle(text = "相关卡片")
-            CardDataDetailWindowBottomSheet_1_2_4(showBottomSheet1, stringResource(R.string.name_card_data_index_1_2_4_0))
+            CardDataDetailWindowBottomSheet_2_2_5(showBottomSheet1, stringResource(R.string.name_card_data_index_2_2_5_0))
 
             Card(
                 modifier = Modifier
@@ -377,7 +382,7 @@ private fun Info(
         item {
             // =================================================== 星级数据 ===================================================
 
-            SmallTitle(text = "强化提升：" + CARD_DATA_STRING[0])
+            SmallTitle(text = "强化提升：" + CARD_DATA_STRING[0] + "、" + CARD_DATA_STRING[1])
             Card(
                 modifier = Modifier
                     .padding(horizontal = 12.dp)
@@ -440,7 +445,8 @@ private fun Info(
                     BasicComponent(
                         modifier = Modifier,
                         title = "LV.0",
-                        summary = CARD_DATA_STRING[0] + "：" + (((CARD_DATA_1[0] * cookeryValue1).toInt() * crystoneValue).toInt())
+                        summary = CARD_DATA_STRING[0] + "：" + ((CARD_DATA_1[0] * cookeryValue1).toInt() * crystoneValue).toInt() + "\n"
+                                + CARD_DATA_STRING[1] + "：" + ((CARD_DATA_2[0] * cookeryValue1).toInt() * crystoneValue).toInt(),
                     )
                 }
             }
@@ -456,7 +462,8 @@ private fun Info(
                 ) {
                     BasicComponent(
                         modifier = Modifier,
-                        title = CARD_DATA_STRING[0] + "：" + (((CARD_DATA_1[1] * cookeryValue1).toInt() * crystoneValue).toInt()),
+                        title = CARD_DATA_STRING[0] + "：" + ((CARD_DATA_1[1] * cookeryValue1).toInt() * crystoneValue).toInt() + "\n"
+                                + CARD_DATA_STRING[1] + "：" + ((CARD_DATA_2[1] * cookeryValue1).toInt() * crystoneValue).toInt(),
                         endActions = {
                             ImagesRow(
                                 imageResIds = listOf(R.drawable.star_image_1),
@@ -479,7 +486,8 @@ private fun Info(
                 ) {
                     BasicComponent(
                         modifier = Modifier,
-                        title = CARD_DATA_STRING[0] + "：" + (((CARD_DATA_1[2] * cookeryValue1).toInt() * crystoneValue).toInt()),
+                        title = CARD_DATA_STRING[0] + "：" + ((CARD_DATA_1[2] * cookeryValue1).toInt() * crystoneValue).toInt() + "\n"
+                                + CARD_DATA_STRING[1] + "：" + ((CARD_DATA_2[2] * cookeryValue1).toInt() * crystoneValue).toInt(),
                         endActions = {
                             ImagesRow(
                                 imageResIds = listOf(R.drawable.star_image_2),
@@ -502,7 +510,8 @@ private fun Info(
                 ) {
                     BasicComponent(
                         modifier = Modifier,
-                        title = CARD_DATA_STRING[0] + "：" + (((CARD_DATA_1[3] * cookeryValue1).toInt() * crystoneValue).toInt()),
+                        title = CARD_DATA_STRING[0] + "：" + ((CARD_DATA_1[3] * cookeryValue1).toInt() * crystoneValue).toInt() + "\n"
+                                + CARD_DATA_STRING[1] + "：" + ((CARD_DATA_2[3] * cookeryValue1).toInt() * crystoneValue).toInt(),
                         endActions = {
                             ImagesRow(
                                 imageResIds = listOf(R.drawable.star_image_3),
@@ -525,7 +534,8 @@ private fun Info(
                 ) {
                     BasicComponent(
                         modifier = Modifier,
-                        title = CARD_DATA_STRING[0] + "：" + (((CARD_DATA_1[4] * cookeryValue1).toInt() * crystoneValue).toInt()),
+                        title = CARD_DATA_STRING[0] + "：" + ((CARD_DATA_1[4] * cookeryValue1).toInt() * crystoneValue).toInt() + "\n"
+                                + CARD_DATA_STRING[1] + "：" + ((CARD_DATA_2[4] * cookeryValue1).toInt() * crystoneValue).toInt(),
                         endActions = {
                             ImagesRow(
                                 imageResIds = listOf(R.drawable.star_image_4),
@@ -548,7 +558,8 @@ private fun Info(
                 ) {
                     BasicComponent(
                         modifier = Modifier,
-                        title = CARD_DATA_STRING[0] + "：" + (((CARD_DATA_1[5] * cookeryValue1).toInt() * crystoneValue).toInt()),
+                        title = CARD_DATA_STRING[0] + "：" + ((CARD_DATA_1[5] * cookeryValue1).toInt() * crystoneValue).toInt() + "\n"
+                                + CARD_DATA_STRING[1] + "：" + ((CARD_DATA_2[5] * cookeryValue1).toInt() * crystoneValue).toInt(),
                         endActions = {
                             ImagesRow(
                                 imageResIds = listOf(R.drawable.star_image_5),
@@ -571,7 +582,8 @@ private fun Info(
                 ) {
                     BasicComponent(
                         modifier = Modifier,
-                        title = CARD_DATA_STRING[0] + "：" + (((CARD_DATA_1[6] * cookeryValue1).toInt() * crystoneValue).toInt()),
+                        title = CARD_DATA_STRING[0] + "：" + ((CARD_DATA_1[6] * cookeryValue1).toInt() * crystoneValue).toInt() + "\n"
+                                + CARD_DATA_STRING[1] + "：" + ((CARD_DATA_2[6] * cookeryValue1).toInt() * crystoneValue).toInt(),
                         endActions = {
                             ImagesRow(
                                 imageResIds = listOf(R.drawable.star_image_6),
@@ -594,7 +606,8 @@ private fun Info(
                 ) {
                     BasicComponent(
                         modifier = Modifier,
-                        title = CARD_DATA_STRING[0] + "：" + (((CARD_DATA_1[7] * cookeryValue1).toInt() * crystoneValue).toInt()),
+                        title = CARD_DATA_STRING[0] + "：" + ((CARD_DATA_1[7] * cookeryValue1).toInt() * crystoneValue).toInt() + "\n"
+                                + CARD_DATA_STRING[1] + "：" + ((CARD_DATA_2[7] * cookeryValue1).toInt() * crystoneValue).toInt(),
                         endActions = {
                             ImagesRow(
                                 imageResIds = listOf(R.drawable.star_image_7),
@@ -617,7 +630,8 @@ private fun Info(
                 ) {
                     BasicComponent(
                         modifier = Modifier,
-                        title = CARD_DATA_STRING[0] + "：" + (((CARD_DATA_1[8] * cookeryValue1).toInt() * crystoneValue).toInt()),
+                        title = CARD_DATA_STRING[0] + "：" + ((CARD_DATA_1[8] * cookeryValue1).toInt() * crystoneValue).toInt() + "\n"
+                                + CARD_DATA_STRING[1] + "：" + ((CARD_DATA_2[8] * cookeryValue1).toInt() * crystoneValue).toInt(),
                         endActions = {
                             ImagesRow(
                                 imageResIds = listOf(R.drawable.star_image_8),
@@ -640,7 +654,8 @@ private fun Info(
                 ) {
                     BasicComponent(
                         modifier = Modifier,
-                        title = CARD_DATA_STRING[0] + "：" + (((CARD_DATA_1[9] * cookeryValue1).toInt() * crystoneValue).toInt()),
+                        title = CARD_DATA_STRING[0] + "：" + ((CARD_DATA_1[9] * cookeryValue1).toInt() * crystoneValue).toInt() + "\n"
+                                + CARD_DATA_STRING[1] + "：" + ((CARD_DATA_2[9] * cookeryValue1).toInt() * crystoneValue).toInt(),
                         endActions = {
                             ImagesRow(
                                 imageResIds = listOf(R.drawable.star_image_9),
@@ -663,7 +678,8 @@ private fun Info(
                 ) {
                     BasicComponent(
                         modifier = Modifier,
-                        title = CARD_DATA_STRING[0] + "：" + (((CARD_DATA_1[10] * cookeryValue1).toInt() * crystoneValue).toInt()),
+                        title = CARD_DATA_STRING[0] + "：" + ((CARD_DATA_1[10] * cookeryValue1).toInt() * crystoneValue).toInt() + "\n"
+                                + CARD_DATA_STRING[1] + "：" + ((CARD_DATA_2[10] * cookeryValue1).toInt() * crystoneValue).toInt(),
                         endActions = {
                             ImagesRow(
                                 imageResIds = listOf(R.drawable.star_image_10),
@@ -686,7 +702,8 @@ private fun Info(
                 ) {
                     BasicComponent(
                         modifier = Modifier,
-                        title = CARD_DATA_STRING[0] + "：" + (((CARD_DATA_1[11] * cookeryValue1).toInt() * crystoneValue).toInt()),
+                        title = CARD_DATA_STRING[0] + "：" + ((CARD_DATA_1[11] * cookeryValue1).toInt() * crystoneValue).toInt() + "\n"
+                                + CARD_DATA_STRING[1] + "：" + ((CARD_DATA_2[11] * cookeryValue1).toInt() * crystoneValue).toInt(),
                         endActions = {
                             ImagesRow(
                                 imageResIds = listOf(R.drawable.star_image_11),
@@ -709,7 +726,8 @@ private fun Info(
                 ) {
                     BasicComponent(
                         modifier = Modifier,
-                        title = CARD_DATA_STRING[0] + "：" + (((CARD_DATA_1[12] * cookeryValue1).toInt() * crystoneValue).toInt()),
+                        title = CARD_DATA_STRING[0] + "：" + ((CARD_DATA_1[12] * cookeryValue1).toInt() * crystoneValue).toInt() + "\n"
+                                + CARD_DATA_STRING[1] + "：" + ((CARD_DATA_2[12] * cookeryValue1).toInt() * crystoneValue).toInt(),
                         endActions = {
                             ImagesRow(
                                 imageResIds = listOf(R.drawable.star_image_12),
@@ -732,7 +750,8 @@ private fun Info(
                 ) {
                     BasicComponent(
                         modifier = Modifier,
-                        title = CARD_DATA_STRING[0] + "：" + (((CARD_DATA_1[13] * cookeryValue1).toInt() * crystoneValue).toInt()),
+                        title = CARD_DATA_STRING[0] + "：" + ((CARD_DATA_1[13] * cookeryValue1).toInt() * crystoneValue).toInt() + "\n"
+                                + CARD_DATA_STRING[1] + "：" + ((CARD_DATA_2[13] * cookeryValue1).toInt() * crystoneValue).toInt(),
                         endActions = {
                             ImagesRow(
                                 imageResIds = listOf(R.drawable.star_image_13),
@@ -755,7 +774,8 @@ private fun Info(
                 ) {
                     BasicComponent(
                         modifier = Modifier,
-                        title = CARD_DATA_STRING[0] + "：" + (((CARD_DATA_1[14] * cookeryValue1).toInt() * crystoneValue).toInt()),
+                        title = CARD_DATA_STRING[0] + "：" + ((CARD_DATA_1[14] * cookeryValue1).toInt() * crystoneValue).toInt() + "\n"
+                                + CARD_DATA_STRING[1] + "：" + ((CARD_DATA_2[14] * cookeryValue1).toInt() * crystoneValue).toInt(),
                         endActions = {
                             ImagesRow(
                                 imageResIds = listOf(R.drawable.star_image_14),
@@ -778,7 +798,8 @@ private fun Info(
                 ) {
                     BasicComponent(
                         modifier = Modifier,
-                        title = CARD_DATA_STRING[0] + "：" + (((CARD_DATA_1[15] * cookeryValue1).toInt() * crystoneValue).toInt()),
+                        title = CARD_DATA_STRING[0] + "：" + ((CARD_DATA_1[15] * cookeryValue1).toInt() * crystoneValue).toInt() + "\n"
+                                + CARD_DATA_STRING[1] + "：" + ((CARD_DATA_2[15] * cookeryValue1).toInt() * crystoneValue).toInt(),
                         endActions = {
                             ImagesRow(
                                 imageResIds = listOf(R.drawable.star_image_15),
@@ -801,7 +822,8 @@ private fun Info(
                 ) {
                     BasicComponent(
                         modifier = Modifier,
-                        title = CARD_DATA_STRING[0] + "：" + (((CARD_DATA_1[16] * cookeryValue1).toInt() * crystoneValue).toInt()),
+                        title = CARD_DATA_STRING[0] + "：" + ((CARD_DATA_1[16] * cookeryValue1).toInt() * crystoneValue).toInt() + "\n"
+                                + CARD_DATA_STRING[1] + "：" + ((CARD_DATA_2[16] * cookeryValue1).toInt() * crystoneValue).toInt(),
                         endActions = {
                             ImagesRow(
                                 imageResIds = listOf(R.drawable.star_image_16),
@@ -861,10 +883,9 @@ private fun Info(
                 BasicComponent(
                     modifier = Modifier,
                     title = "LV.0：" +
-                            "%.2f".format(CARD_DATA_SKILL_1[0] -
-                                    ((CARD_DATA_SKILL_1[0] * 20 * (1 - cookeryValue2)).toInt() * 0.05) -
-                                    (((CARD_DATA_SKILL_1[0] - ((CARD_DATA_SKILL_1[0] * 20 * (1 - cookeryValue2)).toInt() * 0.05)) * 20 * (1 - handbookValue)).toInt() * 0.05)
-                            ),
+                            "%.2f".format((CARD_DATA_SKILL_1[0] - (
+                                    (CARD_DATA_SKILL_1[0] * 20 * (1 - cookeryValue2)).toInt() * 0.05) -
+                                    (CARD_DATA_SKILL_1[0] * 20 * (1 - handbookValue)).toInt() * 0.05)),
                 )
             }
             Card(
@@ -877,18 +898,15 @@ private fun Info(
                 BasicComponent(
                     modifier = Modifier,
                     title = "LV.1-3：" +
-                            "%.2f".format(CARD_DATA_SKILL_1[1] -
-                                    ((CARD_DATA_SKILL_1[1] * 20 * (1 - cookeryValue2)).toInt() * 0.05) -
-                                    (((CARD_DATA_SKILL_1[1] - ((CARD_DATA_SKILL_1[1] * 20 * (1 - cookeryValue2)).toInt() * 0.05)) * 20 * (1 - handbookValue)).toInt() * 0.05)
-                            ) + "、" +
-                            "%.2f".format(CARD_DATA_SKILL_1[2] -
-                                    ((CARD_DATA_SKILL_1[2] * 20 * (1 - cookeryValue2)).toInt() * 0.05) -
-                                    (((CARD_DATA_SKILL_1[2] - ((CARD_DATA_SKILL_1[2] * 20 * (1 - cookeryValue2)).toInt() * 0.05)) * 20 * (1 - handbookValue)).toInt() * 0.05)
-                            ) + "、" +
-                            "%.2f".format(CARD_DATA_SKILL_1[3] -
-                                    ((CARD_DATA_SKILL_1[3] * 20 * (1 - cookeryValue2)).toInt() * 0.05) -
-                                    (((CARD_DATA_SKILL_1[3] - ((CARD_DATA_SKILL_1[3] * 20 * (1 - cookeryValue2)).toInt() * 0.05)) * 20 * (1 - handbookValue)).toInt() * 0.05)
-                            ),
+                            "%.2f".format((CARD_DATA_SKILL_1[1] - (
+                                    (CARD_DATA_SKILL_1[1] * 20 * (1 - cookeryValue2)).toInt() * 0.05) -
+                                    (CARD_DATA_SKILL_1[1] * 20 * (1 - handbookValue)).toInt() * 0.05)) + "、" +
+                            "%.2f".format((CARD_DATA_SKILL_1[2] - (
+                                    (CARD_DATA_SKILL_1[2] * 20 * (1 - cookeryValue2)).toInt() * 0.05) -
+                                    (CARD_DATA_SKILL_1[2] * 20 * (1 - handbookValue)).toInt() * 0.05)) + "、" +
+                            "%.2f".format((CARD_DATA_SKILL_1[3] - (
+                                    (CARD_DATA_SKILL_1[3] * 20 * (1 - cookeryValue2)).toInt() * 0.05) -
+                                    (CARD_DATA_SKILL_1[3] * 20 * (1 - handbookValue)).toInt() * 0.05)),
                     summary = "初级一共所需技能点：" + (SKILL_POINT_1[1] + SKILL_POINT_1[2] + SKILL_POINT_1[3]),
                     endActions = {
                         ImagesRow(
@@ -909,14 +927,12 @@ private fun Info(
                 BasicComponent(
                     modifier = Modifier,
                     title = "LV.4-5：" +
-                            "%.2f".format(CARD_DATA_SKILL_1[4] -
-                                    ((CARD_DATA_SKILL_1[4] * 20 * (1 - cookeryValue2)).toInt() * 0.05) -
-                                    (((CARD_DATA_SKILL_1[4] - ((CARD_DATA_SKILL_1[4] * 20 * (1 - cookeryValue2)).toInt() * 0.05)) * 20 * (1 - handbookValue)).toInt() * 0.05)
-                            ) + "、" +
-                            "%.2f".format(CARD_DATA_SKILL_1[5] -
-                                    ((CARD_DATA_SKILL_1[5] * 20 * (1 - cookeryValue2)).toInt() * 0.05) -
-                                    (((CARD_DATA_SKILL_1[5] - ((CARD_DATA_SKILL_1[5] * 20 * (1 - cookeryValue2)).toInt() * 0.05)) * 20 * (1 - handbookValue)).toInt() * 0.05)
-                            ),
+                            "%.2f".format((CARD_DATA_SKILL_1[4] - (
+                                    (CARD_DATA_SKILL_1[4] * 20 * (1 - cookeryValue2)).toInt() * 0.05) -
+                                    (CARD_DATA_SKILL_1[4] * 20 * (1 - handbookValue)).toInt() * 0.05)) + "、" +
+                            "%.2f".format((CARD_DATA_SKILL_1[5] - (
+                                    (CARD_DATA_SKILL_1[5] * 20 * (1 - cookeryValue2)).toInt() * 0.05) -
+                                    (CARD_DATA_SKILL_1[5] * 20 * (1 - handbookValue)).toInt() * 0.05)),
                     summary = "高级一共所需技能点：" + (SKILL_POINT_1[4] + SKILL_POINT_1[5]),
                     endActions = {
                         ImagesRow(
@@ -937,14 +953,12 @@ private fun Info(
                 BasicComponent(
                     modifier = Modifier,
                     title = "LV.6-7：" +
-                            "%.2f".format(CARD_DATA_SKILL_1[6] -
-                                    ((CARD_DATA_SKILL_1[6] * 20 * (1 - cookeryValue2)).toInt() * 0.05) -
-                                    (((CARD_DATA_SKILL_1[6] - ((CARD_DATA_SKILL_1[6] * 20 * (1 - cookeryValue2)).toInt() * 0.05)) * 20 * (1 - handbookValue)).toInt() * 0.05)
-                            ) + "、" +
-                            "%.2f".format(CARD_DATA_SKILL_1[7] -
-                                    ((CARD_DATA_SKILL_1[7] * 20 * (1 - cookeryValue2)).toInt() * 0.05) -
-                                    (((CARD_DATA_SKILL_1[7] - ((CARD_DATA_SKILL_1[7] * 20 * (1 - cookeryValue2)).toInt() * 0.05)) * 20 * (1 - handbookValue)).toInt() * 0.05)
-                            ),
+                            "%.2f".format((CARD_DATA_SKILL_1[6] - (
+                                    (CARD_DATA_SKILL_1[6] * 20 * (1 - cookeryValue2)).toInt() * 0.05) -
+                                    (CARD_DATA_SKILL_1[6] * 20 * (1 - handbookValue)).toInt() * 0.05)) + "、" +
+                            "%.2f".format((CARD_DATA_SKILL_1[7] - (
+                                    (CARD_DATA_SKILL_1[7] * 20 * (1 - cookeryValue2)).toInt() * 0.05) -
+                                    (CARD_DATA_SKILL_1[7] * 20 * (1 - handbookValue)).toInt() * 0.05)),
                     summary = "终级一共所需技能点：" + (SKILL_POINT_1[6] + SKILL_POINT_1[7]),
                     endActions = {
                         ImagesRow(
@@ -965,10 +979,9 @@ private fun Info(
                 BasicComponent(
                     modifier = Modifier,
                     title = "LV.8：" +
-                            "%.2f".format(CARD_DATA_SKILL_1[8] -
-                                    ((CARD_DATA_SKILL_1[8] * 20 * (1 - cookeryValue2)).toInt() * 0.05) -
-                                    (((CARD_DATA_SKILL_1[8] - ((CARD_DATA_SKILL_1[8] * 20 * (1 - cookeryValue2)).toInt() * 0.05)) * 20 * (1 - handbookValue)).toInt() * 0.05)
-                            ),
+                            "%.2f".format((CARD_DATA_SKILL_1[8] - (
+                                    (CARD_DATA_SKILL_1[8] * 20 * (1 - cookeryValue2)).toInt() * 0.05) -
+                                    (CARD_DATA_SKILL_1[8] * 20 * (1 - handbookValue)).toInt() * 0.05)),
                     summary = "究极一共所需技能点：" + (SKILL_POINT_1[8]),
                     endActions = {
                         ImagesRow(
@@ -1047,6 +1060,7 @@ private fun Info(
             ) {
                 item {
                     // =================================================== 相关增益 ===================================================
+
                     val appState = LocalAppState.current
                     val colorMode = appState.colorMode
                     val darkMode = getDarkMode(colorMode)
@@ -1067,7 +1081,7 @@ private fun Info(
                     ) {
                         BasicComponent(
                             modifier = Modifier,
-                            summary = "攻速增幅计算规则：先计算食神谱增幅对原技能数据减少的时间，再计算图鉴增幅对【前面计算出的增幅后的数据】减少的时间，得到最终结果。\n注意：每次实际计算的是帧数的缩减量，计算结果向下取整。（你游20帧游戏这一块🙄）"
+                            summary = "攻速增幅计算规则：分别计算食神谱增幅和图鉴增幅对原技能数据减少的时间，再减去这两个减少的时间，得到最终结果。\n注意：每次实际计算的是帧数的缩减量，计算结果向下取整。（你游20帧游戏这一块🙄）"
                         )
                     }
 
@@ -1080,11 +1094,11 @@ private fun Info(
                     ) {
                         BasicComponent(
                             modifier = Modifier,
-                            title = "食神谱：钻石风味香槟😋",
+                            title = "食神谱：咖喱鱼蛋😋",
                             summary = "攻击力提升10%，攻速提升5%",
                             endActions = {
                                 ImagesRow(
-                                    imageResIds = listOf(R.drawable.card_data_cookery_3_11),
+                                    imageResIds = listOf(R.drawable.card_data_cookery_3_13),
                                     imageWidth = 44,
                                     imageHeight = 44,
                                 )
@@ -1116,7 +1130,7 @@ private fun Info(
                             summary = "提升攻击力",
                             endActions = {
                                 ImagesRow(
-                                    imageResIds = listOf(R.drawable.card_data_index_1_2_2_crystone),
+                                    imageResIds = listOf(R.drawable.card_data_index_2_2_3_crystone),
                                     imageWidth = 44,
                                     imageHeight = 44,
                                 )
@@ -1167,7 +1181,7 @@ private fun Info(
                         BasicComponent(
                             modifier = Modifier,
                             title = "图鉴加成📕",
-                            summary = "收集14张星座卡，攻速提升10%",
+                            summary = "收集10张星座卡，攻速提升10%",
                             endActions = {
                                 ImagesRow(
                                     imageResIds = listOf(R.drawable.illustrated_handbook_image),
