@@ -1,4 +1,4 @@
-package com.careful.hyperfvm.compose.ui.pages.main
+package com.careful.hyperfvm.compose.backup
 
 import android.os.Build
 import androidx.annotation.RequiresApi
@@ -17,17 +17,23 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.careful.hyperfvm.compose.LocalAppState
-import com.careful.hyperfvm.compose.blur.haze.HazeConfig
-import com.careful.hyperfvm.compose.blur.haze.haze
+import com.careful.hyperfvm.compose.blur.blurConfig
 import com.careful.hyperfvm.compose.ui.components.bottombar.BottomBar
 import com.careful.hyperfvm.compose.ui.components.bottombar.MainPagerState
 import com.careful.hyperfvm.compose.ui.components.bottombar.rememberMainPagerState
-import dev.chrisbanes.haze.hazeEffect
-import dev.chrisbanes.haze.hazeSource
+import com.careful.hyperfvm.compose.ui.pages.main.AboutAppPage
+import com.careful.hyperfvm.compose.ui.pages.main.CardDataIndexPage
+import com.careful.hyperfvm.compose.ui.pages.main.DataCenterPage
+import com.careful.hyperfvm.compose.ui.pages.main.SettingsPage
 import com.kyant.backdrop.backdrops.layerBackdrop as kyant_layerBackdrop
 import com.kyant.backdrop.backdrops.LayerBackdrop as kyantLayerBackdrop
 import com.kyant.backdrop.backdrops.rememberLayerBackdrop as kyantRememberLayerBackdrop
+import top.yukonga.miuix.kmp.blur.rememberLayerBackdrop as miuixRememberLayerBackdrop
 import top.yukonga.miuix.kmp.basic.Scaffold
+import top.yukonga.miuix.kmp.blur.textureBlur
+import top.yukonga.miuix.kmp.theme.miuixShape
+import top.yukonga.miuix.kmp.blur.LayerBackdrop as miuixLayerBackdrop
+import top.yukonga.miuix.kmp.blur.layerBackdrop as miuix_layerBackdrop
 
 val LocalMainPagerState = staticCompositionLocalOf<MainPagerState> { error("LocalMainPagerState not provided") }
 
@@ -35,7 +41,6 @@ val LocalMainPagerState = staticCompositionLocalOf<MainPagerState> { error("Loca
 @Composable
 fun MainPage(
 ) {
-    val hazeConfig = haze()
     val appState = LocalAppState.current
 
     val enableFloatingBottomBar = appState.enableFloatingBottomBar
@@ -49,6 +54,8 @@ fun MainPage(
     val kyantBackdrop = kyantRememberLayerBackdrop {
         drawContent()
     }
+
+    val miuixBackdrop = miuixRememberLayerBackdrop()
 
     LaunchedEffect(mainPagerState.pagerState.currentPage) {
         mainPagerState.syncPage()
@@ -65,11 +72,17 @@ fun MainPage(
                 Box(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .hazeEffect(hazeConfig.hazeState) {
-                            style = hazeConfig.hazeStyle
-                            blurRadius = 25.dp
-                            noiseFactor = 0f
-                        }
+                        .then(
+                            if (!enableFloatingBottomBar) {
+                                Modifier.textureBlur(
+                                    backdrop = miuixBackdrop,
+                                    shape = miuixShape(0.dp),
+                                    colors = blurConfig().miuixBlurColors
+                                )
+                            } else {
+                                Modifier
+                            }
+                        )
                 ) {
                     BottomBar(
                         backdrop = kyantBackdrop,
@@ -79,10 +92,10 @@ fun MainPage(
             },
         ) { paddingValues ->
             AppPager(
-                hazeConfig,
                 pagerState,
                 paddingValues,
                 kyantBackdrop = kyantBackdrop,
+                miuixBackdrop = miuixBackdrop,
                 enableLayerBackdrop = enableFloatingBottomBar && enableFloatingBottomBarBlur,
             )
         }
@@ -100,10 +113,10 @@ private object UIConstants {
 @RequiresApi(Build.VERSION_CODES.TIRAMISU)
 @Composable
 fun AppPager(
-    hazeConfig: HazeConfig,
     pagerState: PagerState,
     paddingValues: PaddingValues,
     kyantBackdrop: kyantLayerBackdrop,
+    miuixBackdrop: miuixLayerBackdrop,
     enableLayerBackdrop: Boolean,
 ) {
     if (enableLayerBackdrop) {
@@ -139,7 +152,7 @@ fun AppPager(
             userScrollEnabled = false,
             modifier = Modifier
                 .fillMaxSize()
-                .hazeSource(state = hazeConfig.hazeState) // 给haze效果提供源
+                .miuix_layerBackdrop(miuixBackdrop)
         ) { pageIndex ->
             // 根据页面索引渲染不同页面
             when (pageIndex) {
