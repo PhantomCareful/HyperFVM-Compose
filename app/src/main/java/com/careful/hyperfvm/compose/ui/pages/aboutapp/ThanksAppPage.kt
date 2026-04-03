@@ -227,7 +227,7 @@ fun ThanksAppList() {
         )
         ArrowPreference(
             title = "YuKongA/miuix-blur",
-            summary = "一个适用于Compose项目的模糊效果库。可以提供背景模糊、颜色混合和纹理效果",
+            summary = "一个适用于Compose项目的模糊效果库，可以提供背景模糊、颜色混合和纹理效果",
             onClick = { /* 处理点击事件 */ },
         )
         ArrowPreference(

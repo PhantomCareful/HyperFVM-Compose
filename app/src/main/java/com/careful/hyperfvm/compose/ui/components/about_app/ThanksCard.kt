@@ -17,7 +17,6 @@ import top.yukonga.miuix.kmp.basic.CardDefaults
 import top.yukonga.miuix.kmp.basic.SmallTitle
 import top.yukonga.miuix.kmp.preference.ArrowPreference
 import top.yukonga.miuix.kmp.theme.MiuixTheme
-import top.yukonga.miuix.kmp.utils.PressFeedbackType
 
 @Composable
 fun ThanksCard() {
@@ -32,7 +31,6 @@ fun ThanksCard() {
         colors = CardDefaults.defaultColors(
             color = MiuixTheme.colorScheme.background.copy(alpha = 0.25f)
         ),
-        pressFeedbackType = PressFeedbackType.Sink,
     ) {
         ArrowPreference(
             title = "游戏相关",
