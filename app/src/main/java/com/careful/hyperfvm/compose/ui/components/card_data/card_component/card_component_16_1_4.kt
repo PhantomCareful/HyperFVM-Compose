@@ -47,8 +47,8 @@ import top.yukonga.miuix.kmp.basic.SmallTitle
 import top.yukonga.miuix.kmp.basic.TabRow
 import top.yukonga.miuix.kmp.basic.TabRowDefaults
 import top.yukonga.miuix.kmp.basic.Text
-import top.yukonga.miuix.kmp.extra.SuperSwitch
-import top.yukonga.miuix.kmp.extra.WindowBottomSheet
+import top.yukonga.miuix.kmp.window.WindowBottomSheet
+import top.yukonga.miuix.kmp.preference.SwitchPreference
 import top.yukonga.miuix.kmp.icon.MiuixIcons
 import top.yukonga.miuix.kmp.icon.extended.All
 import top.yukonga.miuix.kmp.icon.extended.Back
@@ -1604,7 +1604,7 @@ private fun Info(
                             .padding(horizontal = 12.dp)
                             .padding(bottom = 12.dp),
                     ) {
-                        SuperSwitch(
+                        SwitchPreference(
                             title = "将初级附加攻击力加入计算",
                             summary = "将自动计算出启用后的数据",
                             checked = fusionChecked1.value,
@@ -1615,7 +1615,7 @@ private fun Info(
                             }
                         )
                         AnimatedVisibility(visible = fusionChecked1.value) {
-                            SuperSwitch(
+                            SwitchPreference(
                                 title = "将灵魂附加攻击力加入计算",
                                 summary = "将自动计算出启用后的数据",
                                 checked = fusionChecked2.value,

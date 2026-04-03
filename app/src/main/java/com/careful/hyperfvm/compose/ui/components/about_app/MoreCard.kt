@@ -13,7 +13,7 @@ import com.careful.hyperfvm.compose.R
 import top.yukonga.miuix.kmp.basic.Card
 import top.yukonga.miuix.kmp.basic.CardDefaults
 import top.yukonga.miuix.kmp.basic.SmallTitle
-import top.yukonga.miuix.kmp.extra.SuperArrow
+import top.yukonga.miuix.kmp.preference.ArrowPreference
 import top.yukonga.miuix.kmp.theme.MiuixTheme
 import top.yukonga.miuix.kmp.utils.PressFeedbackType
 
@@ -30,7 +30,7 @@ fun MoreCard() {
         ),
         pressFeedbackType = PressFeedbackType.Sink,
     ) {
-        SuperArrow(
+        ArrowPreference(
             title = "项目地址",
             summary = "本项目基于AGPL3.0协议开源",
             startAction = {
@@ -45,7 +45,7 @@ fun MoreCard() {
             },
             onClick = { /* 处理点击事件 */ },
         )
-        SuperArrow(
+        ArrowPreference(
             title = "获取历史版本",
             summary = "有需要的同学可以自行下载",
             startAction = {
@@ -60,7 +60,7 @@ fun MoreCard() {
             },
             onClick = { /* 处理点击事件 */ },
         )
-        SuperArrow(
+        ArrowPreference(
             title = "哔哩哔哩",
             summary = "获取最新开发动态",
             startAction = {
@@ -75,7 +75,7 @@ fun MoreCard() {
             },
             onClick = { /* 处理点击事件 */ },
         )
-        SuperArrow(
+        ArrowPreference(
             title = "腾讯频道",
             summary = "内测&反馈&建议请戳这里",
             startAction = {

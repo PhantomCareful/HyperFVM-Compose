@@ -13,7 +13,7 @@ import com.careful.hyperfvm.compose.R
 import top.yukonga.miuix.kmp.basic.Card
 import top.yukonga.miuix.kmp.basic.CardDefaults
 import top.yukonga.miuix.kmp.basic.SmallTitle
-import top.yukonga.miuix.kmp.extra.SuperArrow
+import top.yukonga.miuix.kmp.preference.ArrowPreference
 import top.yukonga.miuix.kmp.theme.MiuixTheme
 import top.yukonga.miuix.kmp.utils.PressFeedbackType
 
@@ -30,7 +30,7 @@ fun ImportantCard() {
         ),
         pressFeedbackType = PressFeedbackType.Sink,
     ) {
-        SuperArrow(
+        ArrowPreference(
             title = "使用说明",
             summary = "快速了解HyperFVM",
             startAction = {
@@ -45,7 +45,7 @@ fun ImportantCard() {
             },
             onClick = { /* 处理点击事件 */ },
         )
-        SuperArrow(
+        ArrowPreference(
             title = "更新日志",
             summary = "记录了HyperFVM的成长过程",
             startAction = {

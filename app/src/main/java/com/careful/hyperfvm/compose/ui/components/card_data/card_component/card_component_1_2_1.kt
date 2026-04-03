@@ -45,8 +45,8 @@ import top.yukonga.miuix.kmp.basic.SliderDefaults
 import top.yukonga.miuix.kmp.basic.SmallTitle
 import top.yukonga.miuix.kmp.basic.TabRow
 import top.yukonga.miuix.kmp.basic.TabRowDefaults
-import top.yukonga.miuix.kmp.extra.SuperSwitch
-import top.yukonga.miuix.kmp.extra.WindowBottomSheet
+import top.yukonga.miuix.kmp.window.WindowBottomSheet
+import top.yukonga.miuix.kmp.preference.SwitchPreference
 import top.yukonga.miuix.kmp.icon.MiuixIcons
 import top.yukonga.miuix.kmp.icon.extended.All
 import top.yukonga.miuix.kmp.icon.extended.Back
@@ -1044,7 +1044,7 @@ private fun Info(
                             },
                             onClick = {  },
                         )
-                        SuperSwitch(
+                        SwitchPreference(
                             title = "启用该食神谱",
                             summary = "将自动计算出启用后的数据",
                             checked = cookeryChecked1.value,
@@ -1073,7 +1073,7 @@ private fun Info(
                             },
                             onClick = {  },
                         )
-                        SuperSwitch(
+                        SwitchPreference(
                             title = "启用该食神谱",
                             summary = "将自动计算出启用后的数据",
                             checked = cookeryChecked2.value,
@@ -1102,7 +1102,7 @@ private fun Info(
                             },
                             onClick = {  },
                         )
-                        SuperSwitch(
+                        SwitchPreference(
                             title = "该食神谱无实际效果",
                             summary = "实际加成为3%，攻速缩减量小于1帧，因此无加成",
                             enabled = false,
@@ -1131,7 +1131,7 @@ private fun Info(
                             },
                             onClick = {  },
                         )
-                        SuperSwitch(
+                        SwitchPreference(
                             title = "启用该结晶",
                             summary = "将自动计算出启用后的数据",
                             checked = crystoneChecked.value,

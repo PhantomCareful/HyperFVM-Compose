@@ -36,9 +36,9 @@ import top.yukonga.miuix.kmp.basic.SliderDefaults
 import top.yukonga.miuix.kmp.basic.SmallTitle
 import top.yukonga.miuix.kmp.basic.Text
 import top.yukonga.miuix.kmp.basic.TopAppBar
-import top.yukonga.miuix.kmp.extra.SuperArrow
-import top.yukonga.miuix.kmp.extra.SuperDropdown
-import top.yukonga.miuix.kmp.extra.SuperSwitch
+import top.yukonga.miuix.kmp.preference.ArrowPreference
+import top.yukonga.miuix.kmp.preference.OverlayDropdownPreference
+import top.yukonga.miuix.kmp.preference.SwitchPreference
 import top.yukonga.miuix.kmp.theme.MiuixTheme.colorScheme
 import top.yukonga.miuix.kmp.utils.overScrollVertical
 import top.yukonga.miuix.kmp.utils.scrollEndHaptic
@@ -139,7 +139,7 @@ fun SettingsContent(
                     .padding(horizontal = 12.dp)
                     .padding(bottom = 12.dp),
             ) {
-                SuperDropdown(
+                OverlayDropdownPreference(
                     title = "主题",
                     summary = "选择应用的主题模式",
                     items = colorModeOptions,
@@ -147,7 +147,7 @@ fun SettingsContent(
                     onSelectedIndexChange = onColorModeChange,
                 )
                 AnimatedVisibility(visible = colorMode in 3..5) {
-                    SuperDropdown(
+                    OverlayDropdownPreference(
                         title = "强调色",
                         summary = "在使用Monet时自定义种子色",
                         items = keyColorOptions,
@@ -155,14 +155,14 @@ fun SettingsContent(
                         onSelectedIndexChange = onSeedIndexChange,
                     )
                 }
-                SuperSwitch(
+                SwitchPreference(
                     title = "悬浮底栏",
                     summary = "使用Apple风格的悬浮底栏",
                     checked = enableFloatingBottomBar,
                     onCheckedChange = onEnableFloatingBottomBarChange,
                 )
                 AnimatedVisibility(visible = enableFloatingBottomBar && Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-                    SuperSwitch(
+                    SwitchPreference(
                         title = "液态玻璃",
                         summary = "启用悬浮底栏的液态玻璃效果",
                         checked = enableFloatingBottomBarBlur,
@@ -170,7 +170,7 @@ fun SettingsContent(
                     )
                 }
                 var sliderValue by remember(pageScale) { mutableFloatStateOf(pageScale) }
-                SuperArrow(
+                ArrowPreference(
                     title = "界面缩放",
                     summary = "调整全局显示比例",
                     endActions = {

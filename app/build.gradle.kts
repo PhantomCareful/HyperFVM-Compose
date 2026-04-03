@@ -6,15 +6,15 @@ plugins {
 android {
     namespace = "com.careful.hyperfvm.compose"
     compileSdk {
-        version = release(36) {
-            minorApiLevel = 1
+        version = release(37) {
+            minorApiLevel = 0
         }
     }
 
     defaultConfig {
         applicationId = "com.careful.hyperfvm.compose"
         minSdk = 31
-        targetSdk = 36
+        targetSdk = 37
         versionCode = 1
         versionName = "4.0.0.20260401"
 
@@ -71,10 +71,11 @@ dependencies {
     implementation(libs.androidx.core.splashscreen)
 
     // miuix主题
-    implementation(libs.miuix)
+    implementation(libs.miuix.ui)
+    implementation(libs.miuix.preference)
+    implementation(libs.miuix.blur.android)
     implementation(libs.miuix.icons)
     implementation(libs.miuix.navigation3.ui)
-    implementation(libs.miuix.navigation3.adaptive)
 
     // 异步加载图片
     implementation(libs.coil.compose)

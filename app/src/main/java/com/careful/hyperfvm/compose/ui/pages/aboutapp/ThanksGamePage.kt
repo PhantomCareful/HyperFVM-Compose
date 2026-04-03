@@ -31,7 +31,7 @@ import top.yukonga.miuix.kmp.basic.Scaffold
 import top.yukonga.miuix.kmp.basic.ScrollBehavior
 import top.yukonga.miuix.kmp.basic.Surface
 import top.yukonga.miuix.kmp.basic.TopAppBar
-import top.yukonga.miuix.kmp.extra.SuperArrow
+import top.yukonga.miuix.kmp.preference.ArrowPreference
 import top.yukonga.miuix.kmp.theme.MiuixTheme
 import top.yukonga.miuix.kmp.utils.PressFeedbackType
 import top.yukonga.miuix.kmp.utils.overScrollVertical
@@ -135,7 +135,7 @@ fun ThanksGameList() {
             .padding(horizontal = 12.dp)
             .padding(bottom = 12.dp),
     ) {
-        SuperArrow(
+        ArrowPreference(
             title = "So陌路の",
             summary = "综合数据表作者",
             startAction = {
@@ -151,7 +151,7 @@ fun ThanksGameList() {
             },
             onClick = { /* 处理点击事件 */ },
         )
-        SuperArrow(
+        ArrowPreference(
             title = "夏夜浅酌",
             summary = "提拉米鼠作者、美食数据站作者",
             startAction = {
@@ -167,7 +167,7 @@ fun ThanksGameList() {
             },
             onClick = { /* 处理点击事件 */ },
         )
-        SuperArrow(
+        ArrowPreference(
             title = "右撇三叶",
             summary = "部分高清图素材作者",
             startAction = {
@@ -183,7 +183,7 @@ fun ThanksGameList() {
             },
             onClick = { /* 处理点击事件 */ },
         )
-        SuperArrow(
+        ArrowPreference(
             title = "就喝百事",
             summary = "查黑系统作者",
             startAction = {

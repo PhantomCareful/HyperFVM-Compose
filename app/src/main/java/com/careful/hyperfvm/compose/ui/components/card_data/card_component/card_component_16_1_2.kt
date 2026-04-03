@@ -45,8 +45,8 @@ import top.yukonga.miuix.kmp.basic.SliderDefaults
 import top.yukonga.miuix.kmp.basic.SmallTitle
 import top.yukonga.miuix.kmp.basic.TabRow
 import top.yukonga.miuix.kmp.basic.TabRowDefaults
-import top.yukonga.miuix.kmp.extra.SuperSwitch
-import top.yukonga.miuix.kmp.extra.WindowBottomSheet
+import top.yukonga.miuix.kmp.window.WindowBottomSheet
+import top.yukonga.miuix.kmp.preference.SwitchPreference
 import top.yukonga.miuix.kmp.icon.MiuixIcons
 import top.yukonga.miuix.kmp.icon.extended.All
 import top.yukonga.miuix.kmp.icon.extended.Back
@@ -1614,7 +1614,7 @@ private fun Info(
                             },
                             onClick = {  },
                         )
-                        SuperSwitch(
+                        SwitchPreference(
                             title = "启用该食神谱",
                             summary = "将自动计算出启用后的数据",
                             checked = cookeryChecked1.value,
@@ -1643,7 +1643,7 @@ private fun Info(
                             },
                             onClick = {  },
                         )
-                        SuperSwitch(
+                        SwitchPreference(
                             title = "启用该食神谱",
                             summary = "将自动计算出启用后的数据",
                             checked = cookeryChecked2.value,
@@ -1672,7 +1672,7 @@ private fun Info(
                             },
                             onClick = {  },
                         )
-                        SuperSwitch(
+                        SwitchPreference(
                             title = "启用该食神谱",
                             summary = "将自动计算出启用后的数据",
                             checked = cookeryChecked3.value,
@@ -1701,7 +1701,7 @@ private fun Info(
                             },
                             onClick = {  },
                         )
-                        SuperSwitch(
+                        SwitchPreference(
                             title = "启用该食神谱",
                             summary = "将自动计算出启用后的数据",
                             checked = cookeryChecked4.value,
@@ -1732,7 +1732,7 @@ private fun Info(
                             },
                             onClick = {  },
                         )
-                        SuperSwitch(
+                        SwitchPreference(
                             title = "启用该结晶",
                             summary = "将自动计算出启用后的数据",
                             checked = crystoneChecked.value,
@@ -1772,7 +1772,7 @@ private fun Info(
                             .padding(horizontal = 12.dp)
                             .padding(bottom = 12.dp),
                     ) {
-                        SuperSwitch(
+                        SwitchPreference(
                             title = "将灵魂附加攻击力加入计算",
                             summary = "将自动计算出启用后的数据",
                             checked = fusionChecked.value,

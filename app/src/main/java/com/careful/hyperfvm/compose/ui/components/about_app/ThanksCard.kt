@@ -15,7 +15,7 @@ import com.careful.hyperfvm.compose.nevigation3.Route
 import top.yukonga.miuix.kmp.basic.Card
 import top.yukonga.miuix.kmp.basic.CardDefaults
 import top.yukonga.miuix.kmp.basic.SmallTitle
-import top.yukonga.miuix.kmp.extra.SuperArrow
+import top.yukonga.miuix.kmp.preference.ArrowPreference
 import top.yukonga.miuix.kmp.theme.MiuixTheme
 import top.yukonga.miuix.kmp.utils.PressFeedbackType
 
@@ -34,7 +34,7 @@ fun ThanksCard() {
         ),
         pressFeedbackType = PressFeedbackType.Sink,
     ) {
-        SuperArrow(
+        ArrowPreference(
             title = "游戏相关",
             summary = "HyperFVM使用了这些老师们的作品",
             startAction = {
@@ -49,7 +49,7 @@ fun ThanksCard() {
             },
             onClick = { navigator.push(Route.ThanksGamePage) },
         )
-        SuperArrow(
+        ArrowPreference(
             title = "App相关",
             summary = "HyperFVM使用了这些开源项目",
             startAction = {

@@ -14,7 +14,7 @@ import com.careful.hyperfvm.compose.nevigation3.LocalNavigator
 import com.careful.hyperfvm.compose.nevigation3.Route
 import top.yukonga.miuix.kmp.basic.Card
 import top.yukonga.miuix.kmp.basic.CardDefaults
-import top.yukonga.miuix.kmp.extra.SuperArrow
+import top.yukonga.miuix.kmp.preference.ArrowPreference
 import top.yukonga.miuix.kmp.theme.MiuixTheme
 import top.yukonga.miuix.kmp.utils.PressFeedbackType
 
@@ -32,7 +32,7 @@ fun CoContributorCard() {
         ),
         pressFeedbackType = PressFeedbackType.Sink,
     ) {
-        SuperArrow(
+        ArrowPreference(
             title = "共建团",
             summary = "HyperFVM也是这些同学们的作品",
             startAction = {

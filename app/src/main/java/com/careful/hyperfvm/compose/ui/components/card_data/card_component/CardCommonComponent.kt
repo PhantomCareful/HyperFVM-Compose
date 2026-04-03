@@ -37,8 +37,8 @@ import top.yukonga.miuix.kmp.basic.Checkbox
 import top.yukonga.miuix.kmp.basic.SmallTitle
 import top.yukonga.miuix.kmp.basic.SwitchDefaults
 import top.yukonga.miuix.kmp.basic.Text
-import top.yukonga.miuix.kmp.extra.SuperSwitch
-import top.yukonga.miuix.kmp.extra.WindowBottomSheet
+import top.yukonga.miuix.kmp.window.WindowBottomSheet
+import top.yukonga.miuix.kmp.preference.SwitchPreference
 import top.yukonga.miuix.kmp.theme.MiuixTheme
 import top.yukonga.miuix.kmp.utils.PressFeedbackType
 import top.yukonga.miuix.kmp.utils.overScrollVertical
@@ -474,7 +474,7 @@ fun AnimalCardDecomposeAndGetCalculator(
                     }
                 )
             ) {
-                SuperSwitch(
+                SwitchPreference(
                     title = "切换开关",
                     summary = "关闭计算分解数量，打开计算兑换数量\n没显示的物品代表不可分解/兑换",
                     checked = exchangeChecked.value,
@@ -1443,7 +1443,7 @@ fun GoldenCardDecomposeAndGetCalculator(
                     }
                 )
             ) {
-                SuperSwitch(
+                SwitchPreference(
                     title = "切换开关",
                     summary = "关闭计算分解数量，打开计算兑换数量\n没显示的物品代表不可分解/兑换",
                     checked = exchangeChecked.value,

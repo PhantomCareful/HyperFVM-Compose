@@ -14,7 +14,7 @@ import top.yukonga.miuix.kmp.basic.Card
 import top.yukonga.miuix.kmp.basic.CardDefaults
 import top.yukonga.miuix.kmp.basic.SmallTitle
 import top.yukonga.miuix.kmp.basic.Surface
-import top.yukonga.miuix.kmp.extra.SuperArrow
+import top.yukonga.miuix.kmp.preference.ArrowPreference
 import top.yukonga.miuix.kmp.theme.MiuixTheme
 import top.yukonga.miuix.kmp.utils.PressFeedbackType
 
@@ -31,7 +31,7 @@ fun DeveloperCard() {
         ),
         pressFeedbackType = PressFeedbackType.Sink,
     ) {
-        SuperArrow(
+        ArrowPreference(
             title = "Phantom_Careful",
             summary = "QQ空间1-8服·喵帕斯赛高",
             startAction = {

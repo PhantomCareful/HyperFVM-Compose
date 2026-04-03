@@ -41,7 +41,7 @@ import top.yukonga.miuix.kmp.basic.Scaffold
 import top.yukonga.miuix.kmp.basic.ScrollBehavior
 import top.yukonga.miuix.kmp.basic.Surface
 import top.yukonga.miuix.kmp.basic.TopAppBar
-import top.yukonga.miuix.kmp.extra.SuperArrow
+import top.yukonga.miuix.kmp.preference.ArrowPreference
 import top.yukonga.miuix.kmp.theme.MiuixTheme
 import top.yukonga.miuix.kmp.utils.PressFeedbackType
 import top.yukonga.miuix.kmp.utils.overScrollVertical
@@ -220,27 +220,27 @@ fun ThanksAppList() {
             .padding(horizontal = 12.dp)
             .padding(bottom = 12.dp),
     ) {
-        SuperArrow(
+        ArrowPreference(
             title = "YuKongA/miuix",
             summary = "一个适用于Compose项目的UI组件库，提供了一系列精仿小米澎湃OS风格的组件",
             onClick = { /* 处理点击事件 */ },
         )
-        SuperArrow(
+        ArrowPreference(
             title = "chrisbanes/haze",
             summary = "一个适用于Compose项目的效果库，可以为顶栏和底栏添加模糊材质",
             onClick = { /* 处理点击事件 */ },
         )
-        SuperArrow(
+        ArrowPreference(
             title = "Kyant0/AndroidLiquidGlass",
             summary = "一个适用于Compose项目的组件库，可以带来Apple风格的具有液态玻璃效果的底栏",
             onClick = { /* 处理点击事件 */ },
         )
-        SuperArrow(
+        ArrowPreference(
             title = "ReChronoRain/HyperCeiler",
             summary = "借鉴了关于页面动态流光效果的实现方式",
             onClick = { /* 处理点击事件 */ },
         )
-        SuperArrow(
+        ArrowPreference(
             title = "YunZiA/HyperStar",
             summary = "借鉴了关于页面动态流光效果的实现方式",
             onClick = { /* 处理点击事件 */ },

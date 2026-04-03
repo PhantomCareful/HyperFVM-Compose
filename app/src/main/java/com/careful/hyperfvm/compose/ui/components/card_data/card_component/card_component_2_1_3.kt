@@ -49,8 +49,8 @@ import top.yukonga.miuix.kmp.basic.SmallTitle
 import top.yukonga.miuix.kmp.basic.TabRow
 import top.yukonga.miuix.kmp.basic.TabRowDefaults
 import top.yukonga.miuix.kmp.basic.Text
-import top.yukonga.miuix.kmp.extra.SuperSwitch
-import top.yukonga.miuix.kmp.extra.WindowBottomSheet
+import top.yukonga.miuix.kmp.window.WindowBottomSheet
+import top.yukonga.miuix.kmp.preference.SwitchPreference
 import top.yukonga.miuix.kmp.icon.MiuixIcons
 import top.yukonga.miuix.kmp.icon.extended.All
 import top.yukonga.miuix.kmp.icon.extended.Back
@@ -1174,7 +1174,7 @@ private fun Info(
                             .padding(horizontal = 12.dp)
                             .padding(bottom = 12.dp),
                     ) {
-                        SuperSwitch(
+                        SwitchPreference(
                             title = "金卡援护(" + CARD_SUPPORT_DATA_STRING[0] + ")",
                             summary = "暂未开放",
                             enabled = false,
@@ -1245,7 +1245,7 @@ private fun Info(
                             },
                             onClick = { },
                         )
-                        SuperSwitch(
+                        SwitchPreference(
                             title = "启用该食神谱",
                             summary = "将自动计算出启用后的数据",
                             checked = cookeryChecked.value,
@@ -1276,7 +1276,7 @@ private fun Info(
                             },
                             onClick = { },
                         )
-                        SuperSwitch(
+                        SwitchPreference(
                             title = "启用该结晶",
                             summary = "将自动计算出启用后的数据",
                             checked = crystoneChecked.value,
@@ -1330,7 +1330,7 @@ private fun Info(
                             },
                             onClick = { },
                         )
-                        SuperSwitch(
+                        SwitchPreference(
                             enabled = false,
                             title = "启用图鉴加成",
                             //summary = "将自动计算出启用后的数据",
