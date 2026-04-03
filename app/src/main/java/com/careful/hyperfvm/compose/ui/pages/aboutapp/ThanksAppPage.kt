@@ -226,18 +226,18 @@ fun ThanksAppList() {
             onClick = { /* 处理点击事件 */ },
         )
         ArrowPreference(
+            title = "YuKongA/miuix-blur",
+            summary = "一个适用于Compose项目的模糊效果库。可以提供背景模糊、颜色混合和纹理效果",
+            onClick = { /* 处理点击事件 */ },
+        )
+        ArrowPreference(
             title = "chrisbanes/haze",
-            summary = "一个适用于Compose项目的效果库，可以为顶栏和底栏添加模糊材质",
+            summary = "一个适用于Compose项目的模糊效果库，可以为顶栏和底栏添加模糊材质",
             onClick = { /* 处理点击事件 */ },
         )
         ArrowPreference(
             title = "Kyant0/AndroidLiquidGlass",
             summary = "一个适用于Compose项目的组件库，可以带来Apple风格的具有液态玻璃效果的底栏",
-            onClick = { /* 处理点击事件 */ },
-        )
-        ArrowPreference(
-            title = "ReChronoRain/HyperCeiler",
-            summary = "借鉴了关于页面动态流光效果的实现方式",
             onClick = { /* 处理点击事件 */ },
         )
         ArrowPreference(

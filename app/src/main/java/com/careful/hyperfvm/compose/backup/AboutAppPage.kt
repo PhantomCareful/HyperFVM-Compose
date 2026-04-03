@@ -1,4 +1,4 @@
-package com.careful.hyperfvm.compose.ui.pages.main
+package com.careful.hyperfvm.compose.backup
 
 import android.annotation.SuppressLint
 import android.os.Build
@@ -23,7 +23,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.fontscaling.MathUtils.lerp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.graphics.BlendMode as ComposeBlendMode
 import com.careful.hyperfvm.compose.R
@@ -35,6 +34,7 @@ import com.careful.hyperfvm.compose.ui.components.about_app.MoreCard
 import com.careful.hyperfvm.compose.ui.components.about_app.ThanksCard
 import com.careful.hyperfvm.compose.ui.theme.getDarkMode
 import com.careful.hyperfvm.compose.ui.animation.effect.BgEffectBackground
+import kotlinx.coroutines.flow.onEach
 import top.yukonga.miuix.kmp.basic.Scaffold
 import top.yukonga.miuix.kmp.basic.Text
 import top.yukonga.miuix.kmp.blur.BlendColorEntry
@@ -72,7 +72,6 @@ fun AboutAppPage(
     }
 }
 
-@SuppressLint("RestrictedApi")
 @RequiresApi(Build.VERSION_CODES.TIRAMISU)
 @Composable
 private fun AboutContent(
@@ -124,67 +123,43 @@ private fun AboutContent(
 
     val density = LocalDensity.current
     var logoHeightDp by remember { mutableStateOf(300.dp) }
+    var logoAreaY by remember { mutableFloatStateOf(0f) }
     var iconY by remember { mutableFloatStateOf(0f) }
     var projectNameY by remember { mutableFloatStateOf(0f) }
     var versionCodeY by remember { mutableFloatStateOf(0f) }
 
-    // 实现滑动内容时，自动隐藏和显示背景图标和文字
-    val iconAlpha = remember { mutableFloatStateOf(1f) }
-    val iconScale = remember { mutableFloatStateOf(1f) }
-    val titleAlpha = remember { mutableFloatStateOf(1f) }
-    val titleScale = remember { mutableFloatStateOf(1f) }
-    val subtitleAlpha = remember { mutableFloatStateOf(1f) }
-    val subtitleScale = remember { mutableFloatStateOf(1f) }
-    val iconStartPx = 500f
-    val iconEndPx = 600f
-    val titleStartPx = 300f
-    val titleEndPx = 400f
-    val subtitleStartPx = 50
-    val subtitleEndPx = 150f
+    var iconProgress by remember { mutableFloatStateOf(0f) }
+    var projectNameProgress by remember { mutableFloatStateOf(0f) }
+    var versionCodeProgress by remember { mutableFloatStateOf(0f) }
+    var initialLogoAreaY by remember { mutableFloatStateOf(0f) }
 
     LaunchedEffect(lazyListState) {
-        snapshotFlow {
-            Pair(lazyListState.firstVisibleItemIndex, lazyListState.firstVisibleItemScrollOffset)
-        }.collect { (index, offset) ->
-            if (index > 0) {
-                // 已经滚动过占位项，所有标题完全隐藏
-                iconAlpha.floatValue = 0f
-                iconScale.floatValue = 0.9f
-                titleAlpha.floatValue = 0f
-                titleScale.floatValue = 0.9f
-                subtitleAlpha.floatValue = 0f
-                subtitleScale.floatValue = 0.9f
-            } else {
-                val offsetPx = offset.toFloat()
+        snapshotFlow { lazyListState.firstVisibleItemScrollOffset }
+            .onEach { offset ->
+                if (lazyListState.firstVisibleItemIndex > 0) {
+                    if (iconProgress != 1f) iconProgress = 1f
+                    if (projectNameProgress != 1f) projectNameProgress = 1f
+                    return@onEach
+                }
 
-                // App图标
-                val iconAlphaValue = when {
-                    offsetPx <= iconStartPx -> 1f
-                    offsetPx >= iconEndPx -> 0f
-                    else -> 1f - ((offsetPx - iconStartPx) / (iconEndPx - iconStartPx))
-                }.coerceIn(0f, 1f)
-                iconAlpha.floatValue = iconAlphaValue
-                iconScale.floatValue = lerp(0.9f, 1f, iconAlphaValue)
+                if (initialLogoAreaY == 0f && logoAreaY > 0f) {
+                    initialLogoAreaY = logoAreaY
+                }
+                val refLogoAreaY = if (initialLogoAreaY > 0f) initialLogoAreaY else logoAreaY
 
-                // App名字
-                val titleAlphaValue = when {
-                    offsetPx <= titleStartPx -> 1f
-                    offsetPx >= titleEndPx -> 0f
-                    else -> 1f - ((offsetPx - titleStartPx) / (titleEndPx - titleStartPx))
-                }.coerceIn(0f, 1f)
-                titleAlpha.floatValue = titleAlphaValue
-                titleScale.floatValue = lerp(0.9f, 1f, titleAlphaValue)
+                val stage1TotalLength = refLogoAreaY - versionCodeY
+                val stage2TotalLength = versionCodeY - projectNameY
+                val stage3TotalLength = projectNameY - iconY
 
-                // 版本号
-                val subtitleAlphaValue = when {
-                    offsetPx <= subtitleStartPx -> 1f
-                    offsetPx >= subtitleEndPx -> 0f
-                    else -> 1f - ((offsetPx - subtitleStartPx) / (subtitleEndPx - subtitleStartPx))
-                }.coerceIn(0f, 1f)
-                subtitleAlpha.floatValue = subtitleAlphaValue
-                subtitleScale.floatValue = lerp(0.9f, 1f, subtitleAlphaValue)
+                val versionCodeDelay = stage1TotalLength * 0.5f
+                versionCodeProgress = ((offset.toFloat() - versionCodeDelay) / (stage1TotalLength - versionCodeDelay).coerceAtLeast(1f))
+                    .coerceIn(0f, 1f)
+                projectNameProgress = ((offset.toFloat() - stage1TotalLength) / stage2TotalLength.coerceAtLeast(1f))
+                    .coerceIn(0f, 1f)
+                iconProgress = ((offset.toFloat() - stage1TotalLength - stage2TotalLength) / stage3TotalLength.coerceAtLeast(1f))
+                    .coerceIn(0f, 1f)
             }
-        }
+            .collect { }
     }
 
     BgEffectBackground(
@@ -213,9 +188,9 @@ private fun AboutContent(
                 modifier = Modifier
                     .size(108.dp)
                     .graphicsLayer {
-                        alpha = iconAlpha.floatValue
-                        scaleX = iconScale.floatValue
-                        scaleY = iconScale.floatValue
+                        alpha = 1 - iconProgress
+                        scaleX = 1 - (iconProgress * 0.05f)
+                        scaleY = 1 - (iconProgress * 0.05f)
                     }
                     .onGloballyPositioned { coordinates ->
                         if (iconY != 0f) return@onGloballyPositioned
@@ -247,9 +222,9 @@ private fun AboutContent(
                         projectNameY = y + size.height
                     }
                     .graphicsLayer {
-                        alpha = titleAlpha.floatValue
-                        scaleX = titleScale.floatValue
-                        scaleY = titleScale.floatValue
+                        alpha = 1 - projectNameProgress
+                        scaleX = 1 - (projectNameProgress * 0.05f)
+                        scaleY = 1 - (projectNameProgress * 0.05f)
                     }
                     .textureBlur(
                         backdrop = backdrop,
@@ -274,9 +249,9 @@ private fun AboutContent(
             Text(
                 modifier = Modifier.padding(top = 12.dp, bottom = 5.dp)
                     .graphicsLayer {
-                        alpha = subtitleAlpha.floatValue
-                        scaleX = subtitleScale.floatValue
-                        scaleY = subtitleScale.floatValue
+                        alpha = 1 - versionCodeProgress
+                        scaleX = 1 - (versionCodeProgress * 0.05f)
+                        scaleY = 1 - (versionCodeProgress * 0.05f)
                     }
                     .onGloballyPositioned { coordinates ->
                         if (versionCodeY != 0f) return@onGloballyPositioned
@@ -322,7 +297,12 @@ private fun AboutContent(
                         .fillMaxWidth()
                         .height(
                             logoHeightDp + logoPadding.calculateTopPadding() - scrollPadding.calculateTopPadding() + 126.dp,
-                        ),
+                        )
+                        .onGloballyPositioned { coordinates ->
+                            val y = coordinates.positionInWindow().y
+                            val size = coordinates.size
+                            logoAreaY = y + size.height
+                        },
                     contentAlignment = Alignment.TopCenter,
                     content = { },
                 )
