@@ -108,65 +108,38 @@ fun AppPager(
     enableFloatingBottomBar: Boolean,
     enableFloatingBottomBarBlur: Boolean,
 ) {
-    if (enableFloatingBottomBar && enableFloatingBottomBarBlur) {
-        HorizontalPager(
-            state = pagerState,
-            userScrollEnabled = false,
-            modifier = Modifier
-                .fillMaxSize()
-                .kyant_layerBackdrop(kyantBackdrop)  // 应用液态玻璃底栏的 backdrop 捕获
-        ) { pageIndex ->
-            // 根据页面索引渲染不同页面
-            when (pageIndex) {
-                UIConstants.DATA_CENTER -> DataCenterPage(
-                    paddingValues,
-                )
+    HorizontalPager(
+        state = pagerState,
+        userScrollEnabled = false,
+        modifier = Modifier
+            .fillMaxSize()
+            .then(
+                if (enableFloatingBottomBar && enableFloatingBottomBarBlur) {
+                    Modifier.kyant_layerBackdrop(kyantBackdrop)
+                } else if (!enableFloatingBottomBar) {
+                    Modifier.hazeSource(state = hazeConfig.hazeState) // 给haze效果提供源
+                } else {
+                    Modifier
+                }
+            )
+    ) { pageIndex ->
+        // 根据页面索引渲染不同页面
+        when (pageIndex) {
+            UIConstants.DATA_CENTER -> DataCenterPage(
+                paddingValues,
+            )
 
-                UIConstants.CARD_DATA_INDEX -> CardDataIndexPage(
-                    paddingValues,
-                )
+            UIConstants.CARD_DATA_INDEX -> CardDataIndexPage(
+                paddingValues,
+            )
 
-                UIConstants.SETTINGS -> SettingsPage(
-                    paddingValues,
-                )
+            UIConstants.SETTINGS -> SettingsPage(
+                paddingValues,
+            )
 
-                UIConstants.ABOUT_APP -> AboutAppPage(
-                    paddingValues,
-                )
-            }
-        }
-    } else {
-        HorizontalPager(
-            state = pagerState,
-            userScrollEnabled = false,
-            modifier = Modifier
-                .fillMaxSize()
-                .then(
-                    if (!enableFloatingBottomBar) {
-                        Modifier.hazeSource(state = hazeConfig.hazeState) // 给haze效果提供源
-                    } else {
-                        Modifier
-                    }
-                )
-        ) { pageIndex ->
-            // 根据页面索引渲染不同页面
-            when (pageIndex) {
-                UIConstants.DATA_CENTER -> DataCenterPage(
-                    paddingValues,
-                )
-
-                UIConstants.CARD_DATA_INDEX -> CardDataIndexPage(
-                    paddingValues,
-                )
-
-                UIConstants.SETTINGS -> SettingsPage(
-                    paddingValues,
-                )
-
-                UIConstants.ABOUT_APP -> AboutAppPage(
-                    paddingValues,
-                )
-            }
+            UIConstants.ABOUT_APP -> AboutAppPage(
+                paddingValues,
+            )
         }
     }
 }
