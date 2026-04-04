@@ -155,13 +155,15 @@ fun SettingsContent(
                         onSelectedIndexChange = onSeedIndexChange,
                     )
                 }
+                val isSupportedFloatBottomBar: Boolean = Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU
                 SwitchPreference(
+                    enabled = isSupportedFloatBottomBar,
                     title = "悬浮底栏",
-                    summary = "使用Apple风格的悬浮底栏",
-                    checked = enableFloatingBottomBar,
+                    summary = if (isSupportedFloatBottomBar) "使用Apple风格的悬浮底栏" else "当前系统不支持此功能",
+                    checked = if (isSupportedFloatBottomBar) enableFloatingBottomBar else false,
                     onCheckedChange = onEnableFloatingBottomBarChange,
                 )
-                AnimatedVisibility(visible = enableFloatingBottomBar && Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                AnimatedVisibility(visible = enableFloatingBottomBar && isSupportedFloatBottomBar) {
                     SwitchPreference(
                         title = "液态玻璃",
                         summary = "启用悬浮底栏的液态玻璃效果",
