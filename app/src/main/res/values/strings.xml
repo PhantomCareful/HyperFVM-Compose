@@ -170,8 +170,12 @@
     <string name="name_card_data_index_2_2_11_2">花椒蜥蜴投手</string>
 
     <string name="name_card_data_index_2_2_12_0">投篮虎</string>
-    <string name="name_card_data_index_2_2_12_1">职业投篮虎–球星投篮虎</string>
-    <string name="name_card_data_index_2_2_12_2">职业投篮虎–球星投篮虎</string>
+    <string name="name_card_data_index_2_2_12_1">职业投篮虎</string>
+    <string name="name_card_data_index_2_2_12_2">球星投篮虎</string>
+
+    <string name="name_card_data_index_2_2_12_0_funny">投篮虎🏀</string>
+    <string name="name_card_data_index_2_2_12_1_funny">职业投篮虎🏀🏀</string>
+    <string name="name_card_data_index_2_2_12_2_funny">球星投篮虎🏀🏀🏀</string>
 
     <string name="name_card_data_index_2_2_13_0">钵钵鸡</string>
     <string name="name_card_data_index_2_2_13_1">飘香钵钵鸡</string>

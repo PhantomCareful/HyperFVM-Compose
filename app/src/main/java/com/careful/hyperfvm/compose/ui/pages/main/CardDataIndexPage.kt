@@ -53,12 +53,18 @@ import com.careful.hyperfvm.compose.ui.components.card_data.card_component.CardC
 import com.careful.hyperfvm.compose.ui.components.card_data.card_component.CardComponent_2_1_5
 import com.careful.hyperfvm.compose.ui.components.card_data.card_component.CardComponent_2_1_6
 import com.careful.hyperfvm.compose.ui.components.card_data.card_component.CardComponent_2_2_1
+import com.careful.hyperfvm.compose.ui.components.card_data.card_component.CardComponent_2_2_10
 import com.careful.hyperfvm.compose.ui.components.card_data.card_component.CardComponent_2_2_11
+import com.careful.hyperfvm.compose.ui.components.card_data.card_component.CardComponent_2_2_12
+import com.careful.hyperfvm.compose.ui.components.card_data.card_component.CardComponent_2_2_13
 import com.careful.hyperfvm.compose.ui.components.card_data.card_component.CardComponent_2_2_2
 import com.careful.hyperfvm.compose.ui.components.card_data.card_component.CardComponent_2_2_3
 import com.careful.hyperfvm.compose.ui.components.card_data.card_component.CardComponent_2_2_4
 import com.careful.hyperfvm.compose.ui.components.card_data.card_component.CardComponent_2_2_5
+import com.careful.hyperfvm.compose.ui.components.card_data.card_component.CardComponent_2_2_6
+import com.careful.hyperfvm.compose.ui.components.card_data.card_component.CardComponent_2_2_7
 import com.careful.hyperfvm.compose.ui.components.card_data.card_component.CardComponent_2_2_8
+import com.careful.hyperfvm.compose.ui.components.card_data.card_component.CardComponent_2_2_9
 import dev.chrisbanes.haze.hazeEffect
 import dev.chrisbanes.haze.hazeSource
 import top.yukonga.miuix.kmp.basic.InputField
@@ -252,6 +258,17 @@ fun CardDataIndexPage(
             visibility2[2][13] = false
         if (!visibility2[2][1] && !visibility2[2][2] && !visibility2[2][3] && !visibility2[2][4] && !visibility2[2][5] && !visibility2[2][6] && !visibility2[2][7] && !visibility2[2][8] && !visibility2[2][9] && !visibility2[2][10] && !visibility2[2][11] && !visibility2[2][12] && !visibility2[2][13])
             visibility2[2][0] = false
+
+        if (!(expanded && (stringResource(R.string.name_card_data_index_2_3_1_0).contains(searchText) || stringResource(R.string.name_card_data_index_2_3_1_1).contains(searchText) || stringResource(R.string.name_card_data_index_2_3_1_2).contains(searchText)) || !expanded))
+            visibility2[3][1] = false
+        if (!(expanded && (stringResource(R.string.name_card_data_index_2_3_2_0).contains(searchText) || stringResource(R.string.name_card_data_index_2_3_2_1).contains(searchText) || stringResource(R.string.name_card_data_index_2_3_2_2).contains(searchText)) || !expanded))
+            visibility2[3][2] = false
+        if (!(expanded && (stringResource(R.string.name_card_data_index_2_3_3_0).contains(searchText) || stringResource(R.string.name_card_data_index_2_3_3_1).contains(searchText) || stringResource(R.string.name_card_data_index_2_3_3_2).contains(searchText)) || !expanded))
+            visibility2[3][3] = false
+        if (!(expanded && (stringResource(R.string.name_card_data_index_2_3_4_0).contains(searchText) || stringResource(R.string.name_card_data_index_2_3_4_1).contains(searchText) || stringResource(R.string.name_card_data_index_2_3_4_2).contains(searchText)) || !expanded))
+            visibility2[3][4] = false
+        if (!visibility2[3][1] && !visibility2[3][2] && !visibility2[3][3] && !visibility2[3][4])
+            visibility2[3][0] = false
 
         if (!(expanded && (stringResource(R.string.name_card_data_index_16_1_1_1).contains(searchText) || stringResource(R.string.name_card_data_index_16_1_1_2).contains(searchText) || stringResource(R.string.name_card_data_index_16_1_1_3).contains(searchText)) || !expanded))
             visibility16[1][1] = false
@@ -484,15 +501,51 @@ fun CardDataIndexPage(
                 }
             }
 
+            item(key = "card_2_2_6") {
+                AnimatedVisibility(visibility2[2][6]) {
+                    CardComponent_2_2_6()
+                }
+            }
+
+            item(key = "card_2_2_7") {
+                AnimatedVisibility(visibility2[2][7]) {
+                    CardComponent_2_2_7()
+                }
+            }
+
             item(key = "card_2_2_8") {
                 AnimatedVisibility(visibility2[2][8]) {
                     CardComponent_2_2_8()
                 }
             }
 
+            item(key = "card_2_2_9") {
+                AnimatedVisibility(visibility2[2][9]) {
+                    CardComponent_2_2_9()
+                }
+            }
+
+            item(key = "card_2_2_10") {
+                AnimatedVisibility(visibility2[2][10]) {
+                    CardComponent_2_2_10()
+                }
+            }
+
             item(key = "card_2_2_11") {
                 AnimatedVisibility(visibility2[2][11]) {
                     CardComponent_2_2_11()
+                }
+            }
+
+            item(key = "card_2_2_12") {
+                AnimatedVisibility(visibility2[2][12]) {
+                    CardComponent_2_2_12()
+                }
+            }
+
+            item(key = "card_2_2_13") {
+                AnimatedVisibility(visibility2[2][13]) {
+                    CardComponent_2_2_13()
                 }
             }
 
