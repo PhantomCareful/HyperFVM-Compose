@@ -12,6 +12,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.layout.onSizeChanged
@@ -51,7 +52,6 @@ import top.yukonga.miuix.kmp.theme.MiuixTheme.colorScheme
 import top.yukonga.miuix.kmp.utils.overScrollVertical
 import top.yukonga.miuix.kmp.utils.scrollEndHaptic
 
-@RequiresApi(Build.VERSION_CODES.TIRAMISU)
 @SuppressLint("SetTextI18n", "RestrictedApi")
 @Composable
 fun AboutAppPage(
@@ -62,20 +62,229 @@ fun AboutAppPage(
     Scaffold(
         modifier = Modifier.fillMaxSize(),
     ) { paddingValues ->
-        AboutContent(
-            padding = PaddingValues(
-                top = paddingValues.calculateTopPadding(),
-                bottom = outPaddingValues.calculateBottomPadding(),
-            ),
-            lazyListState = lazyListState,
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.VANILLA_ICE_CREAM) {
+            AboutContentBlur(
+                padding = PaddingValues(
+                    top = paddingValues.calculateTopPadding(),
+                    bottom = outPaddingValues.calculateBottomPadding(),
+                ),
+                lazyListState = lazyListState,
+            )
+        } else {
+            AboutContent(
+                padding = PaddingValues(
+                    top = paddingValues.calculateTopPadding(),
+                    bottom = outPaddingValues.calculateBottomPadding(),
+                ),
+                lazyListState = lazyListState,
+            )
+        }
+    }
+}
+
+@SuppressLint("RestrictedApi")
+@Composable
+private fun AboutContent(
+    padding: PaddingValues,
+    lazyListState: LazyListState,
+) {
+    val scrollPadding = pageContentPadding(
+        padding,
+        padding,
+        isWideScreen = true,
+        extraStart = WindowInsets.displayCutout.asPaddingValues().calculateLeftPadding(LayoutDirection.Ltr),
+        extraEnd = WindowInsets.displayCutout.asPaddingValues().calculateRightPadding(LayoutDirection.Ltr),
+    )
+    val logoPadding = pageContentPadding(
+        padding,
+        padding,
+        isWideScreen = true,
+        extraTop = 40.dp,
+        extraStart = WindowInsets.displayCutout.asPaddingValues().calculateLeftPadding(LayoutDirection.Ltr),
+        extraEnd = WindowInsets.displayCutout.asPaddingValues().calculateRightPadding(LayoutDirection.Ltr),
+    )
+
+    val density = LocalDensity.current
+    var logoHeightDp by remember { mutableStateOf(300.dp) }
+    var iconY by remember { mutableFloatStateOf(0f) }
+    var projectNameY by remember { mutableFloatStateOf(0f) }
+    var versionCodeY by remember { mutableFloatStateOf(0f) }
+
+    // 实现滑动内容时，自动隐藏和显示背景图标和文字
+    val iconAlpha = remember { mutableFloatStateOf(1f) }
+    val iconScale = remember { mutableFloatStateOf(1f) }
+    val titleAlpha = remember { mutableFloatStateOf(1f) }
+    val titleScale = remember { mutableFloatStateOf(1f) }
+    val subtitleAlpha = remember { mutableFloatStateOf(1f) }
+    val subtitleScale = remember { mutableFloatStateOf(1f) }
+    val iconStartPx = 500f
+    val iconEndPx = 600f
+    val titleStartPx = 300f
+    val titleEndPx = 400f
+    val subtitleStartPx = 50
+    val subtitleEndPx = 150f
+
+    LaunchedEffect(lazyListState) {
+        snapshotFlow {
+            Pair(lazyListState.firstVisibleItemIndex, lazyListState.firstVisibleItemScrollOffset)
+        }.collect { (index, offset) ->
+            if (index > 0) {
+                // 已经滚动过占位项，所有标题完全隐藏
+                iconAlpha.floatValue = 0f
+                iconScale.floatValue = 0.9f
+                titleAlpha.floatValue = 0f
+                titleScale.floatValue = 0.9f
+                subtitleAlpha.floatValue = 0f
+                subtitleScale.floatValue = 0.9f
+            } else {
+                val offsetPx = offset.toFloat()
+
+                // App图标
+                val iconAlphaValue = when {
+                    offsetPx <= iconStartPx -> 1f
+                    offsetPx >= iconEndPx -> 0f
+                    else -> 1f - ((offsetPx - iconStartPx) / (iconEndPx - iconStartPx))
+                }.coerceIn(0f, 1f)
+                iconAlpha.floatValue = iconAlphaValue
+                iconScale.floatValue = lerp(0.9f, 1f, iconAlphaValue)
+
+                // App名字
+                val titleAlphaValue = when {
+                    offsetPx <= titleStartPx -> 1f
+                    offsetPx >= titleEndPx -> 0f
+                    else -> 1f - ((offsetPx - titleStartPx) / (titleEndPx - titleStartPx))
+                }.coerceIn(0f, 1f)
+                titleAlpha.floatValue = titleAlphaValue
+                titleScale.floatValue = lerp(0.9f, 1f, titleAlphaValue)
+
+                // 版本号
+                val subtitleAlphaValue = when {
+                    offsetPx <= subtitleStartPx -> 1f
+                    offsetPx >= subtitleEndPx -> 0f
+                    else -> 1f - ((offsetPx - subtitleStartPx) / (subtitleEndPx - subtitleStartPx))
+                }.coerceIn(0f, 1f)
+                subtitleAlpha.floatValue = subtitleAlphaValue
+                subtitleScale.floatValue = lerp(0.9f, 1f, subtitleAlphaValue)
+            }
+        }
+    }
+
+    // 标题文字区域（位于背景上方）
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(
+                top = logoPadding.calculateTopPadding() + 52.dp,
+                start = logoPadding.calculateLeftPadding(LayoutDirection.Ltr),
+                end = logoPadding.calculateRightPadding(LayoutDirection.Ltr),
+            )
+            .onSizeChanged { size ->
+                with(density) { logoHeightDp = size.height.toDp() }
+            },
+        horizontalAlignment = Alignment.CenterHorizontally,
+    ) {
+        // App图标
+        Image(
+            modifier = Modifier
+                .size(108.dp)
+                .graphicsLayer {
+                    alpha = iconAlpha.floatValue
+                    scaleX = iconScale.floatValue
+                    scaleY = iconScale.floatValue
+                }
+                .onGloballyPositioned { coordinates ->
+                    if (iconY != 0f) return@onGloballyPositioned
+                    val y = coordinates.positionInWindow().y
+                    val size = coordinates.size
+                    iconY = y + size.height
+                },
+            painter = painterResource(R.drawable.app_icon),
+            colorFilter = ColorFilter.tint(colorScheme.onBackground),
+            contentDescription = null,
         )
+
+        // App名字
+        Text(
+            modifier = Modifier.padding(top = 12.dp, bottom = 5.dp)
+                .onGloballyPositioned { coordinates ->
+                    if (projectNameY != 0f) return@onGloballyPositioned
+                    val y = coordinates.positionInWindow().y
+                    val size = coordinates.size
+                    projectNameY = y + size.height
+                }
+                .graphicsLayer {
+                    alpha = titleAlpha.floatValue
+                    scaleX = titleScale.floatValue
+                    scaleY = titleScale.floatValue
+                },
+            text = "HyperFVM",
+            color = colorScheme.onBackground,
+            fontWeight = FontWeight.Bold,
+            fontSize = 45.sp,
+        )
+
+        // 版本号
+        val context = LocalContext.current
+        val versionName = context.packageManager.getPackageInfo(context.packageName, 0).versionName
+        Text(
+            modifier = Modifier.padding(top = 12.dp, bottom = 5.dp)
+                .graphicsLayer {
+                    alpha = subtitleAlpha.floatValue
+                    scaleX = subtitleScale.floatValue
+                    scaleY = subtitleScale.floatValue
+                }
+                .onGloballyPositioned { coordinates ->
+                    if (versionCodeY != 0f) return@onGloballyPositioned
+                    val y = coordinates.positionInWindow().y
+                    val size = coordinates.size
+                    versionCodeY = y + size.height
+                },
+            text = versionName.toString(),
+            color = colorScheme.onBackground,
+            fontWeight = FontWeight.Medium,
+            fontSize = 14.sp,
+        )
+    }
+
+    // 内容列表（顶部预留背景高度）
+    LazyColumn(
+        state = lazyListState,
+        modifier = Modifier
+            .fillMaxSize()
+            .scrollEndHaptic()
+            .overScrollVertical(),
+        contentPadding = PaddingValues(
+            top = scrollPadding.calculateTopPadding(),
+            bottom = scrollPadding.calculateBottomPadding(),
+            start = scrollPadding.calculateLeftPadding(LayoutDirection.Ltr),
+            end = scrollPadding.calculateRightPadding(LayoutDirection.Ltr),
+        ),
+    ) {
+        item(key = "logoSpacer") {
+            Box(
+                Modifier
+                    .fillMaxWidth()
+                    .height(
+                        logoHeightDp + logoPadding.calculateTopPadding() - scrollPadding.calculateTopPadding() + 126.dp,
+                    ),
+                contentAlignment = Alignment.TopCenter,
+                content = { },
+            )
+        }
+        item {
+            DeveloperCard(false)
+            CoContributorCard(false)
+            ThanksCard(false)
+            ImportantCard(false)
+            MoreCard(false)
+        }
     }
 }
 
 @SuppressLint("RestrictedApi")
 @RequiresApi(Build.VERSION_CODES.TIRAMISU)
 @Composable
-private fun AboutContent(
+private fun AboutContentBlur(
     padding: PaddingValues,
     lazyListState: LazyListState,
 ) {

@@ -1,7 +1,5 @@
 package com.careful.hyperfvm.compose.backup
 
-import android.os.Build
-import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
@@ -37,7 +35,6 @@ import top.yukonga.miuix.kmp.blur.layerBackdrop as miuix_layerBackdrop
 
 val LocalMainPagerState = staticCompositionLocalOf<MainPagerState> { error("LocalMainPagerState not provided") }
 
-@RequiresApi(Build.VERSION_CODES.TIRAMISU)
 @Composable
 fun MainPage(
 ) {
@@ -110,7 +107,6 @@ private object UIConstants {
     const val PAGE_COUNT = 4
 }
 
-@RequiresApi(Build.VERSION_CODES.TIRAMISU)
 @Composable
 fun AppPager(
     pagerState: PagerState,

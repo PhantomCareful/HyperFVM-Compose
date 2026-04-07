@@ -17,16 +17,22 @@ import top.yukonga.miuix.kmp.preference.ArrowPreference
 import top.yukonga.miuix.kmp.theme.MiuixTheme
 
 @Composable
-fun ImportantCard() {
+fun ImportantCard(
+    isEnableBlur: Boolean = true
+) {
     SmallTitle(text = "一些必要的内容")
     Card(
         modifier = Modifier
             .fillMaxWidth()
             .padding(horizontal = 12.dp)
             .padding(bottom = 12.dp),
-        colors = CardDefaults.defaultColors(
-            color = MiuixTheme.colorScheme.background.copy(alpha = 0.25f)
-        ),
+        colors = if (isEnableBlur) {
+            CardDefaults.defaultColors(
+                color = MiuixTheme.colorScheme.background.copy(alpha = 0.25f)
+            )
+        } else {
+            CardDefaults.defaultColors()
+        },
     ) {
         ArrowPreference(
             title = "使用说明",
