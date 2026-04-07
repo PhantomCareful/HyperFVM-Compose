@@ -291,6 +291,41 @@ private fun Info(
 
             BaseInfoCommonCard(CARD_DESCRIPTION, 5)
 
+            Card(
+                modifier = Modifier
+                    .padding(horizontal = 12.dp)
+                    .padding(bottom = 12.dp),
+            ) {
+                BasicComponent(
+                    modifier = Modifier,
+                    endActions = {
+                        ImagesRow(
+                            imageResIds = listOf(R.drawable.card_data_index_2_2_13_transfer_box),
+                            imageWidth = 40,
+                            imageHeight = 50,
+                        )
+                    },
+                    onClick = {  },
+                ) {
+                    Text(
+                        text = "转职凭证",
+                        style = MiuixTheme.textStyles.headline1,
+                        fontWeight = FontWeight.Medium
+                    )
+                    Text(
+                        text = buildAnnotatedString {
+                            append("可在巅峰对决商店中购买")
+                            withStyle(style = SpanStyle(color = MiuixTheme.colorScheme.primary, fontWeight = FontWeight.Bold)) {
+                                append("钵钵鸡转职箱")
+                            }
+                            append("，有机会获得其转职凭证")
+                        },
+                        style = MiuixTheme.textStyles.body2,
+                        color = MiuixTheme.colorScheme.onSurfaceVariantSummary
+                    )
+                }
+            }
+
         }
         item {
             // =================================================== 人话解释 ===================================================

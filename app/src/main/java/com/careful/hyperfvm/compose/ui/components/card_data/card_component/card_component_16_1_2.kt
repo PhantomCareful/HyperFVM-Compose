@@ -393,6 +393,8 @@ private fun Info(
             // =================================================== 相关卡片 ===================================================
 
             CardDataDetailWindowBottomSheet_2_2_1(showBottomSheet1, stringResource(R.string.name_card_data_index_2_2_1_0))
+            CardDataDetailWindowBottomSheet_2_2_8(showBottomSheet2, stringResource(R.string.name_card_data_index_2_2_8_0))
+            CardDataDetailWindowBottomSheet_2_3_3(showBottomSheet3, stringResource(R.string.name_card_data_index_2_3_3_0))
             CardDataDetailWindowBottomSheet_1_2_1(showBottomSheet4, stringResource(R.string.name_card_data_index_1_2_1_0))
 
             SmallTitle(text = "相关卡片")

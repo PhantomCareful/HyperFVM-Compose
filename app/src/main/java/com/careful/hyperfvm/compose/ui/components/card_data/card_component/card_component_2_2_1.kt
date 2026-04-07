@@ -112,12 +112,18 @@ private val CARD_DESCRIPTION = mutableStateListOf(
 
 @Stable
 private val RELATED_CARD_NAMES = listOf(
+    R.string.name_card_data_index_2_2_2_0,
+    R.string.name_card_data_index_2_2_2_1,
+    R.string.name_card_data_index_2_2_2_2,
     R.string.name_card_data_index_2_2_5_0,
     R.string.name_card_data_index_16_1_2_1,
 )
 
 @Stable
 private val RELATED_CARD_IMAGES = listOf(
+    R.drawable.card_data_index_2_2_2_0,
+    R.drawable.card_data_index_2_2_2_1,
+    R.drawable.card_data_index_2_2_2_2,
     R.drawable.card_data_index_2_2_5_0,
     R.drawable.card_data_index_16_1_2_1,
 )
@@ -235,6 +241,7 @@ private fun Info(
 
     val showBottomSheet1 = rememberSaveable { mutableStateOf(false) }
     val showBottomSheet2 = rememberSaveable { mutableStateOf(false) }
+    val showBottomSheet3 = rememberSaveable { mutableStateOf(false) }
 
     val cookeryChecked1 = rememberSaveable { mutableStateOf(false) }
     var cookeryValue1 by rememberSaveable { mutableIntStateOf(0) }
@@ -384,8 +391,9 @@ private fun Info(
         item {
             // =================================================== 相关卡片 ===================================================
 
-            CardDataDetailWindowBottomSheet_2_2_5(showBottomSheet1, stringResource(R.string.name_card_data_index_2_2_5_0))
-            CardDataDetailWindowBottomSheet_16_1_2(showBottomSheet2, stringResource(R.string.name_card_data_index_16_1_2_1))
+            CardDataDetailWindowBottomSheet_2_2_2(showBottomSheet1, stringResource(R.string.name_card_data_index_2_2_2_0))
+            CardDataDetailWindowBottomSheet_2_2_5(showBottomSheet2, stringResource(R.string.name_card_data_index_2_2_5_0))
+            CardDataDetailWindowBottomSheet_16_1_2(showBottomSheet3, stringResource(R.string.name_card_data_index_16_1_2_1))
 
             SmallTitle(text = "相关卡片")
             Card(
@@ -396,29 +404,46 @@ private fun Info(
                 BasicComponent(
                     modifier = Modifier,
                     title = stringResource(RELATED_CARD_NAMES[0]),
-                    summary = "本卡片是合成此金卡的必要素材",
+                    summary = "可作为此卡片的底座",
                     endActions = {
                         ImagesRow(
-                            imageResIds = listOf(RELATED_CARD_IMAGES[0]),
+                            imageResIds = listOf(
+                                RELATED_CARD_IMAGES[0],
+                                RELATED_CARD_IMAGES[1],
+                                RELATED_CARD_IMAGES[2],
+                            ),
                             imageWidth = 40,
                             imageHeight = 50,
                         )
                     },
                     onClick = { showBottomSheet1.value = true },
                 )
-
                 BasicComponent(
                     modifier = Modifier,
-                    title = stringResource(RELATED_CARD_NAMES[1]),
-                    summary = "本卡片是初级融合此卡片的必要素材",
+                    title = stringResource(RELATED_CARD_NAMES[3]),
+                    summary = "本卡片是合成此金卡的必要素材",
                     endActions = {
                         ImagesRow(
-                            imageResIds = listOf(RELATED_CARD_IMAGES[1]),
+                            imageResIds = listOf(RELATED_CARD_IMAGES[3]),
                             imageWidth = 40,
                             imageHeight = 50,
                         )
                     },
                     onClick = { showBottomSheet2.value = true },
+                )
+
+                BasicComponent(
+                    modifier = Modifier,
+                    title = stringResource(RELATED_CARD_NAMES[4]),
+                    summary = "本卡片是初级融合此卡片的必要素材",
+                    endActions = {
+                        ImagesRow(
+                            imageResIds = listOf(RELATED_CARD_IMAGES[4]),
+                            imageWidth = 40,
+                            imageHeight = 50,
+                        )
+                    },
+                    onClick = { showBottomSheet3.value = true },
                 )
             }
         }

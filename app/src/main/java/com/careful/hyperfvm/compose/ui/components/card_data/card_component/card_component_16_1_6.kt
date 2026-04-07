@@ -92,7 +92,7 @@ private val CARD_DESCRIPTION = mutableStateListOf(
     "所属分类：管线类/三线类",
     "耗能：325",
     "作为副卡：好卡\uD83D\uDE00",
-    "每行：2/3/3，一共：6/9/9",
+    "子弹数量：每行2/3/3，一共6/9/9",
     "总攻击力=主卡攻击力+深度附加攻击力",
 )
 
@@ -366,8 +366,7 @@ private fun Info(
             ) {
                 BasicComponent(
                     modifier = Modifier,
-                    title = "子弹数量",
-                    summary = CARD_DESCRIPTION[8],
+                    title = CARD_DESCRIPTION[8],
                     onClick = {  },
                 )
                 BasicComponent(

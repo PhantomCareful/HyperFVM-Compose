@@ -400,7 +400,6 @@ private fun Info(
                 modifier = Modifier
                     .padding(horizontal = 12.dp)
                     .padding(bottom = 12.dp),
-                pressFeedbackType = PressFeedbackType.Sink,
             ) {
                 BasicComponent(
                     modifier = Modifier,

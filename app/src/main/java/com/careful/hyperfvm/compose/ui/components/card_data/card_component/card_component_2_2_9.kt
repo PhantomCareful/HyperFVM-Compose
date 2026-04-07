@@ -1034,57 +1034,59 @@ private fun Info(
 
                     // =================================================== 真爱结晶 ===================================================
 
-                    Card(
-                        modifier = Modifier
-                            .padding(horizontal = 12.dp)
-                            .padding(bottom = 12.dp),
-                    ) {
-                        BasicComponent(
-                            modifier = Modifier,
-                            title = "真爱结晶🌼",
-                            summary = "提升攻击力",
-                            endActions = {
-                                ImagesRow(
-                                    /*imageResIds = listOf(R.drawable.card_data_index_2_2_9_crystone),*/
-                                    imageResIds = listOf(R.drawable.card_data_x),
-                                    imageWidth = 44,
-                                    imageHeight = 44,
-                                )
-                            },
-                            onClick = { },
-                        )
-                        SwitchPreference(
-                            title = "启用该结晶",
-                            /*summary = "将自动计算出启用后的数据",*/
-                            summary = "暂未开放，无法启用",
-                            enabled = false,
-                            checked = false,
-                            onCheckedChange = { checked ->
-                                crystoneChecked.value = checked
-                                crystoneValue =
-                                    if (checked) CRYSTONE_ATTACK[crystoneLevel] else 1.0f
-                            }
-                        )
-                        AnimatedVisibility(visible = crystoneChecked.value) {
-                            Column {
-                                BasicComponent(
-                                    modifier = Modifier,
-                                    title = "当前等级：$crystoneLevel",
-                                    onClick = { },
-                                )
-                                Slider(
-                                    value = crystoneLevel.toFloat(),
-                                    onValueChange = {
-                                        crystoneLevel = it.roundToInt()
-                                        crystoneValue = CRYSTONE_ATTACK[crystoneLevel]
-                                    },
-                                    valueRange = 0f..16f,
-                                    steps = 15,
-                                    hapticEffect = SliderDefaults.SliderHapticEffect.Step,
-                                    showKeyPoints = true,
-                                    modifier = Modifier
-                                        .padding(12.dp),
-                                )
+                    AnimatedVisibility(false) {
+                        Card(
+                            modifier = Modifier
+                                .padding(horizontal = 12.dp)
+                                .padding(bottom = 12.dp),
+                        ) {
+                            BasicComponent(
+                                modifier = Modifier,
+                                title = "真爱结晶🌼",
+                                summary = "提升攻击力",
+                                endActions = {
+                                    ImagesRow(
+                                        /*imageResIds = listOf(R.drawable.card_data_index_2_2_9_crystone),*/
+                                        imageResIds = listOf(R.drawable.card_data_x),
+                                        imageWidth = 44,
+                                        imageHeight = 44,
+                                    )
+                                },
+                                onClick = { },
+                            )
+                            SwitchPreference(
+                                title = "启用该结晶",
+                                /*summary = "将自动计算出启用后的数据",*/
+                                summary = "暂未开放，无法启用",
+                                enabled = false,
+                                checked = false,
+                                onCheckedChange = { checked ->
+                                    crystoneChecked.value = checked
+                                    crystoneValue =
+                                        if (checked) CRYSTONE_ATTACK[crystoneLevel] else 1.0f
+                                }
+                            )
+                            AnimatedVisibility(visible = crystoneChecked.value) {
+                                Column {
+                                    BasicComponent(
+                                        modifier = Modifier,
+                                        title = "当前等级：$crystoneLevel",
+                                        onClick = { },
+                                    )
+                                    Slider(
+                                        value = crystoneLevel.toFloat(),
+                                        onValueChange = {
+                                            crystoneLevel = it.roundToInt()
+                                            crystoneValue = CRYSTONE_ATTACK[crystoneLevel]
+                                        },
+                                        valueRange = 0f..16f,
+                                        steps = 15,
+                                        hapticEffect = SliderDefaults.SliderHapticEffect.Step,
+                                        showKeyPoints = true,
+                                        modifier = Modifier
+                                            .padding(12.dp),
+                                    )
+                                }
                             }
                         }
                     }

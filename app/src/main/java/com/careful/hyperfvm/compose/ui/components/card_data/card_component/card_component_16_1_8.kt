@@ -86,7 +86,7 @@ private val CARD_DESCRIPTION = mutableStateListOf(
     "所属分类：直线射击类/咖啡家族",
     "耗能：0",
     "作为副卡：好卡\uD83D\uDE00",
-    "3/3/9",
+    "子弹数量：3/3/9",
     "总攻击力=主卡攻击力+初级附加攻击力",
     "1️⃣总攻击力=主卡攻击力+初级附加攻击力+深度附加攻击力\n2️⃣子弹附加穿透效果",
     "1️⃣总攻击力=主卡攻击力+初级附加攻击力+深度附加攻击力+灵魂附加攻击力\n2️⃣放下就是3个",
@@ -349,8 +349,7 @@ private fun Info(
             ) {
                 BasicComponent(
                     modifier = Modifier,
-                    title = "子弹数量",
-                    summary = CARD_DESCRIPTION[8],
+                    title = CARD_DESCRIPTION[8],
                     onClick = {  },
                 )
                 BasicComponent(

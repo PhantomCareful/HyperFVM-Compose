@@ -65,6 +65,10 @@ import com.careful.hyperfvm.compose.ui.components.card_data.card_component.CardC
 import com.careful.hyperfvm.compose.ui.components.card_data.card_component.CardComponent_2_2_7
 import com.careful.hyperfvm.compose.ui.components.card_data.card_component.CardComponent_2_2_8
 import com.careful.hyperfvm.compose.ui.components.card_data.card_component.CardComponent_2_2_9
+import com.careful.hyperfvm.compose.ui.components.card_data.card_component.CardComponent_2_3_1
+import com.careful.hyperfvm.compose.ui.components.card_data.card_component.CardComponent_2_3_2
+import com.careful.hyperfvm.compose.ui.components.card_data.card_component.CardComponent_2_3_3
+import com.careful.hyperfvm.compose.ui.components.card_data.card_component.CardComponent_2_3_4
 import dev.chrisbanes.haze.hazeEffect
 import dev.chrisbanes.haze.hazeSource
 import top.yukonga.miuix.kmp.basic.InputField
@@ -546,6 +550,36 @@ fun CardDataIndexPage(
             item(key = "card_2_2_13") {
                 AnimatedVisibility(visibility2[2][13]) {
                     CardComponent_2_2_13()
+                }
+            }
+
+            item(key = "card_2_3") {
+                AnimatedVisibility(visibility2[3][0]) {
+                    SmallTitle(text = stringResource(R.string.title_card_data_index_2_3))
+                }
+            }
+
+            item(key = "card_2_3_1") {
+                AnimatedVisibility(visibility2[3][1]) {
+                    CardComponent_2_3_1()
+                }
+            }
+
+            item(key = "card_2_3_2") {
+                AnimatedVisibility(visibility2[3][2]) {
+                    CardComponent_2_3_2()
+                }
+            }
+
+            item(key = "card_2_3_3") {
+                AnimatedVisibility(visibility2[3][3]) {
+                    CardComponent_2_3_3()
+                }
+            }
+
+            item(key = "card_2_3_4") {
+                AnimatedVisibility(visibility2[3][4]) {
+                    CardComponent_2_3_4()
                 }
             }
 
