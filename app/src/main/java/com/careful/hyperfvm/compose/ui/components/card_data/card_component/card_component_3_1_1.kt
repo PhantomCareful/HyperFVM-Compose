@@ -27,6 +27,10 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.SpanStyle
+import androidx.compose.ui.text.buildAnnotatedString
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.DpSize
 import androidx.compose.ui.unit.dp
 import com.careful.hyperfvm.compose.LocalAppState
@@ -47,6 +51,7 @@ import top.yukonga.miuix.kmp.basic.SliderDefaults
 import top.yukonga.miuix.kmp.basic.SmallTitle
 import top.yukonga.miuix.kmp.basic.TabRow
 import top.yukonga.miuix.kmp.basic.TabRowDefaults
+import top.yukonga.miuix.kmp.basic.Text
 import top.yukonga.miuix.kmp.window.WindowBottomSheet
 import top.yukonga.miuix.kmp.preference.SwitchPreference
 import top.yukonga.miuix.kmp.icon.MiuixIcons
@@ -61,79 +66,75 @@ import kotlin.random.Random
 
 @Stable
 private val CARD_NAMES = listOf(
-    R.string.name_card_data_index_1_2_1_0,
-    R.string.name_card_data_index_1_2_1_1,
-    R.string.name_card_data_index_1_2_1_2
+    R.string.name_card_data_index_3_1_1_0,
+    R.string.name_card_data_index_3_1_1_1,
+    R.string.name_card_data_index_3_1_1_2
 )
 
 @Stable
 private val CARD_NAMES_FUNNY = listOf(
-    R.string.name_card_data_index_1_2_1_0_funny,
-    R.string.name_card_data_index_1_2_1_1,
-    R.string.name_card_data_index_1_2_1_2
+    R.string.name_card_data_index_3_1_1_0,
+    R.string.name_card_data_index_3_1_1_1,
+    R.string.name_card_data_index_3_1_1_2_funny
 )
 
 @Stable
 private val CARD_IMAGES = listOf(
-    R.drawable.card_data_index_1_2_1_0,
-    R.drawable.card_data_index_1_2_1_1,
-    R.drawable.card_data_index_1_2_1_2
+    R.drawable.card_data_index_3_1_1_0,
+    R.drawable.card_data_index_3_1_1_1,
+    R.drawable.card_data_index_3_1_1_2
 )
 
 @Stable
 private val CARD_IMAGES_BIG = listOf(
-    R.drawable.card_data_index_1_2_1_0_big,
-    R.drawable.card_data_index_1_2_1_1_big,
-    R.drawable.card_data_index_1_2_1_2_big
+    R.drawable.card_data_index_3_1_1_0_big,
+    R.drawable.card_data_index_3_1_1_1_big,
+    R.drawable.card_data_index_3_1_1_2_big
 )
 
 @Stable
 private val CARD_IMAGES_BIG_FUNNY = listOf(
-    R.drawable.card_data_index_1_2_1_0_big_funny,
-    R.drawable.card_data_index_1_2_1_1_big,
-    R.drawable.card_data_index_1_2_1_2_big
+    R.drawable.card_data_index_3_1_1_0_big,
+    R.drawable.card_data_index_3_1_1_1_big,
+    R.drawable.card_data_index_3_1_1_2_big_funny
 )
 
 @Stable
 private val CARD_IMAGES_TRANSFER_1 = listOf(
-    R.drawable.card_data_index_1_2_1_transfer_1_a,
-    R.drawable.card_data_index_1_2_1_transfer_1_b
+    R.drawable.card_data_index_3_1_1_transfer_1_a,
+    R.drawable.card_data_index_3_1_1_transfer_1_b
 )
 
 @Stable
 private val CARD_IMAGES_TRANSFER_2 = listOf(
-    R.drawable.card_data_index_1_2_1_transfer_2_a,
-    R.drawable.card_data_index_1_2_1_transfer_2_b,
-    R.drawable.card_data_index_1_2_1_transfer_2_c
+    R.drawable.card_data_index_3_1_1_transfer_2_a,
+    R.drawable.card_data_index_3_1_1_transfer_2_b,
+    R.drawable.card_data_index_3_1_1_transfer_2_c
 )
 
 @Stable
 private val CARD_DESCRIPTION = mutableStateListOf(
-    "能力：可以同时攻击前方三条线",
-    "能力：中间增加一发子弹",
-    "能力：两边各增加一发子弹",
+    "能力：同时向5个方向射出星星子弹。可直接在海底生存",
+    "能力：可在陆地使用",
+    "能力：每路增加1发子弹",
     "50",
     "7",
-    "所属分类：管线类/三线类",
-    "耗能：325",
+    "所属分类：海星类",
+    "耗能：175",
     "作为副卡：好卡\uD83D\uDE00",
-    "价格：950×2=" + 950 * 2 + "威望\n解锁层数：35、40",
-    "价格：3900×3=" + 3900 * 3 + "威望\n解锁层数：65、70、75",
-    "子弹数(一转加中路，二转加侧路)：3/4/6",
+    "价格：1800×2=" + 1800 * 2 + "威望\n解锁层数：20、25",
+    "价格：3500×3=" + 3500 * 3 + "威望\n解锁层数：60、65、70",
+    "1️⃣子弹数量(单方向)：1/1/2\n2️⃣一转后可在非海底携带\n3️⃣二转后子弹可被反弹",
 )
 
 @Stable
 private val RELATED_CARD_NAMES = listOf(
-    R.string.name_card_data_index_1_2_4_0,
-    R.string.name_card_data_index_16_1_2_3,
-    R.string.name_card_data_index_16_1_6_1,
+    R.string.name_card_data_index_3_1_4_0,
 )
 
 @Stable
 private val RELATED_CARD_IMAGES = listOf(
-    R.drawable.card_data_index_1_2_4_0,
-    R.drawable.card_data_index_16_1_2_3,
-    R.drawable.card_data_index_16_1_6_1,
+    R.drawable.card_data_index_3_1_4_0,
 )
 
 @Stable
@@ -143,15 +144,15 @@ private val CARD_DATA_STRING = listOf(
 
 @Stable
 private val CARD_DATA_1 = listOf(
-    10, 12, 14, 16, 18, 20, 22, 26, 32, 40, 55, 70, 85, 100, 115, 130, 145, -1, -1
+    50, 60, 70, 80, 100, 120, 140, 170, 200, 230, 280, 360, 460, 570, 690, 820, 970, -1, -1
 )
 
 @Stable
 private val CARD_DATA_SKILL_IMAGES = listOf(
-    R.drawable.card_data_index_1_2_1_skill_1,
-    R.drawable.card_data_index_1_2_1_skill_2,
-    R.drawable.card_data_index_1_2_1_skill_3,
-    R.drawable.card_data_index_1_2_1_skill_4
+    R.drawable.card_data_index_3_1_1_skill_1,
+    R.drawable.card_data_index_3_1_1_skill_2,
+    R.drawable.card_data_index_3_1_1_skill_3,
+    R.drawable.card_data_index_3_1_1_skill_4
 )
 
 @Stable
@@ -166,7 +167,7 @@ private val CARD_DATA_SKILL_1 = listOf(
 
 @Stable
 @Composable
-fun CardComponent_1_2_1() {
+fun CardComponent_3_1_1() {
     val showBottomSheet = rememberSaveable { mutableStateOf(false) }
     val cardName = stringResource(CARD_NAMES[0])
 
@@ -191,11 +192,11 @@ fun CardComponent_1_2_1() {
         )
     }
 
-    CardDataDetailWindowBottomSheet_1_2_1(showBottomSheet, cardName)
+    CardDataDetailWindowBottomSheet_3_1_1(showBottomSheet, cardName)
 }
 
 @Composable
-fun CardDataDetailWindowBottomSheet_1_2_1(
+fun CardDataDetailWindowBottomSheet_3_1_1(
     showBottomSheet: MutableState<Boolean>,
     cardName: String
 ) {
@@ -248,13 +249,9 @@ private fun Info(
     val density = LocalDensity.current
 
     val showBottomSheet1 = rememberSaveable { mutableStateOf(false) }
-    val showBottomSheet2 = rememberSaveable { mutableStateOf(false) }
-    val showBottomSheet3 = rememberSaveable { mutableStateOf(false) }
 
-    val cookeryChecked1 = rememberSaveable { mutableStateOf(false) }
-    var cookeryValue1 by rememberSaveable { mutableIntStateOf(0) }
-    val cookeryChecked2 = rememberSaveable { mutableStateOf(false) }
-    var cookeryValue2 by rememberSaveable { mutableFloatStateOf(1f) }
+    val cookeryChecked = rememberSaveable { mutableStateOf(false) }
+    var cookeryValue by rememberSaveable { mutableFloatStateOf(1f) }
 
     val crystoneChecked = rememberSaveable { mutableStateOf(false) }
     var crystoneLevel by rememberSaveable { mutableIntStateOf(0) }
@@ -278,7 +275,7 @@ private fun Info(
 
             val boundedInt = Random.nextInt(1, 101)
             if (boundedInt == 16 || boundedInt == 32 || boundedInt == 48 || boundedInt == 64 || boundedInt == 80 || boundedInt == 96) {
-                Toast.makeText(LocalContext.current, "哇，是" + stringResource(CARD_NAMES_FUNNY[0]) + "🤪", Toast.LENGTH_SHORT).show()
+                Toast.makeText(LocalContext.current, "哇，是" + stringResource(CARD_NAMES_FUNNY[2]) + "🤪", Toast.LENGTH_SHORT).show()
                 BaseInfoWithBigImage(
                     cardImagesBig = CARD_IMAGES_BIG_FUNNY,
                     cardImages = CARD_IMAGES,
@@ -300,8 +297,6 @@ private fun Info(
                     .padding(bottom = 12.dp),
                 horizontalArrangement = Arrangement.spacedBy(12.dp)
             ) {
-
-                CARD_DESCRIPTION[4] = (7 - cookeryValue1).toString()
                 val appState = LocalAppState.current
                 val colorMode = appState.colorMode
                 val darkMode = getDarkMode(colorMode)
@@ -407,9 +402,7 @@ private fun Info(
             // =================================================== 相关卡片 ===================================================
 
             SmallTitle(text = "相关卡片")
-            CardDataDetailWindowBottomSheet_1_2_4(showBottomSheet1, stringResource(R.string.name_card_data_index_1_2_4_0))
-            CardDataDetailWindowBottomSheet_16_1_2(showBottomSheet2, stringResource(R.string.name_card_data_index_16_1_2_1))
-            CardDataDetailWindowBottomSheet_16_1_6(showBottomSheet3, stringResource(R.string.name_card_data_index_16_1_6_1))
+            //CardDataDetailWindowBottomSheet_3_1_4(showBottomSheet1, stringResource(R.string.name_card_data_index_3_1_4_0))
 
             Card(
                 modifier = Modifier
@@ -428,32 +421,6 @@ private fun Info(
                         )
                     },
                     onClick = { showBottomSheet1.value = true },
-                )
-                BasicComponent(
-                    modifier = Modifier,
-                    title = stringResource(RELATED_CARD_NAMES[1]),
-                    summary = "本卡片是灵魂融合此卡片的必要素材",
-                    endActions = {
-                        ImagesRow(
-                            imageResIds = listOf(RELATED_CARD_IMAGES[1]),
-                            imageWidth = 40,
-                            imageHeight = 50,
-                        )
-                    },
-                    onClick = { showBottomSheet2.value = true },
-                )
-                BasicComponent(
-                    modifier = Modifier,
-                    title = stringResource(RELATED_CARD_NAMES[2]),
-                    summary = "本卡片是初级融合此卡片的必要素材",
-                    endActions = {
-                        ImagesRow(
-                            imageResIds = listOf(RELATED_CARD_IMAGES[2]),
-                            imageWidth = 40,
-                            imageHeight = 50,
-                        )
-                    },
-                    onClick = { showBottomSheet3.value = true },
                 )
             }
         }
@@ -522,7 +489,7 @@ private fun Info(
                     BasicComponent(
                         modifier = Modifier,
                         title = "LV.0",
-                        summary = CARD_DATA_STRING[0] + "：" + (((CARD_DATA_1[0] * cookeryValue2).toInt() * crystoneValue).toInt())
+                        summary = CARD_DATA_STRING[0] + "：" + (((CARD_DATA_1[0] * cookeryValue).toInt() * crystoneValue).toInt())
                     )
                 }
             }
@@ -538,7 +505,7 @@ private fun Info(
                 ) {
                     BasicComponent(
                         modifier = Modifier,
-                        title = CARD_DATA_STRING[0] + "：" + (((CARD_DATA_1[1] * cookeryValue2).toInt() * crystoneValue).toInt()),
+                        title = CARD_DATA_STRING[0] + "：" + (((CARD_DATA_1[1] * cookeryValue).toInt() * crystoneValue).toInt()),
                         endActions = {
                             ImagesRow(
                                 imageResIds = listOf(R.drawable.star_image_1),
@@ -561,7 +528,7 @@ private fun Info(
                 ) {
                     BasicComponent(
                         modifier = Modifier,
-                        title = CARD_DATA_STRING[0] + "：" + (((CARD_DATA_1[2] * cookeryValue2).toInt() * crystoneValue).toInt()),
+                        title = CARD_DATA_STRING[0] + "：" + (((CARD_DATA_1[2] * cookeryValue).toInt() * crystoneValue).toInt()),
                         endActions = {
                             ImagesRow(
                                 imageResIds = listOf(R.drawable.star_image_2),
@@ -584,7 +551,7 @@ private fun Info(
                 ) {
                     BasicComponent(
                         modifier = Modifier,
-                        title = CARD_DATA_STRING[0] + "：" + (((CARD_DATA_1[3] * cookeryValue2).toInt() * crystoneValue).toInt()),
+                        title = CARD_DATA_STRING[0] + "：" + (((CARD_DATA_1[3] * cookeryValue).toInt() * crystoneValue).toInt()),
                         endActions = {
                             ImagesRow(
                                 imageResIds = listOf(R.drawable.star_image_3),
@@ -607,7 +574,7 @@ private fun Info(
                 ) {
                     BasicComponent(
                         modifier = Modifier,
-                        title = CARD_DATA_STRING[0] + "：" + (((CARD_DATA_1[4] * cookeryValue2).toInt() * crystoneValue).toInt()),
+                        title = CARD_DATA_STRING[0] + "：" + (((CARD_DATA_1[4] * cookeryValue).toInt() * crystoneValue).toInt()),
                         endActions = {
                             ImagesRow(
                                 imageResIds = listOf(R.drawable.star_image_4),
@@ -630,7 +597,7 @@ private fun Info(
                 ) {
                     BasicComponent(
                         modifier = Modifier,
-                        title = CARD_DATA_STRING[0] + "：" + (((CARD_DATA_1[5] * cookeryValue2).toInt() * crystoneValue).toInt()),
+                        title = CARD_DATA_STRING[0] + "：" + (((CARD_DATA_1[5] * cookeryValue).toInt() * crystoneValue).toInt()),
                         endActions = {
                             ImagesRow(
                                 imageResIds = listOf(R.drawable.star_image_5),
@@ -653,7 +620,7 @@ private fun Info(
                 ) {
                     BasicComponent(
                         modifier = Modifier,
-                        title = CARD_DATA_STRING[0] + "：" + (((CARD_DATA_1[6] * cookeryValue2).toInt() * crystoneValue).toInt()),
+                        title = CARD_DATA_STRING[0] + "：" + (((CARD_DATA_1[6] * cookeryValue).toInt() * crystoneValue).toInt()),
                         endActions = {
                             ImagesRow(
                                 imageResIds = listOf(R.drawable.star_image_6),
@@ -676,7 +643,7 @@ private fun Info(
                 ) {
                     BasicComponent(
                         modifier = Modifier,
-                        title = CARD_DATA_STRING[0] + "：" + (((CARD_DATA_1[7] * cookeryValue2).toInt() * crystoneValue).toInt()),
+                        title = CARD_DATA_STRING[0] + "：" + (((CARD_DATA_1[7] * cookeryValue).toInt() * crystoneValue).toInt()),
                         endActions = {
                             ImagesRow(
                                 imageResIds = listOf(R.drawable.star_image_7),
@@ -699,7 +666,7 @@ private fun Info(
                 ) {
                     BasicComponent(
                         modifier = Modifier,
-                        title = CARD_DATA_STRING[0] + "：" + (((CARD_DATA_1[8] * cookeryValue2).toInt() * crystoneValue).toInt()),
+                        title = CARD_DATA_STRING[0] + "：" + (((CARD_DATA_1[8] * cookeryValue).toInt() * crystoneValue).toInt()),
                         endActions = {
                             ImagesRow(
                                 imageResIds = listOf(R.drawable.star_image_8),
@@ -722,7 +689,7 @@ private fun Info(
                 ) {
                     BasicComponent(
                         modifier = Modifier,
-                        title = CARD_DATA_STRING[0] + "：" + (((CARD_DATA_1[9] * cookeryValue2).toInt() * crystoneValue).toInt()),
+                        title = CARD_DATA_STRING[0] + "：" + (((CARD_DATA_1[9] * cookeryValue).toInt() * crystoneValue).toInt()),
                         endActions = {
                             ImagesRow(
                                 imageResIds = listOf(R.drawable.star_image_9),
@@ -745,7 +712,7 @@ private fun Info(
                 ) {
                     BasicComponent(
                         modifier = Modifier,
-                        title = CARD_DATA_STRING[0] + "：" + (((CARD_DATA_1[10] * cookeryValue2).toInt() * crystoneValue).toInt()),
+                        title = CARD_DATA_STRING[0] + "：" + (((CARD_DATA_1[10] * cookeryValue).toInt() * crystoneValue).toInt()),
                         endActions = {
                             ImagesRow(
                                 imageResIds = listOf(R.drawable.star_image_10),
@@ -768,7 +735,7 @@ private fun Info(
                 ) {
                     BasicComponent(
                         modifier = Modifier,
-                        title = CARD_DATA_STRING[0] + "：" + (((CARD_DATA_1[11] * cookeryValue2).toInt() * crystoneValue).toInt()),
+                        title = CARD_DATA_STRING[0] + "：" + (((CARD_DATA_1[11] * cookeryValue).toInt() * crystoneValue).toInt()),
                         endActions = {
                             ImagesRow(
                                 imageResIds = listOf(R.drawable.star_image_11),
@@ -791,7 +758,7 @@ private fun Info(
                 ) {
                     BasicComponent(
                         modifier = Modifier,
-                        title = CARD_DATA_STRING[0] + "：" + (((CARD_DATA_1[12] * cookeryValue2).toInt() * crystoneValue).toInt()),
+                        title = CARD_DATA_STRING[0] + "：" + (((CARD_DATA_1[12] * cookeryValue).toInt() * crystoneValue).toInt()),
                         endActions = {
                             ImagesRow(
                                 imageResIds = listOf(R.drawable.star_image_12),
@@ -814,7 +781,7 @@ private fun Info(
                 ) {
                     BasicComponent(
                         modifier = Modifier,
-                        title = CARD_DATA_STRING[0] + "：" + (((CARD_DATA_1[13] * cookeryValue2).toInt() * crystoneValue).toInt()),
+                        title = CARD_DATA_STRING[0] + "：" + (((CARD_DATA_1[13] * cookeryValue).toInt() * crystoneValue).toInt()),
                         endActions = {
                             ImagesRow(
                                 imageResIds = listOf(R.drawable.star_image_13),
@@ -837,7 +804,7 @@ private fun Info(
                 ) {
                     BasicComponent(
                         modifier = Modifier,
-                        title = CARD_DATA_STRING[0] + "：" + (((CARD_DATA_1[14] * cookeryValue2).toInt() * crystoneValue).toInt()),
+                        title = CARD_DATA_STRING[0] + "：" + (((CARD_DATA_1[14] * cookeryValue).toInt() * crystoneValue).toInt()),
                         endActions = {
                             ImagesRow(
                                 imageResIds = listOf(R.drawable.star_image_14),
@@ -860,7 +827,7 @@ private fun Info(
                 ) {
                     BasicComponent(
                         modifier = Modifier,
-                        title = CARD_DATA_STRING[0] + "：" + (((CARD_DATA_1[15] * cookeryValue2).toInt() * crystoneValue).toInt()),
+                        title = CARD_DATA_STRING[0] + "：" + (((CARD_DATA_1[15] * cookeryValue).toInt() * crystoneValue).toInt()),
                         endActions = {
                             ImagesRow(
                                 imageResIds = listOf(R.drawable.star_image_15),
@@ -883,7 +850,7 @@ private fun Info(
                 ) {
                     BasicComponent(
                         modifier = Modifier,
-                        title = CARD_DATA_STRING[0] + "：" + (((CARD_DATA_1[16] * cookeryValue2).toInt() * crystoneValue).toInt()),
+                        title = CARD_DATA_STRING[0] + "：" + (((CARD_DATA_1[16] * cookeryValue).toInt() * crystoneValue).toInt()),
                         endActions = {
                             ImagesRow(
                                 imageResIds = listOf(R.drawable.star_image_16),
@@ -1029,6 +996,101 @@ private fun Info(
         item {
             // =================================================== 其他信息 ===================================================
 
+            SmallTitle("其他信息")
+
+            Card(
+                modifier = Modifier
+                    .padding(horizontal = 12.dp)
+                    .padding(bottom = 12.dp),
+                pressFeedbackType = PressFeedbackType.Sink,
+                showIndication = true,
+            ) {
+                BasicComponent(
+                    modifier = Modifier,
+                    title = "无需气泡\uD83E\uDEE7",
+                    summary = "卡片可直接在海底生存",
+                )
+            }
+
+            Card(
+                modifier = Modifier
+                    .padding(horizontal = 12.dp)
+                    .padding(bottom = 12.dp),
+                pressFeedbackType = PressFeedbackType.Sink,
+                showIndication = true,
+            ) {
+                BasicComponent(
+                    modifier = Modifier,
+                    onClick = {  },
+                ) {
+                    Text(
+                        text = "反弹🍮",
+                        style = MiuixTheme.textStyles.headline1,
+                        fontWeight = FontWeight.Medium
+                    )
+                    Text(
+                        text = buildAnnotatedString {
+                            withStyle(style = SpanStyle(color = MiuixTheme.colorScheme.primary, fontWeight = FontWeight.Bold)) {
+                                append("二转后")
+                            }
+                            append("，子弹可被反弹")
+                        },
+                        style = MiuixTheme.textStyles.body2,
+                        color = MiuixTheme.colorScheme.onSurfaceVariantSummary
+                    )
+                }
+            }
+
+            Card(
+                modifier = Modifier
+                    .padding(horizontal = 12.dp)
+                    .padding(bottom = 12.dp),
+                pressFeedbackType = PressFeedbackType.Sink,
+                showIndication = true,
+            ) {
+                BasicComponent(
+                    modifier = Modifier,
+                    onClick = {  },
+                ) {
+                    Text(
+                        text = "讲故事💡",
+                        style = MiuixTheme.textStyles.headline1,
+                        fontWeight = FontWeight.Medium
+                    )
+                    Text(
+                        text = buildAnnotatedString {
+                            append("1️⃣2018年初版的炭烧海星子弹单发攻击力同小笼包，任何转职形态均不可反弹也不可过火，且基本打不到老鼠\n2️⃣一次更新后，")
+                            withStyle(style = SpanStyle(color = MiuixTheme.colorScheme.primary, fontWeight = FontWeight.Bold)) {
+                                append("攻击力同双鱼，且二转可被反弹并且子弹可以过火(至少2019年二月还是这个状态），当时海星威力高于四转金卡")
+                            }
+                            append("\n3️⃣二次更新后移除了子弹过火的特性")
+                            withStyle(style = SpanStyle(color = MiuixTheme.colorScheme.primary, fontWeight = FontWeight.Bold)) {
+                                append("（也就是现在的海星）")
+                            }
+                            append("\n4️⃣以前")
+                            withStyle(style = SpanStyle(color = MiuixTheme.colorScheme.primary, fontWeight = FontWeight.Bold)) {
+                                append("炭烧海星配方")
+                            }
+                            append("在")
+                            withStyle(style = SpanStyle(color = MiuixTheme.colorScheme.primary, fontWeight = FontWeight.Bold)) {
+                                append("北极贝湍流")
+                            }
+                            append("即可掉落，后被移除🤬\n5️⃣以前")
+                            withStyle(style = SpanStyle(color = MiuixTheme.colorScheme.primary, fontWeight = FontWeight.Bold)) {
+                                append("炭烧海星-究极技能书")
+                            }
+                            append("在")
+                            withStyle(style = SpanStyle(color = MiuixTheme.colorScheme.primary, fontWeight = FontWeight.Bold)) {
+                                append("大富翁宝箱")
+                            }
+                            append("中可以开出，后被移除🤬")
+                        },
+                        style = MiuixTheme.textStyles.body2,
+                        color = MiuixTheme.colorScheme.onSurfaceVariantSummary
+                    )
+                }
+            }
+
             DeveloperTips()
         }
     }
@@ -1061,40 +1123,11 @@ private fun Info(
                     ) {
                         BasicComponent(
                             modifier = Modifier,
-                            title = "食神谱：葡式蛋挞😋",
-                            summary = "冷却时间减少1秒",
-                            endActions = {
-                                ImagesRow(
-                                    imageResIds = listOf(R.drawable.card_data_cookery_1_6),
-                                    imageWidth = 44,
-                                    imageHeight = 44,
-                                )
-                            },
-                            onClick = {  },
-                        )
-                        SwitchPreference(
-                            title = "启用该食神谱",
-                            summary = "将自动计算出启用后的数据",
-                            checked = cookeryChecked1.value,
-                            onCheckedChange = { checked ->
-                                cookeryChecked1.value = checked
-                                cookeryValue1 = if (checked) 1 else 0
-                            }
-                        )
-                    }
-
-                    Card(
-                        modifier = Modifier
-                            .padding(horizontal = 12.dp)
-                            .padding(bottom = 12.dp),
-                    ) {
-                        BasicComponent(
-                            modifier = Modifier,
-                            title = "食神谱：葡萄美酒😋",
+                            title = "食神谱：海鲜大咖😋",
                             summary = "攻击力提升10%",
                             endActions = {
                                 ImagesRow(
-                                    imageResIds = listOf(R.drawable.card_data_cookery_2_5),
+                                    imageResIds = listOf(R.drawable.card_data_cookery_3_29),
                                     imageWidth = 44,
                                     imageHeight = 44,
                                 )
@@ -1104,38 +1137,11 @@ private fun Info(
                         SwitchPreference(
                             title = "启用该食神谱",
                             summary = "将自动计算出启用后的数据",
-                            checked = cookeryChecked2.value,
+                            checked = cookeryChecked.value,
                             onCheckedChange = { checked ->
-                                cookeryChecked2.value = checked
-                                cookeryValue2 = if (checked) 1.1f else 1.0f
+                                cookeryChecked.value = checked
+                                cookeryValue = if (checked) 1.1f else 1.0f
                             }
-                        )
-                    }
-
-                    Card(
-                        modifier = Modifier
-                            .padding(horizontal = 12.dp)
-                            .padding(bottom = 12.dp),
-                    ) {
-                        BasicComponent(
-                            modifier = Modifier,
-                            title = "食神谱：拉菲限量版😋",
-                            summary = "攻速提升5%",
-                            endActions = {
-                                ImagesRow(
-                                    imageResIds = listOf(R.drawable.card_data_cookery_3_8),
-                                    imageWidth = 44,
-                                    imageHeight = 44,
-                                )
-                            },
-                            onClick = {  },
-                        )
-                        SwitchPreference(
-                            title = "该食神谱无实际效果",
-                            summary = "实际加成为3%，攻速缩减量小于1帧，因此无加成",
-                            enabled = false,
-                            checked = false,
-                            onCheckedChange = {  }
                         )
                     }
 
@@ -1152,7 +1158,7 @@ private fun Info(
                             summary = "提升攻击力",
                             endActions = {
                                 ImagesRow(
-                                    imageResIds = listOf(R.drawable.card_data_index_1_2_1_crystone),
+                                    imageResIds = listOf(R.drawable.card_data_index_3_1_1_crystone),
                                     imageWidth = 44,
                                     imageHeight = 44,
                                 )

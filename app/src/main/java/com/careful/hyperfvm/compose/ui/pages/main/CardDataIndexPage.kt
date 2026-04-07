@@ -69,6 +69,7 @@ import com.careful.hyperfvm.compose.ui.components.card_data.card_component.CardC
 import com.careful.hyperfvm.compose.ui.components.card_data.card_component.CardComponent_2_3_2
 import com.careful.hyperfvm.compose.ui.components.card_data.card_component.CardComponent_2_3_3
 import com.careful.hyperfvm.compose.ui.components.card_data.card_component.CardComponent_2_3_4
+import com.careful.hyperfvm.compose.ui.components.card_data.card_component.CardComponent_3_1_1
 import dev.chrisbanes.haze.hazeEffect
 import dev.chrisbanes.haze.hazeSource
 import top.yukonga.miuix.kmp.basic.InputField
@@ -166,6 +167,14 @@ fun CardDataIndexPage(
             mutableListOf(true, true, true, true, true, true, true),
             mutableListOf(true, true, true, true, true, true, true, true, true, true, true, true, true, true),
             mutableListOf(true, true, true, true, true),
+        )
+        val visibility3 = mutableListOf(
+            // 第0个占位用，不用管
+            mutableListOf(true),
+            // 从第1个开始，这样更方便
+            mutableListOf(true, true, true, true, true, true),
+            mutableListOf(true, true, true, true, true, true, true, true),
+            mutableListOf(true, true, true, true, true, true, true),
         )
         val visibility16 = mutableListOf(
             // 第0个占位用，不用管
@@ -273,6 +282,19 @@ fun CardDataIndexPage(
             visibility2[3][4] = false
         if (!visibility2[3][1] && !visibility2[3][2] && !visibility2[3][3] && !visibility2[3][4])
             visibility2[3][0] = false
+
+        if (!(expanded && (stringResource(R.string.name_card_data_index_3_1_1_0).contains(searchText) || stringResource(R.string.name_card_data_index_3_1_1_1).contains(searchText) || stringResource(R.string.name_card_data_index_3_1_1_2).contains(searchText)) || !expanded))
+            visibility3[1][1] = false
+        if (!(expanded && (stringResource(R.string.name_card_data_index_3_1_2_0).contains(searchText) || stringResource(R.string.name_card_data_index_3_1_2_1).contains(searchText) || stringResource(R.string.name_card_data_index_3_1_2_2).contains(searchText)) || !expanded))
+            visibility3[1][2] = false
+        if (!(expanded && (stringResource(R.string.name_card_data_index_3_1_3_0).contains(searchText) || stringResource(R.string.name_card_data_index_3_1_3_1).contains(searchText) || stringResource(R.string.name_card_data_index_3_1_3_2).contains(searchText)) || !expanded))
+            visibility3[1][3] = false
+        if (!(expanded && (stringResource(R.string.name_card_data_index_3_1_4_0).contains(searchText) || stringResource(R.string.name_card_data_index_3_1_4_1).contains(searchText) || stringResource(R.string.name_card_data_index_3_1_4_2).contains(searchText) || stringResource(R.string.name_card_data_index_3_1_4_3).contains(searchText)) || !expanded))
+            visibility3[1][4] = false
+        if (!(expanded && (stringResource(R.string.name_card_data_index_3_1_5_0).contains(searchText) || stringResource(R.string.name_card_data_index_3_1_5_1).contains(searchText) || stringResource(R.string.name_card_data_index_3_1_5_2).contains(searchText)) || !expanded))
+            visibility3[1][5] = false
+        if (!visibility3[1][1] && !visibility3[1][2] && !visibility3[1][3] && !visibility3[1][4] && !visibility3[1][5])
+            visibility3[1][0] = false
 
         if (!(expanded && (stringResource(R.string.name_card_data_index_16_1_1_1).contains(searchText) || stringResource(R.string.name_card_data_index_16_1_1_2).contains(searchText) || stringResource(R.string.name_card_data_index_16_1_1_3).contains(searchText)) || !expanded))
             visibility16[1][1] = false
@@ -583,6 +605,18 @@ fun CardDataIndexPage(
                 }
             }
 
+            item(key = "card_3_1") {
+                AnimatedVisibility(visibility3[1][0]) {
+                    SmallTitle(text = stringResource(R.string.title_card_data_index_3_1))
+                }
+            }
+
+            item(key = "card_3_1_1") {
+                AnimatedVisibility(visibility3[1][1]) {
+                    CardComponent_3_1_1()
+                }
+            }
+
             item(key = "card_16_1") {
                 AnimatedVisibility(visibility16[1][0]) {
                     SmallTitle(text = stringResource(R.string.title_card_data_index_16_1))
@@ -594,46 +628,55 @@ fun CardDataIndexPage(
                     CardComponent_16_1_1()
                 }
             }
+
             item(key = "card_16_1_2") {
                 AnimatedVisibility(visibility16[1][2]) {
                     CardComponent_16_1_2()
                 }
             }
+
             item(key = "card_16_1_3") {
                 AnimatedVisibility(visibility16[1][3]) {
                     CardComponent_16_1_3()
                 }
             }
+
             item(key = "card_16_1_4") {
                 AnimatedVisibility(visibility16[1][4]) {
                     CardComponent_16_1_4()
                 }
             }
+
             item(key = "card_16_1_5") {
                 AnimatedVisibility(visibility16[1][5]) {
                     CardComponent_16_1_5()
                 }
             }
+
             item(key = "card_16_1_6") {
                 AnimatedVisibility(visibility16[1][6]) {
                     CardComponent_16_1_6()
                 }
             }
+
             item(key = "card_16_1_7") {
                 AnimatedVisibility(visibility16[1][7]) {
                     CardComponent_16_1_7()
                 }
             }
+
             item(key = "card_16_1_8") {
                 AnimatedVisibility(visibility16[1][8]) {
                     CardComponent_16_1_8()
                 }
             }
+
             item(key = "card_16_1_9") {
                 AnimatedVisibility(visibility16[1][9]) {
                     CardComponent_16_1_9()
                 }
             }
+
         }
     }
 }

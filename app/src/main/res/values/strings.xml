@@ -53,6 +53,7 @@
     <string name="title_card_data_index_1_2">(1–2) 管线类–三线类</string>
 
     <string name="name_card_data_index_1_2_1_0">三线酒架</string>
+    <string name="name_card_data_index_1_2_1_0_funny">十三线酒架</string>
     <string name="name_card_data_index_1_2_1_1">强力三线酒架</string>
     <string name="name_card_data_index_1_2_1_2">终结者酒架</string>
 
@@ -202,8 +203,9 @@
     <string name="title_card_data_index_3_1">(3–1) (类)海星类&amp;竞技类–海星类</string>
 
     <string name="name_card_data_index_3_1_1_0">炭烧海星</string>
-    <string name="name_card_data_index_3_1_1_1">芝士焗海星–</string>
+    <string name="name_card_data_index_3_1_1_1">芝士焗海星</string>
     <string name="name_card_data_index_3_1_1_2">芥末海星刺身</string>
+    <string name="name_card_data_index_3_1_1_2_funny">冰激凌海星</string>
 
     <string name="name_card_data_index_3_1_2_0">猪猪料理机</string>
     <string name="name_card_data_index_3_1_2_1">猪猪搅拌机</string>
