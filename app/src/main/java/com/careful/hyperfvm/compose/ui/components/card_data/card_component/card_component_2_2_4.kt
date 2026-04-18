@@ -1057,7 +1057,7 @@ private fun Info(
                             withStyle(style = SpanStyle(color = MiuixTheme.colorScheme.primary, fontWeight = FontWeight.Bold)) {
                                 append("一转后")
                             }
-                            append("，减速10秒")
+                            append("，子弹附带减速效果，持续时间为10秒")
                         },
                         style = MiuixTheme.textStyles.body2,
                         color = MiuixTheme.colorScheme.onSurfaceVariantSummary

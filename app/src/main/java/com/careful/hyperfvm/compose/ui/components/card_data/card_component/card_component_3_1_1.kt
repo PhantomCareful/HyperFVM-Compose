@@ -37,7 +37,7 @@ import com.careful.hyperfvm.compose.LocalAppState
 import com.careful.hyperfvm.compose.R
 import com.careful.hyperfvm.compose.card_data_detail.CRYSTONE_ATTACK
 import com.careful.hyperfvm.compose.card_data_detail.DeveloperTips
-import com.careful.hyperfvm.compose.card_data_detail.SKILL_POINT_3
+import com.careful.hyperfvm.compose.card_data_detail.SKILL_POINT_1
 import com.careful.hyperfvm.compose.ui.components.card_data.ImagesRow
 import com.careful.hyperfvm.compose.ui.theme.getDarkMode
 import top.yukonga.miuix.kmp.basic.BasicComponent
@@ -402,7 +402,7 @@ private fun Info(
             // =================================================== 相关卡片 ===================================================
 
             SmallTitle(text = "相关卡片")
-            //CardDataDetailWindowBottomSheet_3_1_4(showBottomSheet1, stringResource(R.string.name_card_data_index_3_1_4_0))
+            CardDataDetailWindowBottomSheet_3_1_4(showBottomSheet1, stringResource(R.string.name_card_data_index_3_1_4_0))
 
             Card(
                 modifier = Modifier
@@ -922,7 +922,7 @@ private fun Info(
                 BasicComponent(
                     modifier = Modifier,
                     title = "LV.1-3：" + CARD_DATA_SKILL_1[1] + "、" + CARD_DATA_SKILL_1[2] + "、" + CARD_DATA_SKILL_1[3],
-                    summary = "初级一共所需技能点：" + (SKILL_POINT_3[1] + SKILL_POINT_3[2] + SKILL_POINT_3[3]),
+                    summary = "初级一共所需技能点：" + (SKILL_POINT_1[1] + SKILL_POINT_1[2] + SKILL_POINT_1[3]),
                     endActions = {
                         ImagesRow(
                             imageResIds = listOf(CARD_DATA_SKILL_IMAGES[0]),
@@ -942,7 +942,7 @@ private fun Info(
                 BasicComponent(
                     modifier = Modifier,
                     title = "LV.4-5：" + CARD_DATA_SKILL_1[4] + "、" + CARD_DATA_SKILL_1[5],
-                    summary = "高级一共所需技能点：" + (SKILL_POINT_3[4] + SKILL_POINT_3[5]),
+                    summary = "高级一共所需技能点：" + (SKILL_POINT_1[4] + SKILL_POINT_1[5]),
                     endActions = {
                         ImagesRow(
                             imageResIds = listOf(CARD_DATA_SKILL_IMAGES[1]),
@@ -962,7 +962,7 @@ private fun Info(
                 BasicComponent(
                     modifier = Modifier,
                     title = "LV.6-7：" + CARD_DATA_SKILL_1[6] + "、" + CARD_DATA_SKILL_1[7],
-                    summary = "终级一共所需技能点：" + (SKILL_POINT_3[6] + SKILL_POINT_3[7]),
+                    summary = "终级一共所需技能点：" + (SKILL_POINT_1[6] + SKILL_POINT_1[7]),
                     endActions = {
                         ImagesRow(
                             imageResIds = listOf(CARD_DATA_SKILL_IMAGES[2]),
@@ -982,7 +982,7 @@ private fun Info(
                 BasicComponent(
                     modifier = Modifier,
                     title = "LV.8：" + CARD_DATA_SKILL_1[8],
-                    summary = "究极一共所需技能点：" + (SKILL_POINT_3[8]),
+                    summary = "究极一共所需技能点：" + (SKILL_POINT_1[8]),
                     endActions = {
                         ImagesRow(
                             imageResIds = listOf(CARD_DATA_SKILL_IMAGES[3]),
@@ -1065,7 +1065,7 @@ private fun Info(
                             }
                             append("\n3️⃣二次更新后移除了子弹过火的特性")
                             withStyle(style = SpanStyle(color = MiuixTheme.colorScheme.primary, fontWeight = FontWeight.Bold)) {
-                                append("（也就是现在的海星）")
+                                append("(也就是现在的海星)")
                             }
                             append("\n4️⃣以前")
                             withStyle(style = SpanStyle(color = MiuixTheme.colorScheme.primary, fontWeight = FontWeight.Bold)) {

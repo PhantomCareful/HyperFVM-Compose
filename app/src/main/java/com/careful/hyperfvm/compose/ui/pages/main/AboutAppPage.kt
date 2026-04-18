@@ -62,7 +62,7 @@ fun AboutAppPage(
     Scaffold(
         modifier = Modifier.fillMaxSize(),
     ) { paddingValues ->
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.VANILLA_ICE_CREAM) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             AboutContentBlur(
                 padding = PaddingValues(
                     top = paddingValues.calculateTopPadding(),

@@ -1004,7 +1004,7 @@ private fun Info(
                 BasicComponent(
                     modifier = Modifier,
                     title = "冰冻\uD83E\uDDCA",
-                    summary = "单格冰冻1.5秒",
+                    summary = "子弹附带单格范围的冰冻效果，持续时间为1.5秒",
                 )
             }
 

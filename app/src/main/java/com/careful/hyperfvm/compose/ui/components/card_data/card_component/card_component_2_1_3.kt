@@ -123,8 +123,8 @@ private val CARD_DATA_1 = listOf(
 @Stable
 private val CARD_SUPPORT_DATA_STRING = listOf(
     "攻击力",
-    "窃蛋龙技能等级",
-    "烤蜥蜴投手技能等级"
+    "烤蜥蜴投手技能等级",
+    "窃蛋龙技能等级"
 )
 
 @Stable

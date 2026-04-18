@@ -70,6 +70,14 @@ import com.careful.hyperfvm.compose.ui.components.card_data.card_component.CardC
 import com.careful.hyperfvm.compose.ui.components.card_data.card_component.CardComponent_2_3_3
 import com.careful.hyperfvm.compose.ui.components.card_data.card_component.CardComponent_2_3_4
 import com.careful.hyperfvm.compose.ui.components.card_data.card_component.CardComponent_3_1_1
+import com.careful.hyperfvm.compose.ui.components.card_data.card_component.CardComponent_3_1_2
+import com.careful.hyperfvm.compose.ui.components.card_data.card_component.CardComponent_3_1_3
+import com.careful.hyperfvm.compose.ui.components.card_data.card_component.CardComponent_3_1_4
+import com.careful.hyperfvm.compose.ui.components.card_data.card_component.CardComponent_3_1_5
+import com.careful.hyperfvm.compose.ui.components.card_data.card_component.CardComponent_3_2_1
+import com.careful.hyperfvm.compose.ui.components.card_data.card_component.CardComponent_3_2_2
+import com.careful.hyperfvm.compose.ui.components.card_data.card_component.CardComponent_3_2_3
+import com.careful.hyperfvm.compose.ui.components.card_data.card_component.CardComponent_3_2_4
 import dev.chrisbanes.haze.hazeEffect
 import dev.chrisbanes.haze.hazeSource
 import top.yukonga.miuix.kmp.basic.InputField
@@ -295,6 +303,23 @@ fun CardDataIndexPage(
             visibility3[1][5] = false
         if (!visibility3[1][1] && !visibility3[1][2] && !visibility3[1][3] && !visibility3[1][4] && !visibility3[1][5])
             visibility3[1][0] = false
+
+        if (!(expanded && (stringResource(R.string.name_card_data_index_3_2_1_0).contains(searchText) || stringResource(R.string.name_card_data_index_3_2_1_1).contains(searchText) || stringResource(R.string.name_card_data_index_3_2_1_2).contains(searchText)) || !expanded))
+            visibility3[2][1] = false
+        if (!(expanded && (stringResource(R.string.name_card_data_index_3_2_2_0).contains(searchText) || stringResource(R.string.name_card_data_index_3_2_2_1).contains(searchText) || stringResource(R.string.name_card_data_index_3_2_2_2).contains(searchText)) || !expanded))
+            visibility3[2][2] = false
+        if (!(expanded && (stringResource(R.string.name_card_data_index_3_2_3_0).contains(searchText) || stringResource(R.string.name_card_data_index_3_2_3_1).contains(searchText) || stringResource(R.string.name_card_data_index_3_2_3_2).contains(searchText)) || !expanded))
+            visibility3[2][3] = false
+        if (!(expanded && (stringResource(R.string.name_card_data_index_3_2_4_0).contains(searchText) || stringResource(R.string.name_card_data_index_3_2_4_1).contains(searchText) || stringResource(R.string.name_card_data_index_3_2_4_2).contains(searchText) || stringResource(R.string.name_card_data_index_3_2_4_3).contains(searchText)) || !expanded))
+            visibility3[2][4] = false
+        if (!(expanded && (stringResource(R.string.name_card_data_index_3_2_5_0).contains(searchText) || stringResource(R.string.name_card_data_index_3_2_5_1).contains(searchText) || stringResource(R.string.name_card_data_index_3_2_5_2).contains(searchText)) || !expanded))
+            visibility3[2][5] = false
+        if (!(expanded && (stringResource(R.string.name_card_data_index_3_2_6_0).contains(searchText) || stringResource(R.string.name_card_data_index_3_2_6_1).contains(searchText) || stringResource(R.string.name_card_data_index_3_2_6_2).contains(searchText)) || !expanded))
+            visibility3[2][6] = false
+        if (!(expanded && (stringResource(R.string.name_card_data_index_3_2_7_0).contains(searchText) || stringResource(R.string.name_card_data_index_3_2_7_1).contains(searchText) || stringResource(R.string.name_card_data_index_3_2_7_2).contains(searchText)) || !expanded))
+            visibility3[2][7] = false
+        if (!visibility3[2][1] && !visibility3[2][2] && !visibility3[2][3] && !visibility3[2][4] && !visibility3[2][5] && !visibility3[2][6] && !visibility3[2][7])
+            visibility3[2][0] = false
 
         if (!(expanded && (stringResource(R.string.name_card_data_index_16_1_1_1).contains(searchText) || stringResource(R.string.name_card_data_index_16_1_1_2).contains(searchText) || stringResource(R.string.name_card_data_index_16_1_1_3).contains(searchText)) || !expanded))
             visibility16[1][1] = false
@@ -614,6 +639,60 @@ fun CardDataIndexPage(
             item(key = "card_3_1_1") {
                 AnimatedVisibility(visibility3[1][1]) {
                     CardComponent_3_1_1()
+                }
+            }
+
+            item(key = "card_3_1_2") {
+                AnimatedVisibility(visibility3[1][2]) {
+                    CardComponent_3_1_2()
+                }
+            }
+
+            item(key = "card_3_1_3") {
+                AnimatedVisibility(visibility3[1][3]) {
+                    CardComponent_3_1_3()
+                }
+            }
+
+            item(key = "card_3_1_4") {
+                AnimatedVisibility(visibility3[1][4]) {
+                    CardComponent_3_1_4()
+                }
+            }
+
+            item(key = "card_3_1_5") {
+                AnimatedVisibility(visibility3[1][5]) {
+                    CardComponent_3_1_5()
+                }
+            }
+
+            item(key = "card_3_2") {
+                AnimatedVisibility(visibility3[2][0]) {
+                    SmallTitle(text = stringResource(R.string.title_card_data_index_3_2))
+                }
+            }
+
+            item(key = "card_3_2_1") {
+                AnimatedVisibility(visibility3[2][1]) {
+                    CardComponent_3_2_1()
+                }
+            }
+
+            item(key = "card_3_2_2") {
+                AnimatedVisibility(visibility3[2][2]) {
+                    CardComponent_3_2_2()
+                }
+            }
+
+            item(key = "card_3_2_3") {
+                AnimatedVisibility(visibility3[2][3]) {
+                    CardComponent_3_2_3()
+                }
+            }
+
+            item(key = "card_3_2_4") {
+                AnimatedVisibility(visibility3[2][4]) {
+                    CardComponent_3_2_4()
                 }
             }
 

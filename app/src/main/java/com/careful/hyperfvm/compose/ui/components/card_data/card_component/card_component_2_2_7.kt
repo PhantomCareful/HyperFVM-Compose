@@ -1019,7 +1019,7 @@ private fun Info(
                 BasicComponent(
                     modifier = Modifier,
                     title = "定身\uD83C\uDFAF",
-                    summary = "定身4秒",
+                    summary = "子弹附带定身效果，持续时间为4秒",
                     onClick = {  },
                 )
             }
